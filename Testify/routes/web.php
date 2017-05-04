@@ -12,15 +12,9 @@
 */
 
 Route::get('/', function () {
-    return 'Hello World!!!';
+    return view('welcome');
 });
 
-Route::get('/panel', function () {
-    return view("panel");
-});
-Route::get('/admin', function () {
-    return view("admin");
-});
-Route::get('/uzytkownik', function () {
-    return view("obsluga");
-});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

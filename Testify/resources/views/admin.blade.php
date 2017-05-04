@@ -20,43 +20,23 @@
             height: 100vh;
             margin: 0;
         }
-
-        .full-height {
-            height: 100vh;
-        }
-        .position-ref {
-            position: relative;
-        }
-        .content {
+        .menu{
+            width: 100%;
             text-align: center;
         }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
         .menu > a{
-            text-decoration-line: none;
-            padding:0 30px;
-
-        }
-        .login{
-            border: 1px #636b6f solid;
+            padding: 0 30px 0 30px;
         }
     </style>
 </head>
 <body>
-<div class="position-ref full-height">
-    <div class="login">Witaj Admin</div>
+<div class="master-cointainer">
     <div class="menu">
-        <a href="#">Dodaj Pytanie</a>
-        <a href="#">Dodaj Użytkownika</a>
-        <a href="#">Sprawdz Odpowiedzi</a>
+        <a href="#">1 Link</a>
+        <a href="#">2 Link</a>
+        <a href="#">3 Link</a>
+        <a href="#">4 Link</a>
+        <a href="#">5 Link</a>
     </div>
 </div>
 </body>
