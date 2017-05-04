@@ -14,6 +14,13 @@
 Route::get('/', function () {
     return 'Hello World!!!';
 });
+
 Route::get('/panel', function () {
     return view("panel");
+});
+Route::get('/admin', function () {
+    return view("admin");
+});
+Route::get('/uzytkownik', function () {
+    return view("obsluga");
 });

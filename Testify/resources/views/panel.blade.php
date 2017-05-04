@@ -24,13 +24,6 @@
         .full-height {
             height: 100vh;
         }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
         .position-ref {
             position: relative;
         }
@@ -49,18 +42,22 @@
         }
         .menu > a{
             text-decoration-line: none;
+            padding:0 30px;
+
+        }
+        .login{
+            border: 1px #636b6f solid;
         }
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    <div class="content">
+<div class="position-ref full-height">
+    <div class="login">Witaj Admin</div>
         <div class="menu">
             <a href="#">Dodaj Pytanie</a>
             <a href="#">Dodaj Użytkownika</a>
             <a href="#">Sprawdz Odpowiedzi</a>
         </div>
-    </div>
 </div>
 </body>
 </html>
