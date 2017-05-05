@@ -24,7 +24,9 @@ Route::get('/admin', function () {
 });
 
 Route::get('/user', 'userController');
-
+Route::get('/admin/adduser',function () {
+    return view('auth/register');
+})->middleware('auth');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

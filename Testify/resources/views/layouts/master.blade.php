@@ -72,7 +72,6 @@
                                 </li>
                             </ul>
                         </li>
-                    @endif
                 </ul>
             </div>
         </div>
@@ -87,7 +86,7 @@
     </div>
 </div>
 </div>
-
+@endif
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
