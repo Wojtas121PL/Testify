@@ -9,7 +9,8 @@ class userController extends Controller
 {
     public function __invoke()
     {
-        $questions = tests::where('TestId', '=', '1')->get();
+        $questions = tests::where('TestId', '=', '2')->get();
+
 
 
         return view('user', ['questions' => $questions]);

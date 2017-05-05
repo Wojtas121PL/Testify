@@ -35,5 +35,18 @@ class testsTableSeeder extends Seeder
             'Answers' => 'A|cuz#B|hehe#C|xddd#D|to get to the other side',
             'AnswerKey' => 4
         ]);
+        App\tests::insert([
+            'TestId' => 2,
+            'QuestionId' => 1,
+            'QuestionType' => 0,
+            'Question' => 'Why does a chicken cross a road?',
+            'Answers' => json_encode([
+                "A" => "asdas",
+                "B" => "sasgoiaj",
+                "C" => "sasgoiaj",
+                "D" => "sasgoiaj",
+            ]),
+            'AnswerKey' => 4
+        ]);
     }
 }
