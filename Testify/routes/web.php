@@ -19,6 +19,14 @@ Route::get('/master', function () {
     return view('layouts.master');
 });
 
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/user', function () {
+    return view('user');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
