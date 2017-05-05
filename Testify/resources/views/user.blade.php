@@ -11,12 +11,17 @@
 
 @section('content')
     @parent
+    <form name="#">
     @foreach($questions as $question)
-        <input type="radio" name="Odp">{{json_decode($question->Answers)->A}}<br />
-        <input type="radio" name="Odp">{{json_decode($question->Answers)->B}}<br />
-        <input type="radio" name="Odp">{{json_decode($question->Answers)->C}}<br />
-        <input type="radio" name="Odp">{{json_decode($question->Answers)->D}}<br />
 
+        <p>Question number {{$question->QuestionId}}:</p>
+        <p>{{$question->Question}}</p>
+        <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->A}}<br />
+        <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->B}}<br />
+        <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->C}}<br />
+        <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->D}}<br />
+
+        <hr />
     @endforeach
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam animi assumenda corporis eius laborum maxime odit soluta vel. Autem consequuntur laudantium magni maiores minima nemo perspiciatis quasi quod sunt.
+    </form>
 @endsection
