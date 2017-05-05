@@ -22,7 +22,7 @@ Route::get('/master', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
-
+Route::get('/tests','TestsController');
 Route::get('/user', 'userController');
 Auth::routes();
 
