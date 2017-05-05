@@ -13,7 +13,6 @@
     @parent
     <form name="#">
     @foreach($questions as $question)
-
         <p>Question number {{$question->QuestionId}}:</p>
         <p>{{$question->Question}}</p>
         <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->A}}<br />
@@ -23,5 +22,6 @@
 
         <hr />
     @endforeach
+        <input type="submit" value="Zakończ Test">
     </form>
 @endsection
