@@ -12,18 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 })->middleware('guest');
 
-Route::get('/master', function () {
-    return view('layouts.master');
+
+Route::group( ['middleware' => 'auth' ], function()
+{
+    Route::get('/master', function () {
+        return view('layouts.master');
+    });
+
+    Route::get('/admin', function () {
+        return view('admin');
+    });
+    Route::get('/list','ListController');
+    Route::get('/test/{id}', ['uses' => 'TestController@create']);
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
-Route::get('/list','ListController');
-Route::get('/test/{id}', ['uses' => 'TestController@create']);
+
 
 
 Auth::routes();
