@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(testsTableSeeder::class);
         $this->call(adminUser::class);
+        $this->call(TestsNameSeeder::class);
     }
 }
