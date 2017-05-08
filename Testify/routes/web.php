@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest');
 
 Route::get('/master', function () {
     return view('layouts.master');
@@ -22,8 +22,10 @@ Route::get('/master', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
-Route::get('/tests','TestsController');
-Route::get('/user', 'userController');
+Route::get('/list','ListController');
+Route::get('/test/{id}', ['uses' => 'TestController@create']);
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

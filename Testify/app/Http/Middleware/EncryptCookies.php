@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Testify\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

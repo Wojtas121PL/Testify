@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Testify\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\tests;
-class TestsController extends Controller
+use Testify\tests;
+class ListController extends Controller
 {
     public function __invoke()
     {
         $Test  = tests::select('TestId')->groupBy('TestId')->get();
-        return view('tests', ['Tests' => $Test]);
+        return view('list', ['Tests' => $Test]);
     }
 }
