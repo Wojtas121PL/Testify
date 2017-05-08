@@ -82,7 +82,10 @@
 
         @if(!Auth::guest())
                 <div class="col-md-3">
-                    @yield('menu')
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                    @include('sidebar')
+                        </div></div>
                 </div>
                 <div class="col-md-9">
                     <div class="panel panel-default">

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class testsTableSeeder extends Seeder
 {
     /**
@@ -11,9 +12,9 @@ class testsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\tests::getQuery()->delete();
+        Testify\tests::getQuery()->delete();
 
-        App\tests::insert([
+        Testify\tests::insert([
             'TestId' => 1,
             'QuestionId' => 1,
             'QuestionType' => 0,
@@ -26,7 +27,7 @@ class testsTableSeeder extends Seeder
             ]),
             'AnswerKey' => 4
         ]);
-        App\tests::insert([
+        Testify\tests::insert([
             'TestId' => 1,
             'QuestionId' => 2,
             'QuestionType' => 0,
@@ -39,7 +40,7 @@ class testsTableSeeder extends Seeder
             ]),
             'AnswerKey' => 4
         ]);
-        App\tests::insert([
+        Testify\tests::insert([
             'TestId' => 2,
             'QuestionId' => 1,
             'QuestionType' => 0,
@@ -52,7 +53,7 @@ class testsTableSeeder extends Seeder
             ]),
             'AnswerKey' => 4
         ]);
-        App\tests::insert([
+        Testify\tests::insert([
             'TestId' => 2,
             'QuestionId' => 2,
             'QuestionType' => 0,

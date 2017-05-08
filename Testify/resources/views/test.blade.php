@@ -1,11 +1,5 @@
 @extends('layouts.app')
 
-@section('menu')
-    @parent
-    <ul class="nav nav-pills nav-stacked">
-        <li role="presentation"><a href="#">Tests</a></li>
-    </ul>
-@endsection
 
 @section('content')
     @parent
@@ -14,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
             <p>Question number {{$question->QuestionId}}:</p>
-            <p>{{$question->Question}}</p>
+            <p><strong>{{$question->Question}}</strong></p>
             <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->A}}<br />
             <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->B}}<br />
             <input type="radio" name="{{$question->QuestionId}}">{{json_decode($question->Answers)->C}}<br />
