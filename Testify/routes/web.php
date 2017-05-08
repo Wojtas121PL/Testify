@@ -22,9 +22,8 @@ Route::get('/master', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
-
+Route::get('/tests','TestsController');
 Route::get('/user', 'userController');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
