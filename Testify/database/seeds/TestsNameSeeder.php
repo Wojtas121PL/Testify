@@ -13,11 +13,11 @@ class TestsNameSeeder extends Seeder
     {
         Testify\TestsName::getQuery()->delete();
         Testify\TestsName::insert([
-            'Id' => 1,
+            'TestId' => 1,
             'Name' => 'Why does chicken cross road ??'
         ]);
         Testify\TestsName::insert([
-            'Id' => 2,
+            'TestId' => 2,
             'Name' => 'Why does dog cross road ??'
         ]);
     }

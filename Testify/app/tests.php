@@ -13,4 +13,16 @@ class tests extends Model
     public static function getTestById($id){
         return tests::where('TestId', '=', $id)->get();
     }
+
+    public static function addNewQuestion($request){
+        tests::insert([
+            'TestId'    =>  $request->TestId,
+            'QuestionId'    =>  $request->QuestionId,
+            'QuestionType'    =>  $request->QuestionType,
+            'Question'    =>  $request->Question,
+            'Answers'    =>  $request->Answers,
+            'AnswerKey'    =>  $request->AnswerKey
+        ]);
+
+    }
 }

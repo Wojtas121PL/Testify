@@ -11,8 +11,7 @@ class ListController extends Controller
 {
     public function __invoke()
     {
-        $Test[]  = TestsName::find('1')->Name;
-        $Test[]  = TestsName::find('2')->Name;
-        return view('list', ['Tests' => $Test]);
+        $Tests = TestsName::getTestNameList();
+        return view('list', ['Tests' => $Tests]);
     }
 }
