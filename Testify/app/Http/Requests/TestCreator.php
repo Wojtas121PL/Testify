@@ -32,7 +32,10 @@ class TestCreator extends FormRequest
             'QuestionId'    =>  'required',
             'QuestionType'    =>  'required',
             'Question'    =>  'required',
-            'Answers'    =>  'required',
+            'Answer1'    =>  'required',
+            'Answer2'    =>  'required',
+            'Answer3'    =>  'required',
+            'Answer4'    =>  'required',
             'AnswerKey'    =>  'required'
         ];
     }

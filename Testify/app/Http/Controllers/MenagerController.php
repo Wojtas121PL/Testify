@@ -10,8 +10,21 @@ use Testify\tests;
 class MenagerController extends Controller
 {
     public function addQuestion (TestCreator $request) {
-        tests::addNewQuestion($request);
-        \Redirect('/addQuestion');
+        $data = [
+            'TestId'    =>  $request->TestId,
+            'QuestionId'    =>  $request->QuestionId,
+            'QuestionType'    =>  $request->QuestionType,
+            'Question'    =>  $request->Question,
+            'Answers'    =>  json_encode([
+                1 => $request->Answer1,
+                2 => $request->Answer2,
+                3 => $request->Answer3,
+                4 => $request->Answer4,
+            ]),
+            'AnswerKey'    =>  $request->AnswerKey
+        ];
+        tests::addNewQuestion($data);
+        \Redirect('/home');
     }
     public function formQuestion(){
         return view('addNew');

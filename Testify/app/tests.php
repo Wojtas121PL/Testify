@@ -15,14 +15,7 @@ class tests extends Model
     }
 
     public static function addNewQuestion($request){
-        tests::insert([
-            'TestId'    =>  $request->TestId,
-            'QuestionId'    =>  $request->QuestionId,
-            'QuestionType'    =>  $request->QuestionType,
-            'Question'    =>  $request->Question,
-            'Answers'    =>  $request->Answers,
-            'AnswerKey'    =>  $request->AnswerKey
-        ]);
+        tests::insert($request);
 
     }
 }
