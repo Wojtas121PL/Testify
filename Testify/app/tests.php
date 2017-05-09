@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class tests extends Model
 {
-    public function Name(){
+    public function NameOfTest(){
         $this->hasMany('TestsName');
     }
 
