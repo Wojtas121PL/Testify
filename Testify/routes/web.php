@@ -27,6 +27,10 @@ Route::group( ['middleware' => 'auth' ], function()
     });
     Route::get('/list','ListController');
     Route::get('/test/{id}', ['uses' => 'TestController@create']);
+    Route::get('/addNew', function (){
+        return view('addNew');
+    });
+    Route::post('addQuesion', 'MenagerController@addQuestion');
 });
 
 

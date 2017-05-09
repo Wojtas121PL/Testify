@@ -15,7 +15,7 @@ class TestController extends Controller
 
     public function create($id = null)
     {
-        $questions  = tests::where('TestId', '=', $id)->get();
+        $questions  = tests::getTestById($id);
         return view('test', ['questions' => $questions]);
     }
 }
