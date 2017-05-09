@@ -20,10 +20,10 @@ class testsTableSeeder extends Seeder
             'QuestionType' => 0,
             'Question' => 'Why does a chicken cross a road?',
             'Answers' => json_encode([
-                "A" => "Yes",
-                "B" => "No",
-                "C" => "Chicken is stupid",
-                "D" => "I eat its for dinner",
+                1 => "Yes",
+                2 => "No",
+                3 => "Chicken is stupid",
+                4 => "I eat its for dinner",
             ]),
             'AnswerKey' => 4
         ]);
@@ -33,10 +33,10 @@ class testsTableSeeder extends Seeder
             'QuestionType' => 0,
             'Question' => 'Why does a dog cross a road?',
             'Answers' => json_encode([
-                "A" => "Yes",
-                "B" => "No",
-                "C" => "Dog is stupid",
-                "D" => "I eat its for dinner",
+                1 => "Yes",
+                2 => "No",
+                3 => "Dog is stupid",
+                4 => "I eat its for dinner",
             ]),
             'AnswerKey' => 4
         ]);
@@ -46,10 +46,10 @@ class testsTableSeeder extends Seeder
             'QuestionType' => 0,
             'Question' => 'Why does a fish cross a road?',
             'Answers' => json_encode([
-                "A" => "Yes",
-                "B" => "No",
-                "C" => "Fish is stupid",
-                "D" => "I eat its for dinner",
+                1 => "Yes",
+                2 => "No",
+                3 => "Fish is stupid",
+                4 => "I eat its for dinner",
             ]),
             'AnswerKey' => 4
         ]);
@@ -59,10 +59,10 @@ class testsTableSeeder extends Seeder
             'QuestionType' => 0,
             'Question' => 'Why does a cat cross a road?',
             'Answers' => json_encode([
-                "A" => "Yes",
-                "B" => "No",
-                "C" => "Cat is stupid",
-                "D" => "I eat its for dinner",
+                1 => "Yes",
+                2 => "No",
+                3 => "Cat is stupid",
+                4 => "I eat its for dinner",
             ]),
             'AnswerKey' => 4
         ]);

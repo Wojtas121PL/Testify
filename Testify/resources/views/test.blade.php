@@ -7,17 +7,15 @@
         @foreach($questions as $question)
             @php
             $answers = json_decode($question->Answers, true);
-            dd($question);
             @endphp
             <div class="panel panel-default">
                 <div class="panel-body">
                     <p>Question number {{$question->QuestionId}}:</p>
                     <p><strong>{{$question->Question}}</strong></p>
 
-                    @foreach($answers as $answer)
-                        <input type="radio" name="{{$question->QuestionId}}">{{$answer}}<br />
-
-                    @endforeach
+                    @for($i = 1; $i <= count($answers); $i++)
+                        <input type="radio" name="{{$question->QuestionId}}">{{$answers[$i]}}<br />
+                    @endfor
                 </div>
             </div>
         @endforeach
