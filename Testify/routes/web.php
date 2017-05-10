@@ -36,8 +36,24 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::post('result','ResultController@getAnswersByUserId');
 });
 
+//USER GROUP
+Route::group( ['middleware' => 'auth' , 'prefix' => 'user'], function()
+{
+    Route::get('exam', 'User\ExamController');
+    Route::get('exam/{id}', 'User\ExamController@performExam');
 
 
+});
+//EDITOR GROUP
+
+//ADMIN GROUP
+Route::group( ['middleware' => 'auth' , 'prefix' => 'admin'], function()
+{
+    Route::get('exam', 'Admin\AdminExamController');
+    Route::get('exam/{id}', 'Admin\AdminExamController@performExam');
+    Route::get('exam/edit/{id}', 'Admin\AdminExamController@editExam');
+
+});
 
 Auth::routes();
 
