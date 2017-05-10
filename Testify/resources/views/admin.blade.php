@@ -11,5 +11,6 @@
 
 @section('content')
     @parent
+dd{{user}}
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam animi assumenda corporis eius laborum maxime odit soluta vel. Autem consequuntur laudantium magni maiores minima nemo perspiciatis quasi quod sunt.
 @endsection
