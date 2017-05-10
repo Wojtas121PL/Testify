@@ -31,6 +31,9 @@ Route::group( ['middleware' => 'auth' ], function()
 
     Route::post('addQuestion', 'MenagerController@addQuestion');
     Route::get('/addQuestion', ['uses' => 'MenagerController@formQuestion']);
+
+    Route::get('/result','ResultController@getUserListAndViews');
+    Route::post('result','ResultController@getAnswersByUserId');
 });
 
 
