@@ -22,3 +22,25 @@ $factory->define(Testify\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Testify\Question::class, function (Faker\Generator $faker) {
+    $answer_list = json_encode([
+        1 => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        2 => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        3 => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        4 => $faker->sentence($nbWords = 6, $variableNbWords = true)
+    ]);
+    return [
+        'exam_id' => $faker->numberBetween($min = 1, $max = 5),
+        'question_number' => $faker->numberBetween($min = 1, $max = 5),
+        'question_title' => $faker->sentence($nbWords = 15, $variableNbWords = true),
+        'answer_list' => $answer_list,
+        'answer_correct' => $faker->numberBetween($min = 1, $max = 4),
+    ];
+});
+
+$factory->define(Testify\Exam::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->sentence($nbWords = 15, $variableNbWords = true),
+    ];
+});

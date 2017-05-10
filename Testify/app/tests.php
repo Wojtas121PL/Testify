@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class tests extends Model
 {
-    public function NameOfTest(){
-        $this->hasMany('TestsName');
+    public function testsName(){
+        return $this->belongsTo('Testify\TestsName');
     }
 
     public static function getTestById($id){
