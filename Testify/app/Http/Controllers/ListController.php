@@ -4,7 +4,6 @@ namespace Testify\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Testify\tests;
 use Testify\TestsName;
 
 class ListController extends Controller
