@@ -32,8 +32,7 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::post('addQuestion', 'MenagerController@addQuestion');
     Route::get('/addQuestion', ['uses' => 'MenagerController@formQuestion']);
 
-    Route::get('/result','ResultController@getUserListAndViews');
-    Route::post('result','ResultController@getAnswersByUserId');
+
 });
 
 //USER GROUP
@@ -52,6 +51,8 @@ Route::group( ['middleware' => 'role:1', 'prefix' => 'admin'], function()
     Route::get('exam', 'Admin\AdminExamController');
     Route::get('exam/{id}', 'Admin\AdminExamController@performExam');
     Route::get('exam/edit/{id}', 'Admin\AdminExamController@editExam');
+    Route::get('/result','ResultController@getUserListAndViews');
+    Route::post('result','ResultController@getAnswersByUserId');
 
 });
 
