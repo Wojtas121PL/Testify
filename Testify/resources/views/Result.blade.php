@@ -22,9 +22,9 @@
     @if(isset($Answers))
     <h1>Result table</h1>
     <table border="4px">
-        <tr><td>TestId</td><td>UserId</td><td>QuestionId</td><td>Answer</td><td>Correct Answer</td><td>Created</td></tr>
+        <tr><td>Test Name</td><td>User</td><td>Question Number</td><td>Answer</td><td>Correct Answer</td><td>Created</td></tr>
 @foreach($Answers as $answer)
-    <tr><td>{{$answer->TestId}}</td><td>{{$answer->UserId}}</td><td>{{$answer->QuestionId}}</td><td>{{$answer->Answer}}</td><td>{{$answer->CorrectAnswer}}</td><td>{{$answer->created_at}}</td></tr>
+    <tr><td>{{$answer->ExamName}}</td><td>{{$answer->name}}</td><td>{{$answer->QuestionId}}</td><td>{{$answer->Answer}}</td><td>{{$answer->CorrectAnswer}}</td><td>{{$answer->created_at}}</td></tr>
     @endforeach
     </table>
     @endif

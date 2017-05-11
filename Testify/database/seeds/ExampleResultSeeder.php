@@ -25,7 +25,9 @@ class ExampleResultSeeder extends Seeder
             "UserId" => "1",
             "QuestionId" => "2",
             "Answer" => "1",
-            "CorrectAnswer" => "4"
+            "CorrectAnswer" => "4",
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
         ]);
     }
 }
