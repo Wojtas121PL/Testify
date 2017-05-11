@@ -41,6 +41,12 @@
             </div>
         @endforeach
 
-        <button class="btn bt-lg btn-info btn-group-justified">+</button>
-
+    <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        +
+    </button>
+    <div class="collapse" id="collapseExample">
+        <div class="well">
+            @include('admin.includes.addNewQuestion')
+        </div>
+    </div>
 @endsection

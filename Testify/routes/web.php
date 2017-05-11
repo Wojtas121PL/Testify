@@ -63,6 +63,7 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
     Route::post('deleteExam', 'Admin\AdminEditController@deleteExam');
 
     Route::post('addExam', 'Admin\AdminEditController@addExam');
+    Route::post('addQuestion/{id}', 'Admin\AdminEditController@addQuestion');
 
 });
 

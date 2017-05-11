@@ -20,5 +20,12 @@
             </li>
         @endforeach
     </ul>
-    @include('admin.includes.create')
+    <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        +
+    </button>
+    <div class="collapse" id="collapseExample">
+        <div class="well">
+            @include('admin.includes.create')
+        </div>
+    </div>
 @endsection
