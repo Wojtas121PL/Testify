@@ -37,7 +37,7 @@ Route::group( ['middleware' => 'auth' ], function()
 });
 
 //USER GROUP
-Route::group( ['middleware' => 'auth' , 'prefix' => 'user'], function()
+Route::group( ['middleware' => 'role:3' , 'prefix' => 'user'], function()
 {
     Route::get('exam', 'User\ExamController');
     Route::get('exam/{id}', 'User\ExamController@performExam');
@@ -47,7 +47,7 @@ Route::group( ['middleware' => 'auth' , 'prefix' => 'user'], function()
 //EDITOR GROUP
 
 //ADMIN GROUP
-Route::group( ['middleware' => 'Role:2', 'prefix' => 'admin'], function()
+Route::group( ['middleware' => 'role:1', 'prefix' => 'admin'], function()
 {
     Route::get('exam', 'Admin\AdminExamController');
     Route::get('exam/{id}', 'Admin\AdminExamController@performExam');

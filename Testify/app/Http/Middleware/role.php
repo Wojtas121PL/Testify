@@ -3,8 +3,8 @@
 namespace Testify\Http\Middleware;
 
 use Closure;
-
-class CheckPermission
+use Illuminate\Support\Facades\Auth;
+class role
 {
     /**
      * Handle the incoming request.
@@ -16,7 +16,7 @@ class CheckPermission
      */
     public function handle($request, Closure $next, $role)
     {
-        if (!$role == 2) {
+        if (Auth::user()->role != $role) {
             return redirect('/home');
         }
 
