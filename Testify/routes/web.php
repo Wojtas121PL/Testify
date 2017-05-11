@@ -32,11 +32,12 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::post('addQuestion', 'MenagerController@addQuestion');
     Route::get('/addQuestion', ['uses' => 'MenagerController@formQuestion']);
 
-
+    Route::get('/result','ResultController@getUserListAndViews');
+    Route::post('result','ResultController@getAnswersByUserId');
 });
 
 //USER GROUP
-Route::group( ['middleware' => 'role:3' , 'prefix' => 'user'], function()
+Route::group( ['middleware' => 'auth' , 'prefix' => 'user'], function()
 {
     Route::get('exam', 'User\ExamController');
     Route::get('exam/{id}', 'User\ExamController@performExam');
@@ -46,13 +47,22 @@ Route::group( ['middleware' => 'role:3' , 'prefix' => 'user'], function()
 //EDITOR GROUP
 
 //ADMIN GROUP
-Route::group( ['middleware' => 'role:1', 'prefix' => 'admin'], function()
+Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], function()
 {
+    Route::get('/', function (){
+        return view('admin.home');
+    });
+
     Route::get('exam', 'Admin\AdminExamController');
     Route::get('exam/{id}', 'Admin\AdminExamController@performExam');
-    Route::get('exam/edit/{id}', 'Admin\AdminExamController@editExam');
-    Route::get('/result','ResultController@getUserListAndViews');
-    Route::post('result','ResultController@getAnswersByUserId');
+
+    Route::get('edit/', 'Admin\AdminExamController@editList');
+    Route::get('edit/{id}', 'Admin\AdminExamController@editExam');
+
+    Route::post('deleteQuestion', 'Admin\AdminEditController@deleteQuestion');
+    Route::post('deleteExam', 'Admin\AdminEditController@deleteExam');
+
+    Route::post('addExam', 'Admin\AdminEditController@addExam');
 
 });
 

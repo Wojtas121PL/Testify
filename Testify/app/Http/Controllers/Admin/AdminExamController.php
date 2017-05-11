@@ -2,7 +2,6 @@
 
 namespace Testify\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Testify\Http\Controllers\Controller;
 use Testify\Exam;
 
@@ -18,8 +17,14 @@ class AdminExamController extends Controller
         return view('admin.exam', ['examContent' => $examContent]);
     }
 
+    public function editList(){
+        $exams = Exam::all();
+        return view('admin.edit.list', ['exams' => $exams]);
+    }
+
     public function editExam($id){
         $examContent = Exam::find($id)->questions;
-        return view('admin.editExam', ['examContent' => $examContent]);
+        return view('admin.edit.exam', ['examContent' => $examContent]);
     }
+
 }
