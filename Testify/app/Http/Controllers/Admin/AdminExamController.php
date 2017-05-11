@@ -24,7 +24,7 @@ class AdminExamController extends Controller
 
     public function editExam($id){
         $examContent = Exam::find($id)->questions;
-        return view('admin.edit.exam', ['examContent' => $examContent]);
+        return view('admin.edit.exam', ['examContent' => $examContent, 'id' => $id]);
     }
 
 }
