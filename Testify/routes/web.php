@@ -32,8 +32,7 @@ Route::group( ['middleware' => 'auth' ], function()
     Route::post('addQuestion', 'MenagerController@addQuestion');
     Route::get('/addQuestion', ['uses' => 'MenagerController@formQuestion']);
 
-    Route::get('/result','ResultController@getUserListAndViews');
-    Route::post('result','ResultController@getAnswersByUserId');
+
 });
 
 //USER GROUP
@@ -64,6 +63,8 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
 
     Route::post('addExam', 'Admin\AdminEditController@addExam');
 
+    Route::get('/result','ResultController@getUserListAndViews');
+    Route::post('result','ResultController@getAnswersByUserId');
 });
 
 Auth::routes();
