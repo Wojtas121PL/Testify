@@ -17,9 +17,25 @@ class adminUser extends Seeder
             'name'   => 'root',
             'email'      => 'root@root',
             'password'   => Hash::make('root'),
+            'role' => 1,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);
-
+        Testify\User::insert([
+            'name'   => 'edit',
+            'email'      => 'edit@edit',
+            'password'   => Hash::make('edit'),
+            'role' => 2,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ]);
+        Testify\User::insert([
+            'name'   => 'user',
+            'email'      => 'user@user',
+            'password'   => Hash::make('user'),
+            'role' => 3,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ]);
     }
 }
