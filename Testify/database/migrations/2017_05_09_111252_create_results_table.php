@@ -13,33 +13,16 @@ class CreateResultsTable extends Migration
      */
     public function up()
     {
-        /*
-        Schema::create('Testing1', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('TestId');
-            $table->unsignedInteger('UserId');
-        });
-        Schema::create('Testing2', function (Blueprint $table) {
-            $table->increments('Id');
-            $table->string('Name');
-            $table->string('SureName');
-        });
-        Schema::table('Testing1',function (Blueprint $table){
-            $table->index('TestId');
-            $table->foreign('TestId')->references('Id')->on('Testing2');
-        });*/
             Schema::create('results', function (Blueprint $table) {
                 $table->increments('id');
-                $table->unsignedInteger('TestId');
-                $table->unsignedInteger('UserId');
+                $table->integer('TestId')->unsigned();
+                $table->foreign('TestId')->references('id')->on('exams')->onDelete('cascade');
+                $table->integer('UserId')->unsigned();
+                $table->foreign('UserId')->references('id')->on('users')->onDelete('cascade');
                 $table->unsignedInteger('QuestionId');
                 $table->unsignedInteger('Answer');
                 $table->unsignedInteger('CorrectAnswer');
                 $table->timestamps();
-            });
-            Schema::table('results',function (Blueprint $table){
-                $table->index('TestId');
-                $table->foreign('TestId')->references('Id')->on('tests_names');
             });
     }
 
