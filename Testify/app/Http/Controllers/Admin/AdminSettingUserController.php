@@ -12,18 +12,18 @@ class AdminSettingUserController extends Controller
         if($id != 1) {
             User::find($id)->delete();
         }
-        return redirect('/admin/setting/changePwd')->with('done','tak');
+        return redirect('/admin/setting/changePwd')->with('done','yes');
 
     }
 
     public function changeEmail(Admin\ChangeEmail $request){
         User::where('id','=',$request->id)->update(['email' => $request->userEmail]);
-        return redirect('/admin/setting/changeEmail')->with('done','tak');
+        return redirect('/admin/setting/changeEmail')->with('done','yes');
     }
 
     public function changePassword(Admin\ChangePassword $request){
         User::where('id','=',$request->id)->update(['password' => bcrypt($request->pwd)]);
-        return redirect('/admin/setting/changePwd')->with('done','tak');
+        return redirect('/admin/setting/changePwd')->with('done','yes');
     }
 
     public function createUser(Admin\CreateUser $request)
@@ -35,7 +35,7 @@ class AdminSettingUserController extends Controller
         $user->password = bcrypt($request->pwd);
         $user->role = $arrayRole[$request->role];
         $user->save();
-        return redirect('/admin/setting/userAdd')->with('done','tak');
+        return redirect('/admin/setting/userAdd')->with('done','yes');
     }
 
     public function getUserListToDelete(){
