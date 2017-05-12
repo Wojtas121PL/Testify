@@ -29,8 +29,8 @@ class ChangeEmail extends FormRequest
     public function rules()
     {
         return [
-            'userId' => 'require',
-            'email' => 'require'
+            'id' => 'required',
+            'userEmail' => 'required'
         ];
     }
 }

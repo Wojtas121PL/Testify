@@ -29,12 +29,10 @@ class CreateUser extends FormRequest
     public function rules()
     {
         return [
-            'name'   => 'require',
-            'email'      => 'require',
-            'password'   => 'require',
-            'role' => 'require',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime()
+            'nameUser'   => 'required',
+            'email'      => 'required',
+            'pwd'   => 'required',
+            'role' => 'required',
         ];
     }
 }
