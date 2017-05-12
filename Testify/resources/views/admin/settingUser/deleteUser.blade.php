@@ -15,11 +15,11 @@
         @endif
         <div class="panel-body">
             <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
-            @isset($done)
+            @if(null !==session('done'))
                 <div class="bg-success">
                     User deleted
                 </div>
-            @endisset
+            @endif
                 <div class="form-group">
                     <label for="name">User list</label>
                     <table class="table">

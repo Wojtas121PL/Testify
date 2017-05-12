@@ -15,11 +15,11 @@
         @endif
         <div class="panel-body">
             <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
-            @isset($done)
+            @if(null !==session('done'))
                 <div class="bg-success">
                     User added
                 </div>
-            @endisset
+            @endif
             <form action="{{url('/admin/setting/addUser')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">

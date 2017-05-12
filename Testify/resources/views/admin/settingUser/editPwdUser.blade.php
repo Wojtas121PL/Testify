@@ -15,11 +15,11 @@
         @endif
         <div class="panel-body">
             <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
-            @isset($done)
-                <div class="bg-success">
-                    Password changed
-                </div>
-            @endisset
+            @if(null !==session('done'))
+            <div class="bg-success">
+                Password changed
+            </div>
+            @endif
                 <div class="form-group">
                     <label for="name">User list</label>
                     <table class="table">

@@ -17,12 +17,11 @@
         <div class="panel-body">
             <div>
             <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
-                @isset($done)
+                @if(null !==session('done'))
                     <div class="bg-success">
                         Email changed
                     </div>
-                @endisset
-            </div>
+                @endif
                 <div class="form-group">
                     <label for="name">User list</label>
                     <table class="table">
