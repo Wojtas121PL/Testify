@@ -1,17 +1,15 @@
 @extends('layouts.app')
 @section('content')
     @parent
-        <form action="./result" method="post">
+        <form action="{{url('admin/result')}}" method="post">
             {{ csrf_field() }}
         <div class="form-group">
         <label for="SelectUser">Select User</label><br>
         <select id="SelectUser" name="SelectedUser">
             @foreach($Users as $user)
-                <option>
-        {{$user->id}}<br/>
-                @endforeach
-
+                <option value="{{$user->id}}">{{$user->name}}
                 </option>
+                @endforeach
         </select>
         </div>
             <br />
@@ -19,12 +17,12 @@
                 <input type="submit" value="Search Result">
             </div>
         </form>
-    @if(isset($Answers))
+    @if(isset($Tests))
     <h1>Result table</h1>
-    <table border="4px">
-        <tr><td>Test Name</td><td>User</td><td>Question Number</td><td>Answer</td><td>Correct Answer</td><td>Created</td></tr>
-@foreach($Answers as $answer)
-    <tr><td>{{$answer->ExamName}}</td><td>{{$answer->name}}</td><td>{{$answer->QuestionId}}</td><td>{{$answer->Answer}}</td><td>{{$answer->CorrectAnswer}}</td><td>{{$answer->created_at}}</td></tr>
+    <table class="table">
+        <tr><td>Test Id</td><td>Test name</td><td>Link to</td></tr>
+@foreach($Tests as $Test)
+    <tr><td>{{$Test->TestId}}</td><td>{{$Test->name}}</td><td><a href="./result/{{$Choose}}/{{$Test->TestId}}">Go to test</a></td></tr>
     @endforeach
     </table>
     @endif

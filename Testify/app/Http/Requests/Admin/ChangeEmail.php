@@ -29,8 +29,7 @@ class ChangeEmail extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
-            'userEmail' => 'required'
+            'mail.*.emails' => 'nullable',
         ];
     }
 }

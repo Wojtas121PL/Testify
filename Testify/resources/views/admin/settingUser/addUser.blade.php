@@ -14,9 +14,8 @@
             </div>
         @endif
         <div class="panel-body">
-            <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
             @if(null !==session('done'))
-                <div class="bg-success">
+                <div class="alert-success">
                     User added
                 </div>
             @endif
@@ -45,5 +44,6 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
+            <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
     </div>
 @endsection

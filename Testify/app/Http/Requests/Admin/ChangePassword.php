@@ -29,8 +29,7 @@ class ChangePassword extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
-            'pwd' => 'required'
+            'pwd.*.pwd' => 'nullable',
         ];
     }
 }

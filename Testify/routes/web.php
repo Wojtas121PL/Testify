@@ -65,12 +65,11 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
     Route::post('addQuestion/{id}', 'Admin\AdminEditController@addQuestion');
 
     Route::get('/result','ResultController@getUserListAndViews');
-    Route::post('result','ResultController@getAnswersByUserId');
+    Route::get('/result/{userId}/{testId}','ResultController@getAnswerByTestId');
+    Route::post('result','ResultController@getTestsByUserId');
 Route::group(['prefix' => 'setting'],function ()
 {
-    Route::get('/',function (){
-        return view('admin.settingUser.settings');
-    });
+    Route::get('/','Admin\AdminSettingUserController@getListUser');
 
     Route::get('/addUser',function (){
         return view('admin.settingUser.addUser');

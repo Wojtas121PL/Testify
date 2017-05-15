@@ -14,12 +14,16 @@
             </div>
         @endif
         <div class="panel-body">
-            <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
-            @if(null !==session('done'))
-                <div class="bg-success">
+            @if(session('done') == 'yes')
+                <div class="alert alert-success">
                     User deleted
                 </div>
             @endif
+            @if(session('done') == 'root')
+                    <div class="alert alert-danger">
+                        You must not delete root account
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="name">User list</label>
                     <table class="table">
@@ -34,6 +38,7 @@
                     @endforeach
                     </table>
                 </div>
+                <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
         </div>
     </div>
 @endsection

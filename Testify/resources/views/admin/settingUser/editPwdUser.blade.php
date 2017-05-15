@@ -13,15 +13,21 @@
                 </ul>
             </div>
         @endif
-        <div class="panel-body">
-            <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
-            @if(null !==session('done'))
-            <div class="bg-success">
-                Password changed
-            </div>
+            @if(session('done') == 'yes')
+                <div class="alert alert-success">
+                    Password changed
+                </div>
             @endif
+            @if(session('done') == 'nothing')
+                <div class="alert alert-warning">
+                    Nothing to change
+                </div>
+            @endif
+        <div class="panel-body">
                 <div class="form-group">
                     <label for="name">User list</label>
+                    <form action="{{url('/admin/setting/changePwd')}}" method="post">
+                        {{csrf_field()}}
                     <table class="table">
                         <tr><td>Name</td><td>Email</td><td>Created At</td><td>Change Password</td></tr>
                     @foreach($userList as $user)
@@ -30,17 +36,15 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->created_at}}</td>
                                 <td><div class="form-group">
-                                        <form action="{{url('/admin/setting/changePwd')}}" method="post">
-                                            {{csrf_field()}}
-                                            <input type="password" name="pwd">
-                                            <input type="hidden" name="id" value="{{$user->id}}">
-                                            <input type="submit" class="btn btn-info" value="Change">
-                                        </form>
+                                            <input type="password" name="pwd[{{$user->id}}][pwd]">
                                     </div></td>
                             </tr>
                     @endforeach
                     </table>
+                        <input type="submit" class="btn btn-info" value="Change">
+                    </form>
                 </div>
+            <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
         </div>
     </div>
 @endsection
