@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('content')
     @parent
         <form action="{{url('admin/result')}}" method="post">
