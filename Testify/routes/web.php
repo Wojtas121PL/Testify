@@ -51,6 +51,20 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
     Route::get('/result','ResultController@getUserListAndViews');
     Route::get('/result/{userId}/{testId}','ResultController@getAnswerByTestId');
     Route::post('result','ResultController@getTestsByUserId');
+
+Route::group(['prefix' => 'time'],function()
+{
+    Route::get('/','TimeController@getListUserAndTime');
+
+    Route::get('/add/','TimeController@addNewAndView');
+    Route::post('/add','TimeController@addNewExpireTime');
+
+    Route::get('/edit/','TimeController@getViewEdit');
+    Route::post('/edit','TimeController@editSendToBase');
+
+    Route::get('/delete/{id}/','TimeController@deleteTime');
+});
+
 Route::group(['prefix' => 'setting'],function ()
 {
     Route::get('/','Admin\AdminSettingUserController@getListUser');

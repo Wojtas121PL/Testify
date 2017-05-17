@@ -10,7 +10,7 @@
                 @if($i == $answer->Answer && $i == $answer->answer_correct)
                     <span class="bg-info">&#x2611;{{json_decode($answer->answer_list,true)[$i]}}</span><br />
                 @elseif($i == $answer->Answer)
-                    <span class="bg-info">{{json_decode($answer->answer_list,true)[$i]}}</span><br />
+                    <span class="bg-danger">{{json_decode($answer->answer_list,true)[$i]}}</span><br />
                 @elseif($i == $answer->answer_correct)
                     <span class="bg-success">&#x2611;{{json_decode($answer->answer_list,true)[$i]}}</span><br />
                 @else
