@@ -3,6 +3,8 @@
 namespace Testify\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->role == 1){
+            return view('admin.home');
+
+        }
+        if(Auth::user()->role == 3){
+            return view('user.home');
+
+        }
         return view('home');
     }
 }

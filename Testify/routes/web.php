@@ -15,28 +15,11 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
 
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group( ['middleware' => 'auth' ], function()
-{
-    Route::get('/master', function () {
-        return view('layouts.master');
-    });
-
-    Route::get('/admin', function () {
-        return view('admin');
-    });
-    Route::get('/list','ListController');
-    Route::get('/test/{id}', ['uses' => 'TestController@create']);
-
-
-    Route::post('addQuestion', 'MenagerController@addQuestion');
-    Route::get('/addQuestion', ['uses' => 'MenagerController@formQuestion']);
-
-
-});
 
 //USER GROUP
-Route::group( ['middleware' => 'auth' , 'prefix' => 'user'], function()
+Route::group( ['middleware' => ['auth', 'role:3'] , 'prefix' => 'user'], function()
 {
     Route::get('exam', 'User\ExamController');
     Route::get('exam/{id}', 'User\ExamController@performExam');
@@ -58,11 +41,12 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
     Route::get('edit/', 'Admin\AdminExamController@editList');
     Route::get('edit/{id}', 'Admin\AdminExamController@editExam');
 
-    Route::post('deleteQuestion', 'Admin\AdminEditController@deleteQuestion');
-    Route::post('deleteExam', 'Admin\AdminEditController@deleteExam');
+    Route::post('editQuestion', 'Admin\AdminEditController@editQuestion');
+    Route::post('editExam', 'Admin\AdminEditController@editExam');
 
     Route::post('addExam', 'Admin\AdminEditController@addExam');
     Route::post('addQuestion/{id}', 'Admin\AdminEditController@addQuestion');
+    Route::post('saveQuestion/{id}', 'Admin\AdminEditController@saveQuestion');
 
     Route::get('/result','ResultController@getUserListAndViews');
     Route::post('result','ResultController@getAnswersByUserId');
@@ -70,4 +54,3 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

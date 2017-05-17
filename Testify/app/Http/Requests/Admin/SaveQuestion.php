@@ -5,7 +5,8 @@ namespace Testify\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class DeleteExam extends FormRequest
+
+class SaveQuestion extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +29,12 @@ class DeleteExam extends FormRequest
     public function rules()
     {
         return [
-            'exam_id' => 'required'
+            'question_title'    =>  'required',
+            'answer1'    =>  'required',
+            'answer2'    =>  'required',
+            'answer3'    =>  'required',
+            'answer4'    =>  'required',
+            'answer_correct'    =>  'required'
         ];
     }
 }

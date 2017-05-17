@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 
-class DeleteQuestion extends FormRequest
+class EditQuestion extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,9 @@ class DeleteQuestion extends FormRequest
     public function rules()
     {
         return [
+            'action' => 'required',
             'exam_id' => 'required',
-            'question_number' => 'required'
+            'question_id' => 'required'
         ];
     }
 }

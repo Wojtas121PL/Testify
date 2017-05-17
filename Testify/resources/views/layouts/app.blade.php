@@ -35,7 +35,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         {{ config('app.name', 'Testify') }}
                     </a>
                 </div>
@@ -80,23 +80,7 @@
             </div>
         </nav>
 
-        @if(!Auth::guest())
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                    @include('sidebar')
-                        </div></div>
-                </div>
-                <div class="col-md-9">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                    @yield('content')
-                        </div>
-                    </div>
-                </div>
-            @else
         @yield('content')
-            @endif
 
     </div>
 

@@ -80,11 +80,11 @@
         </div>
     </nav>
 
-    @if(!Auth::guest())
+    @if(Auth::user()->role == 3)
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @include('admin.includes.sidebar')
+                    @include('user.includes.sidebar')
                 </div>
             </div>
         </div>
