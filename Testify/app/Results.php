@@ -3,15 +3,14 @@
 namespace Testify;
 
 use Illuminate\Database\Eloquent\Model;
-// SELECT users.name, exams.name,results.QuestionId,results.Answer,results.CorrectAnswer FROM `exams`
-// INNER JOIN `results` ON results.TestId = exams.id INNER JOIN `users` ON users.id = results.UserId WHERE users.id=$userid
+use Illuminate\Support\Facades\DB;
 class Results extends Model
 {
-    public static function getAnswers($userid){
-        return Exam::join('results', 'results.TestId', '=', 'exams.id')
-            ->join('users','users.id' ,'=', 'results.UserId')
-            ->select('users.name', 'exams.name as ExamName','results.QuestionId','results.Answer','results.CorrectAnswer')
-            ->where('users.id','=',$userid)
-            ->get();
+    public static function getTests($id){
+        return Results::join('exams','exams.id','=','results.TestId')->select('results.TestId','exams.name')->where('UserId','=',$id)->groupby('testId')->get();
+    }
+    public static function getAnswers($userid,$testId){
+        $Answers = DB::select('SELECT questions.question_number, questions.question_title, questions.answer_list, questions.answer_correct,results.QuestionId, results.Answer FROM results INNER JOIN questions ON questions.exam_id=TestId AND questions.question_number=QuestionId WHERE results.TestId='.$testId.' AND results.UserId='.$userid.' ');
+        return $Answers;
     }
 }

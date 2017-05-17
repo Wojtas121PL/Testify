@@ -49,7 +49,26 @@ Route::group( ['middleware' => ['role:1', 'auth'], 'prefix' => 'admin'], functio
     Route::post('saveQuestion/{id}', 'Admin\AdminEditController@saveQuestion');
 
     Route::get('/result','ResultController@getUserListAndViews');
-    Route::post('result','ResultController@getAnswersByUserId');
+    Route::get('/result/{userId}/{testId}','ResultController@getAnswerByTestId');
+    Route::post('result','ResultController@getTestsByUserId');
+Route::group(['prefix' => 'setting'],function ()
+{
+    Route::get('/','Admin\AdminSettingUserController@getListUser');
+
+    Route::get('/addUser',function (){
+        return view('admin.settingUser.addUser');
+    });
+    Route::post('addUser','Admin\AdminSettingUserController@createUser');
+
+    Route::get('/deleteUser','Admin\AdminSettingUserController@getUserListToDelete');
+    Route::get('deleteUser/{id}','Admin\AdminSettingUserController@deleteUser');
+
+    Route::get('/changePwd','Admin\AdminSettingUserController@getUserListToChangePwd');
+    Route::post('changePwd','Admin\AdminSettingUserController@changePassword');
+
+    Route::get('/changeEmail','Admin\AdminSettingUserController@getUserListToChangeEmail');
+    Route::post('changeEmail','Admin\AdminSettingUserController@changeEmail');
+});
 });
 
 Auth::routes();

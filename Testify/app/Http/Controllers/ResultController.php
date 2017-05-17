@@ -14,15 +14,19 @@ class ResultController extends Controller
 {
 
     public function getUserList(){
-        $user=User::select('id')->orderBy('id','ASC')->get();
+        $user=User::select('id','name')->orderBy('id','ASC')->get();
         return $user;
     }
     public function getUserListAndViews(){
-        return view('Result',['Users' => $this->getUserList()]);
+        return view('admin.Result',['Users' => $this->getUserList()]);
     }
-    public function getAnswersByUserId(SelectUser $selectUser)
+    public function getTestsByUserId(SelectUser $selectUser)
     {
-        $Answer = Results::getAnswers($selectUser->SelectedUser);
-        return view('Result',['Answers' => $Answer,'Users' => $this->getUserList()]);
+        $tests = Results::getTests($selectUser->SelectedUser);
+        return view('admin.Result',['Tests' => $tests,'Users' => $this->getUserList(),'Choose' => $selectUser->SelectedUser]);
+    }
+    public function getAnswerByTestId($userId,$testId){
+        $answer = Results::getAnswers($userId,$testId);
+        return view('admin.summaryOfTest',['Answers' => $answer]);
     }
 }
