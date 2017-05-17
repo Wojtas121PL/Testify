@@ -5,6 +5,7 @@ namespace Testify\Http\Controllers;
 use Testify\Http\Requests\Admin\EditTime;
 use Testify\test_time;
 use Testify\Http\Requests\Admin\Time;
+
 class TimeController extends Controller
 {
 //Method for Admin
@@ -48,5 +49,4 @@ class TimeController extends Controller
         }
         return redirect('/admin/time/edit')->with('done', 'yes');
     }
-//Method for User
 }
