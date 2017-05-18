@@ -21,7 +21,6 @@ class CreateResultsTable extends Migration
                 $table->foreign('UserId')->references('id')->on('users')->onDelete('cascade');
                 $table->unsignedInteger('QuestionId');
                 $table->unsignedInteger('Answer');
-                $table->unsignedInteger('CorrectAnswer');
                 $table->timestamps();
             });
     }

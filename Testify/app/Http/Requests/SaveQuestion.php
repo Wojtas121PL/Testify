@@ -3,6 +3,7 @@
 namespace Testify\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SaveQuestion extends FormRequest
 {
@@ -13,6 +14,9 @@ class SaveQuestion extends FormRequest
      */
     public function authorize()
     {
+            if(Auth::user()->role == 3){
+                return true;
+            }
         return false;
     }
 
@@ -24,7 +28,7 @@ class SaveQuestion extends FormRequest
     public function rules()
     {
         return [
-            //
+            'answer.*.number' => 'required'
         ];
     }
 }

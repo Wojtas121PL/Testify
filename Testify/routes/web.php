@@ -23,7 +23,7 @@ Route::group( ['middleware' => ['auth', 'role:3'] , 'prefix' => 'user'], functio
 {
     Route::get('exam', 'User\ExamController');
     Route::get('exam/{id}', 'User\ExamController@performExam');
-
+    Route::post('exam/{id}','User\ExamController@saveToDatabase');
 
 });
 //EDITOR GROUP
