@@ -1,14 +1,12 @@
 <?php
 
-namespace Modules\User\Http\Controllers;
+namespace Modules\UserControl\Http\Controllers;
 
-use function Couchbase\basicDecoderV1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\User\Http\Requests\CreateUser;
 
-class UserController extends Controller
+class UserControlController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -68,9 +66,34 @@ class UserController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request){
-
+    public function changeEmail(ChangeEmail $request)
+    {
+        $counter = 0;
+        foreach ($request->mail as $id => $item) {
+            if($item['emails'] != null){
+                User::where('id', '=', $id)->update(['email' => $item['emails']]);
+                $counter++;
+            }
+        }
+        if ($counter==0){
+            return back()->with('done', 'nothing');
+        }
+        return back()->with('done', 'yes');
     }
+    public function changePassword(ChangePassword $request){
+        $counter = 0;
+        foreach($request->pwd as $id => $item) {
+            if ($item['pwd'] != null) {
+                User::where('id', '=', $id)->update(['password' => bcrypt($item['pwd'])]);
+                $counter++;
+            }
+            if ($counter==0){
+                return back()->with('done', 'nothing');
+            }
+        }
+        return back()->with('done', 'yes');
+    }
+
     /**
      * Remove the specified resource from storage.
      * @return Response
