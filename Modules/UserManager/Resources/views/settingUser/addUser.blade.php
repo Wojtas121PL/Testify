@@ -1,5 +1,4 @@
-@extends('admin.layouts.app')
-
+@extends('usermanager::layouts.master')
 
 @section('content')
     @parent
@@ -19,7 +18,7 @@
                     User added
                 </div>
             @endif
-            <form action="{{url('/admin/setting/addUser')}}" method="post">
+            <form action="{{url('/usermanager/addUser')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="name">User Name</label>
@@ -44,6 +43,6 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
-            <a href="/admin/setting/"><button class="btn btn-default">Back</button></a>
+        <a href="/usermanager/"><button class="btn btn-default">Back</button></a>
     </div>
 @endsection

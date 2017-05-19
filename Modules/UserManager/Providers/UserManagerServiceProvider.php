@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\UserControl\Providers;
+namespace Modules\UserManager\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class UserControlServiceProvider extends ServiceProvider
+class UserManagerServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -43,10 +43,10 @@ class UserControlServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('usercontrol.php'),
+            __DIR__.'/../Config/config.php' => config_path('usermanager.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'usercontrol'
+            __DIR__.'/../Config/config.php', 'usermanager'
         );
     }
 
@@ -57,7 +57,7 @@ class UserControlServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = base_path('resources/views/modules/usercontrol');
+        $viewPath = base_path('resources/views/modules/usermanager');
 
         $sourcePath = __DIR__.'/../Resources/views';
 
@@ -66,8 +66,8 @@ class UserControlServiceProvider extends ServiceProvider
         ]);
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/usercontrol';
-        }, \Config::get('view.paths')), [$sourcePath]), 'usercontrol');
+            return $path . '/modules/usermanager';
+        }, \Config::get('view.paths')), [$sourcePath]), 'usermanager');
     }
 
     /**
@@ -77,12 +77,12 @@ class UserControlServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = base_path('resources/lang/modules/usercontrol');
+        $langPath = base_path('resources/lang/modules/usermanager');
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'usercontrol');
+            $this->loadTranslationsFrom($langPath, 'usermanager');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'usercontrol');
+            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'usermanager');
         }
     }
 

@@ -1,5 +1,5 @@
 {
-    "name": "nwidart/usercontrol",
+    "name": "nwidart/usermanager",
     "description": "",
     "authors": [
         {
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Modules\\UserControl\\": ""
+            "Modules\\UserManager\\": ""
         }
     }
 }
