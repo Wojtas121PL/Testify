@@ -2,9 +2,11 @@
 
 namespace Modules\User\Http\Controllers;
 
+use function Couchbase\basicDecoderV1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\User\Http\Requests\CreateUser;
 
 class UserController extends Controller
 {
@@ -31,8 +33,16 @@ class UserController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateUser $request)
     {
+        $arrayRole=array("Admin" => 1,"Editor"=>2,"User"=>3);
+        $user= new User();
+        $user->name = $request->nameUser;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->pwd);
+        $user->role = $arrayRole[$request->role];
+        $user->save();
+        return back()->with('done','yes');
     }
 
     /**
@@ -58,8 +68,32 @@ class UserController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
-    {
+    public function changeEmail(ChangeEmail $request)
+{
+    $counter = 0;
+        foreach ($request->mail as $id => $item) {
+            if($item['emails'] != null){
+                User::where('id', '=', $id)->update(['email' => $item['emails']]);
+                $counter++;
+            }
+        }
+    if ($counter==0){
+            return back()->with('done', 'nothing');
+        }
+    return back()->with('done', 'yes');
+}
+    public function changePassword(ChangePassword $request){
+        $counter = 0;
+        foreach($request->pwd as $id => $item) {
+            if ($item['pwd'] != null) {
+                User::where('id', '=', $id)->update(['password' => bcrypt($item['pwd'])]);
+                $counter++;
+            }
+            if ($counter==0){
+                return back()->with('done', 'nothing');
+            }
+        }
+        return back()->with('done', 'yes');
     }
 
     /**
