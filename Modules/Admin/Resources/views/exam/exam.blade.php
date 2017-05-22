@@ -9,9 +9,8 @@
         <div class="panel-heading">Main info</div>
         <div class="panel-body">
             <form action="{{route('exam.update', $exam->id)}}" method="post">
+                {{method_field('PUT')}}
                 {{csrf_field()}}
-                <input type="hidden" name="_method" value="PUT">
-
                 <div class="input-group">
                     <input type="text" name="new_name" class="form-control" placeholder="{{$exam->name}}">
                     <span class="input-group-btn">

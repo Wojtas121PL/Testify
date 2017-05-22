@@ -1,10 +1,11 @@
 @php
     $answers = json_decode($question->answer_list, true);
 @endphp
-<form action="{{route('question.update', $exam->id)}}" method="post">
+<form method="post" action="{{route('question.update', $exam->id)}}">
+    {{method_field('PUT')}}
     {{csrf_field()}}
-    <input name="_method" type="hidden" value="PUT">
     <input type="hidden" name="question_id" value="{{$question->id}}">
+    <input type="hidden" name="question_number" value="{{$question->question_number}}">
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -24,13 +25,9 @@
         </div>
 
         <div class="panel-footer">
-
-                <input type="hidden" name="question_id" value="{{$question->id}}">
-                <input type="hidden" name="question_number" value="{{$question->question_number}}">
-
-
             <button class="btn btn-info" type="submit">Save</button>
-                <a class="btn btn-warning" href="{{url('admin/exam/'.$exam->id)}}">Cancel</a>
+            <a class="btn btn-warning" href="{{url('admin/exam/'.$exam->id)}}">Cancel</a>
         </div>
 </div>
 </form>
+

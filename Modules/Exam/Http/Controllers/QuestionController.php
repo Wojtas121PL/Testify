@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Exam\Entities\Question;
+use Modules\Exam\Entities\Exam;
 use Modules\Exam\Http\Requests;
 
 
@@ -78,11 +79,12 @@ class QuestionController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     * @param  Requests\UpdateQuestion $request
      * @return Response
      */
     public function update(Requests\UpdateQuestion $request, $id)
     {
+
         $question = Question::where('id', $request->question_id)->first();
 
         $question->exam_id = $id;
@@ -97,14 +99,15 @@ class QuestionController extends Controller
         $question->answer_correct = $request->answer_correct;
 
         $question->save();
-        return back();
+
+        return redirect(url('admin/exam/'. $id));
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Requests\DestroyQuestion $request, $id)
     {
         Exam::where("id", $id)
             ->first()

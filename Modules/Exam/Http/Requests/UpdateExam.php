@@ -16,8 +16,7 @@ class UpdateExam extends FormRequest
     public function rules()
     {
         return [
-            'exam_id' => 'required',
-            'action' => 'required'
+            'new_name' => 'required',
         ];
     }
 
