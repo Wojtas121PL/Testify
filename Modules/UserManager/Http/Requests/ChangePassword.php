@@ -3,6 +3,7 @@
 namespace Modules\UserManager\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ChangePassword extends FormRequest
 {

@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\UserManager\Http\Requests\CreateUser;
 use Testify\User;
+use \Modules\UserManager\Http\Requests;
 
 class UserManagerController extends Controller
 {
@@ -60,7 +61,7 @@ class UserManagerController extends Controller
      */
     public function getListUser(){
         $users = User::select('id', 'name', 'email', 'role', 'remember_token', 'created_at', 'updated_at')->get();
-        return view('usermanager::settingUser.settings',['users' => $users]);
+        return view('usermanager::index',['users' => $users]);
     }
     public function getUserListToDelete(){
         $users = User::select('id','name','email','created_at')->get();
@@ -79,7 +80,7 @@ class UserManagerController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function changeEmail(ChangeEmail $request)
+    public function changeEmail(Requests\ChangeEmail $request)
     {
         $counter = 0;
         foreach ($request->mail as $id => $item) {
@@ -95,7 +96,7 @@ class UserManagerController extends Controller
                 return back()->with('done', 'yes');
             }
 }
-    public function changePassword(ChangePassword $request){
+    public function changePassword(Requests\ChangePassword $request){
         $counter = 0;
         foreach($request->pwd as $id => $item) {
             if ($item['pwd'] != null) {
