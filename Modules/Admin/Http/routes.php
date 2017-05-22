@@ -14,7 +14,8 @@ Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'admin', 'namespace
 
 
 
-    Route::get('/result','AdminController@index');
-    Route::get('/result/{userId}/{testId}','AdminController@index');
+    Route::get('/result','ResultsController@getUserListAndViews');
+    Route::get('/result/{userId}/{testId}','ResultsController@getAnswerByTestId');
+    Route::post('result','ResultsController@getTestsByUserId');
 
 });
