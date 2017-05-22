@@ -5,7 +5,8 @@ namespace Modules\Exam\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateQuestion extends FormRequest
+
+class DestroyQuestion extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,13 +16,7 @@ class UpdateQuestion extends FormRequest
     public function rules()
     {
         return [
-            'question_id'    =>  'required',
-            'question_title'    =>  'required',
-            'answer1'           =>  'required',
-            'answer2'           =>  'required',
-            'answer3'           =>  'required',
-            'answer4'           =>  'required',
-            'answer_correct'    =>  'required'
+            'question_id' => 'required'
         ];
     }
 

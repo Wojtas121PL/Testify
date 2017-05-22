@@ -21,7 +21,14 @@
             {{csrf_field()}}
             <input type="hidden" name="edit_id" value="{{$question->id}}">
             <button class="btn btn-info" type="submit" name="action" value="edit">Edit</button>
-            <button class="btn btn-danger pull-right" type="submit" name="action" value="delete">Delete</button>
         </form>
+        <form action="{{route('question.destroy', $exam->id)}}" method="post">
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            <input type="hidden" name="question_id" value="{{$question->id}}">
+
+            <button class="btn btn-danger pull-right" type="submit">Delete</button>
+        </form>
+
     </div>
 </div>
