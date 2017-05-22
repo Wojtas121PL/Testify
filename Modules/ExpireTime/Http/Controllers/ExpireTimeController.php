@@ -39,14 +39,15 @@ class ExpireTimeController extends Controller
     }
     public function editSendToBase(Requests\EditTime $editTime){
         $counter = 0;
+        if($editTime->edits != null)
         foreach($editTime->edits as $id => $item) {
             if ($item['data'] != null) {
                 Entities\Expire::where('id','=',$id)->update(['user_id' => $item['user'],'exam_id' => $item['exam'],'expireTime' => $item['data']]);
                 $counter++;
             }
-            if ($counter==0){
-                return back()->with('done', 'nothing');
-            }
+        }
+        if ($counter==0){
+            return back()->with('done', 'nothing');
         }
         return back()->with('done', 'yes');
     }

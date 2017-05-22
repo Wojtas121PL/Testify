@@ -6,7 +6,7 @@
         <div class="alert alert-success">Changes save</div>
     @endif
     @if(session('done') == 'nothing')
-        <div class="alert alert-warning">Nothing to C</div>
+        <div class="alert alert-warning">Nothing to change</div>
     @endif
     @if (count($errors) > 0)
         <div class="alert alert-danger">
