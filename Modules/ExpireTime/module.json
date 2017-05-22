@@ -1,0 +1,16 @@
+{
+    "name": "ExpireTime",
+    "alias": "expiretime",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\ExpireTime\\Providers\\ExpireTimeServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
