@@ -8,10 +8,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Testify') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 </head>
 <body>
 <div id="app">
@@ -28,8 +35,8 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/admin') }}">
+                    {{ config('app.name', 'Testify') }}
                 </a>
             </div>
 
@@ -62,6 +69,8 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
+                                    <!-- Here start a new live -->
+
                                 </li>
                             </ul>
                         </li>
@@ -70,8 +79,28 @@
             </div>
         </div>
     </nav>
-    @yield('content')
+
+    @if(!Auth::guest())
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @include('admin::includes.sidebar')
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    @else
+        @yield('content')
+    @endif
+
 </div>
+
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

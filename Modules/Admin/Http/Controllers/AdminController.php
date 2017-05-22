@@ -5,6 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Exam\Entities\Exam;
+use Modules\Exam\Entities\Question;
 
 class AdminController extends Controller
 {
@@ -17,56 +19,18 @@ class AdminController extends Controller
         return view('admin::index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('admin::create');
+    public function show(){
+        $exams = Exam::all();
+        return view('admin::exam.list', ['exams' => $exams]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
+    public function edit($id){
+        $exam = Exam::find($id)->first();
+        return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null]);
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('admin::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
+    public function editExam(Request $request, $id){
+        $exam = Exam::find($id)->first();
+        return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => $request->edit_id]);
     }
 }

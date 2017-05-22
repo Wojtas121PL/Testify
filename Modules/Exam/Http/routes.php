@@ -1,6 +1,29 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'exam', 'namespace' => 'Modules\Exam\Http\Controllers'], function()
+Route::group(['middleware' => 'web', 'namespace' => 'Modules\Exam\Http\Controllers'], function()
 {
-    Route::get('/', 'ExamController@index');
+    Route::resource('exam', 'ExamController');
+    Route::resource('question', 'QuestionController');
+
+
+
 });
+//
+//Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'examWrite', 'namespace' => 'Modules\Exam\Http\Controllers'], function()
+//{
+//    Route::get('exam', 'Admin\AdminExamController');
+//    Route::get('exam/{id}', 'Admin\AdminExamController@performExam');
+//    Route::get('edit/', 'Admin\AdminExamController@editList');
+//    Route::get('edit/{id}', 'Admin\AdminExamController@editExam');
+//
+//    Route::post('editQuestion', 'Admin\AdminEditController@editQuestion');
+//    Route::post('editExam', 'Admin\AdminEditController@editExam');
+//
+//    Route::post('addExam', 'Admin\AdminEditController@addExam');
+//    Route::post('addQuestion/{id}', 'Admin\AdminEditController@addQuestion');
+//    Route::post('saveQuestion/{id}', 'Admin\AdminEditController@saveQuestion');
+//
+//    Route::get('/result','ResultController@getUserListAndViews');
+//    Route::get('/result/{userId}/{testId}','ResultController@getAnswerByTestId');
+//    Route::post('result','ResultController@getTestsByUserId');
+//});

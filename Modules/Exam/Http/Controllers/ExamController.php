@@ -5,6 +5,10 @@ namespace Modules\Exam\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Exam\Entities\Exam;
+use Modules\Exam\Http\Requests\StoreExam;
+use Modules\Exam\Http\Requests\UpdateExam;
+
 
 class ExamController extends Controller
 {
@@ -28,11 +32,20 @@ class ExamController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     * @param  StoreExam $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreExam $request)
     {
+        $exam = new Exam;
+
+        $exam->name = $request->exam_name;
+
+        $exam->save();
+
+        $result = 'Succesfuly added exam '.$request->exam_name;
+
+        return back()->withInput(compact('result'));
     }
 
     /**
@@ -55,18 +68,29 @@ class ExamController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     * @param  UpdateExam $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(UpdateExam $request, $id)
     {
+        $exam = Exam::where('id', $id)->first();
+
+        $exam->name = $request->new_name;
+
+        $exam->save();
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        Exam::where("id", $id)
+            ->first()
+            ->delete();
+        return back();
     }
 }
