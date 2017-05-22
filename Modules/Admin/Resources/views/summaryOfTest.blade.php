@@ -1,7 +1,8 @@
-@extends('admin.layouts.app')
+@extends('admin::layouts.master')
 @section('content')
     @parent
 <div>
+    <a href="{{url('admin/result')}}"><button class="btn btn-default">Back</button></a>
     @foreach($Answers as $answer)
         <div>
             <span>Question Number {{$answer->question_number}}</span>

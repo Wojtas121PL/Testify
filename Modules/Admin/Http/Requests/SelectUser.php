@@ -1,11 +1,10 @@
 <?php
 
-namespace Modules\UserManager\Http\Requests;
+namespace Modules\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class ChangePassword extends FormRequest
+class SelectUser extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +14,7 @@ class ChangePassword extends FormRequest
     public function rules()
     {
         return [
-            'pwd.*.pwd' => 'nullable',
+            //
         ];
     }
 
@@ -26,9 +25,6 @@ class ChangePassword extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->role == 1){
-            return true;
-        }
-        return false;
+        return true;
     }
 }

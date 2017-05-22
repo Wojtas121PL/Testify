@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin::layouts.master')
 @section('content')
     @parent
         <form action="{{url('admin/result')}}" method="post">
@@ -6,10 +6,20 @@
         <div class="form-group">
         <label for="SelectUser">Select User</label><br>
         <select id="SelectUser" class="form-control" name="SelectedUser">
-            @foreach($Users as $user)
-                <option value="{{$user->id}}">{{$user->name}}
-                </option>
+            @if(isset($Choose))
+                <span> {{$Choose}}</span>
+                @foreach($Users as $user)
+                    @if($Choose == $user->id)
+                        <option value="{{$user->id}}" selected>{{$user->name}}</option>
+                    @else
+                        <option value="{{$user->id}}" >{{$user->name}}</option>
+                        @endif
                 @endforeach
+            @else
+                    @foreach($Users as $user)
+                            <option value="{{$user->id}}" >{{$user->name}}</option>
+                    @endforeach
+                @endif
         </select>
         </div>
             <br />
