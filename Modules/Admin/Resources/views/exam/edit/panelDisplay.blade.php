@@ -27,7 +27,7 @@
             {{method_field('DELETE')}}
             <input type="hidden" name="question_id" value="{{$question->id}}">
 
-            <button class="btn btn-danger pull-right" type="submit">Delete</button>
+            <button style="position: relative;bottom: 35px;" class="btn btn-danger pull-right" type="submit">Delete</button>
         </form>
 
     </div>

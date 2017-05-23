@@ -14,7 +14,7 @@
         @endif
         <div class="panel-body">
             @if(null !==session('done'))
-                <div class="alert-success">
+                <div class="alert alert-success">
                     User added
                 </div>
             @endif
