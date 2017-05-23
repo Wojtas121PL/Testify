@@ -34,12 +34,17 @@ class ExpireTimeController extends Controller
         return view('expiretime::add',['Exam' => $exam, 'Users' => $user, 'now'=>$now]);
     }
     public function addNewExpireTime(Requests\Time $time){
-        $record = new Entities\Expire;
-        $record->exam_id = $time->examId;
-        $record->user_id = $time->userId;
-        $record->expireTime = $time->data;
-        $record->save();
-
+        $count = Entities\Expire::select()->where('exam_id','=',$time->examId)->where('user_id','=',$time->userId)->get();
+        if (count($count)==0) {
+            $record = new Entities\Expire;
+            $record->exam_id = $time->examId;
+            $record->user_id = $time->userId;
+            $record->expireTime = $time->data;
+            $record->save();
+        }
+        else{
+            return back()->with(['exist'=>'yes']);
+        }
 
         return back()->with(['done'=>'yes']);
     }

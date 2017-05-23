@@ -18,6 +18,7 @@
                     User added
                 </div>
             @endif
+
             <form action="{{url('/usermanager/addUser')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">

@@ -5,6 +5,9 @@
         @if(session('done') == 'yes')
             <div class="alert alert-success">Expired time has been added</div>
         @endif
+        @if(session('exist') == 'yes')
+                <div class="alert alert-danger">User has expire time for this test</div>
+        @endif
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
