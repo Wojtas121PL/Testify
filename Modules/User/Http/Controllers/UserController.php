@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\User\Http\Requests\CreateUser;
 use Modules\Exam\Entities;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -83,14 +84,26 @@ class UserController extends Controller
     public function exam($id)
     {
         $examContent = Entities\Exam::where('id', $id)->first();
-
-        return view('user::exam', ['examContent'=>$examContent]);
+        $endExam = Entities\Result::select('exam_id')->where('user_id', '=', Auth::id())->groupby('exam_id')->get();
+        $expireTime = Entities\Expire::select('expireTime as time')->where('exam_id','=',$id)->where('user_id','=',Auth::id())->get();
+        foreach ($endExam as $item) {
+            if ($item['exam_id'] == $id) {
+                return back()->with('examDone', 'yes');
+            }
+        }
+        if (count($expireTime) != 0) {
+            if ((strtotime($expireTime[0]->time)) < time()) {
+                return back()->with('examExpire','yes');
+            }
+        }
+        return view('user::exam', ['examContent' => $examContent]);
     }
 
     public function examList()
     {
         $exams = Entities\Exam::all();
-
         return view('user::list', ['exams' => $exams]);
     }
+
+
 }
