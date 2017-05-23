@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\User\Http\Requests\CreateUser;
+use Modules\Exam\Entities;
 
 class UserController extends Controller
 {
@@ -77,5 +78,19 @@ class UserController extends Controller
      */
     public function destroy()
     {
+    }
+
+    public function exam($id)
+    {
+        $examContent = Entities\Exam::where('id', $id)->first();
+
+        return view('user::exam', ['examContent'=>$examContent]);
+    }
+
+    public function examList()
+    {
+        $exams = Entities\Exam::all();
+
+        return view('user::list', ['exams' => $exams]);
     }
 }
