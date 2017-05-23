@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 @section('content')
     @parent
-        <form action="{{url('admin/result')}}" method="post">
+        <form action="{{url('result/admin')}}" method="post">
             {{ csrf_field() }}
         <div class="form-group">
         <label for="SelectUser">Select User</label><br>

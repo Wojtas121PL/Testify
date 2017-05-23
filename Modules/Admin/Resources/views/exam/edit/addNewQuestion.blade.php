@@ -7,28 +7,33 @@
        <input type="text" class="form-control" id="Question" name="question_title">
     </div>
     <div class="form-group">
-       <label for="Answer">Answers</label>
+       <label for="Answer">Answers <small>(dots on the left specify correct answer)</small></label>
         <div class="input-group">
-            <span class="input-group-addon">1:</span>
+            <span class="input-group-addon">
+                <input type="radio" name="answer_correct" value="1">
+            </span>
             <input type="Text" class="form-control" id="answer1" name="answer1">
         </div>
         <div class="input-group">
-            <span class="input-group-addon">2:</span>
+            <span class="input-group-addon">
+                <input type="radio" name="answer_correct" value="2">
+            </span>
             <input type="Text" class="form-control" id="answer2" name="answer2">
         </div>
         <div class="input-group">
-            <span class="input-group-addon">3:</span>
+            <span class="input-group-addon">
+                <input type="radio" name="answer_correct" value="3">
+            </span>
             <input type="Text" class="form-control" id="answer3" name="answer3">
         </div>
         <div class="input-group">
-            <span class="input-group-addon">4:</span>
+            <span class="input-group-addon">
+                <input type="radio" name="answer_correct" value="4">
+            </span>
             <input type="Text" class="form-control" id="answer4" name="answer4">
         </div>
     </div>
-    <div class="form-group">
-      <label for="AnswerKey">Correct Answer ( 1, 2, 3, 4 )</label><br>
-      <input type="Number" min="1" max="4" class="form-control" id="AnswerKey" name="answer_correct">
-    </div>
+
     <div class="form-group">
       <button class="btn btn-success" type="submit">Add!</button>
     </div>

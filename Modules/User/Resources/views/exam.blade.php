@@ -23,7 +23,9 @@
 
 @section('content')
     @parent
-
+        <form method="post" action="{{url('result/save')}}">
+            {{csrf_field()}}
+            <input type="hidden" name="exam_id" value="{{$examContent->id}}">
         @foreach($examContent->questions as $question)
             @php
                 $answers = json_decode($question->answer_list, true);
@@ -36,7 +38,7 @@
 
                     @for($i = 1; $i <= count($answers); $i++)
                         <div class="input-group">
-                            <span class="input-group-addon"><input type="radio" name="{{$question->id}}"></span>
+                            <span class="input-group-addon"><input type="radio" name="{{$question->id}}" value="{{$i}}" ></span>
                             <div class="form-control">{{$answers[$i]}}</div>
                         </div>
                     @endfor
@@ -44,5 +46,9 @@
                 </div>
             </div>
 
+
         @endforeach
+
+        <button class="btn btn-success" type="submit">Finish</button>
+        </form>
 @endsection
