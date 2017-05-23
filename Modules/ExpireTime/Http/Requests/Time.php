@@ -16,7 +16,7 @@ class Time extends FormRequest
         return [
             'examId' => 'required',
             'userId' => 'required',
-            'data' => 'required|date_format:Y-m-d H:i:s'
+            'data' => 'required|date_format:Y-m-d\TH:i'
         ];
     }
 

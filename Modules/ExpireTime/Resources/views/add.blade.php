@@ -18,7 +18,7 @@
             {{csrf_field()}}
             <div class="form-group">
                 <label for="Ename">Exam name</label>
-                <select name="examId">
+                <select name="examId" class="form-control">
                     @foreach($Exam as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                     @endforeach
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="Uname">User name</label>
-                <select name="userId">
+                <select name="userId" class="form-control">
                     @foreach($Users as $item)
                         <option value="{{$item->id}}">{{$item->name}}</option>
                     @endforeach
@@ -34,10 +34,10 @@
             </div>
             <div class="form-group">
                 <label for="data">Date (Template: YYYY-MM-DD HH-MM-SS)</label>
-                <input type="text" placeholder="0000-00-00 00:00:00" name="data">
+                <input type="datetime-local" value="{{$now}}" name="data">
             </div>
             <div class="form-group">
-                <input type="submit" value="Save">
+                <input type="submit" value="Save" class="btn btn-success">
             </div>
         </form>
     </div>

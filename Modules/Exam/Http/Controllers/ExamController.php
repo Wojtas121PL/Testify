@@ -45,7 +45,7 @@ class ExamController extends Controller
 
         $result = 'Succesfuly added exam '.$request->exam_name;
 
-        return back()->withInput(compact('result'));
+        return back()->with($result);
     }
 
     /**

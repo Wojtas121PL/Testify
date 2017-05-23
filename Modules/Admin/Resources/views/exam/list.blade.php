@@ -3,15 +3,7 @@
 
 @section('content')
     @parent
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('admin::includes.displayErrors')
     <p> Choose one of avaible tests to edit</p>
         @foreach($exams as $exam)
 

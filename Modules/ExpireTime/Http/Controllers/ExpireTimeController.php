@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use \Modules\Exam\Entities;
 use \Modules\ExpireTime\Http\Requests;
+use Carbon\Carbon;
+
 class ExpireTimeController extends Controller
 {
 //Method for Admin
@@ -27,7 +29,9 @@ class ExpireTimeController extends Controller
     public function addNewAndView(){
         $exam = Entities\Expire::forViewsExam();
         $user = Entities\Expire::forViewUser();
-        return view('expiretime::add',['Exam' => $exam, 'Users' => $user]);
+
+        $now = Carbon::now()->format('Y-m-d\TH:i');
+        return view('expiretime::add',['Exam' => $exam, 'Users' => $user, 'now'=>$now]);
     }
     public function addNewExpireTime(Requests\Time $time){
         $record = new Entities\Expire;
@@ -35,7 +39,9 @@ class ExpireTimeController extends Controller
         $record->user_id = $time->userId;
         $record->expireTime = $time->data;
         $record->save();
-        return back()->with('done','yes');
+
+
+        return back()->with(['done'=>'yes']);
     }
     public function editSendToBase(Requests\EditTime $editTime){
         $counter = 0;

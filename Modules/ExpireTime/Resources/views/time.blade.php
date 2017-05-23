@@ -15,7 +15,7 @@
                         <td>{{$item->user}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->expireTime}}</td>
-                        <td><a href="./delete/{{$item->id}}/"><button class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="{{url('expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Delete</button></a></td>
                     </tr>
                 @endforeach
             </table>

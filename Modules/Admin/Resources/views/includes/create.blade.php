@@ -1,4 +1,4 @@
-<form action="{{route('exam.create')}}" method="post">
+<form action="{{route('exam.store')}}" method="post">
     {{csrf_field()}}
     <div class="input-group">
         <input class="form-control" type="text" name="exam_name" title="New exam">
