@@ -37,10 +37,10 @@
                 <div class="panel-body">
 
                     @for($i = 1; $i <= count($answers); $i++)
-                        <div class="input-group">
+                        <label class="input-group">
                             <span class="input-group-addon"><input type="radio" name="{{$question->id}}" value="{{$i}}" ></span>
                             <div class="form-control">{{$answers[$i]}}</div>
-                        </div>
+                        </label>
                     @endfor
 
                 </div>
