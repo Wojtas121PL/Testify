@@ -28,7 +28,7 @@
             </div>
         </form>
     @if(isset($Tests))
-    <h1>Result table</h1>
+    <h1>Results table</h1>
     <table class="table">
         <tr><td>Test Id</td><td>Test name</td><td>Link to</td></tr>
 @foreach($Tests as $Test)

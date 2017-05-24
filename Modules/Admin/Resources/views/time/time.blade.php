@@ -4,11 +4,11 @@
 
 @isset($userTime)
     @if(session('done') == 'yes')
-        <div class="alert alert-success">Expired time has been deleted</div>
+        <div class="alert alert-success">Expire time has deleted</div>
         @endif
     <div>
     <table class="table">
-        <tr><td>User</td><td>Test</td><td>Time expired</td></tr>
+        <tr><td>User</td><td>Test</td><td>Time to expire</td></tr>
     @foreach($userTime as $item)
             <tr>
                 <td>{{$item->user}}</td>

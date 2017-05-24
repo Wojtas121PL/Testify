@@ -16,10 +16,10 @@ Route::group(['middleware' => ['web','role:2'], 'prefix' => 'expiretime', 'names
     Route::get('/','EditorController@editorGetListUserAndTime');
 
     Route::get('/add/','EditorController@editorAddNewAndView');
-    Route::post('/add','ExpireTimeController@addNewExpireTime');
+    Route::post('/add','\Modules\ExpireTime\Http\Controllers\ExpireTimeController@addNewExpireTime');
 
     Route::get('/edit/','EditorController@editorGetViewEdit');
-    Route::post('/edit','ExpireTimeController@editSendToBase');
+    Route::post('/edit','\Modules\ExpireTime\Http\Controllers\ExpireTimeController@editSendToBase');
 
-    Route::get('/delete/{id}/','ExpireTimeController@deleteTime');
+    Route::get('/delete/{id}/','\Modules\ExpireTime\Http\Controllers\ExpireTimeController@deleteTime');
 });

@@ -3,7 +3,7 @@
     @parent
     <div>
         @if(session('done') == 'yes')
-            <div class="alert alert-success">Expired time has been added</div>
+            <div class="alert alert-success">Expire time has added</div>
         @endif
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
