@@ -33,14 +33,13 @@ class ResultsController extends Controller
         $cou=0;
         foreach ($request->except(['_token', 'exam_id']) as $item => $id){
             $cou++;
-//                $result = new Results();
-//                $result->exam_id = $request->exam_id;
-//                $result->user_id = Auth::id();
-//                $result->question_id = $item;
-//                $result->answer = $id;
-//            $result->save();
+                $result = new Results();
+                $result->exam_id = $request->exam_id;
+                $result->user_id = Auth::id();
+                $result->question_id = $item;
+                $result->answer = $id;
+            $result->save();
         }
-        dd($cou);
-        return back()->with('done','yes');
+        return redirect('/user/list')->with('done','yes');
     }
 }
