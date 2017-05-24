@@ -6,7 +6,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'editor', 'namespace' => 'Modul
 
     Route::get('/', 'EditorController@editorShow');
     Route::get('/{id}', 'EditorController@editorEdit');
-    Route::get('/edit/{id}', 'EditorController@editorEditExam')->name('admin.exam.edit');
+    Route::get('/edit/{id}', 'EditorController@editorEditExam')->name('editor.exam.edit');
     });
     Route::get('edit/', 'EditorController@editorIndex');
     Route::get('edit/{id}', 'EditorController@editorIndex');
