@@ -21,7 +21,7 @@ class StoreQuestion extends FormRequest
             'answer2'           =>  'required',
             'answer3'           =>  'required',
             'answer4'           =>  'required',
-            'answer_correct'    =>  'required'
+            'answer_correct'    =>  'required|numeric|min:1|max:4'
         ];
     }
 

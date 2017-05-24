@@ -17,10 +17,9 @@
     </div>
 
     <div class="panel-footer">
-        <form action="{{route('admin.exam.edit', $exam->id)}}" method="post">
-            {{csrf_field()}}
+        <form action="{{route('admin.exam.edit', $exam->id)}}" method="get">
             <input type="hidden" name="edit_id" value="{{$question->id}}">
-            <button class="btn btn-info" type="submit" name="action" value="edit">Edit</button>
+            <button class="btn btn-info" type="submit">Edit</button>
         </form>
         <form action="{{route('question.destroy', $exam->id)}}" method="post">
             {{csrf_field()}}

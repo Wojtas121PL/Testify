@@ -20,7 +20,7 @@
                         <input class="form-control" type="text" name="{{'answer'.$i}}" value="{{$answers[$i]}}">
                     </div>
                 @endfor
-            <input class="form-control" type="number" name="answer_correct" value="{{$question->answer_correct}}">
+            <input class="form-control" type="number" name="answer_correct" min="1" max="4" value="{{$question->answer_correct}}">
 
         </div>
 
