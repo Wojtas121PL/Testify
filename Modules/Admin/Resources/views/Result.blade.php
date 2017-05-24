@@ -32,7 +32,7 @@
     <table class="table">
         <tr><td>Test Id</td><td>Test name</td><td>Link to</td></tr>
 @foreach($Tests as $Test)
-    <tr><td>{{$Test->exam_id}}</td><td>{{$Test->name}}</td><td><a href="./{{$Choose}}/{{$Test->exam_id}}">Go to test</a></td></tr>
+    <tr><td>{{$Test->exam_id}}</td><td>{{$Test->name}}</td><td><a href="{{url('result/admin/'.$Choose.'/'.$Test->exam_id)}}">Go to test</a></td></tr>
     @endforeach
     </table>
     @endif

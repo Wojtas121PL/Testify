@@ -2,8 +2,13 @@
 
 Route::group(['middleware' => 'web', 'prefix' => 'result', 'namespace' => 'Modules\Result\Http\Controllers'], function()
 {
-    Route::get('admin/','ResultsController@getUserListAndViews');
-    Route::get('{userId}/{testId}','ResultsController@getAnswerByTestId');
-    Route::post('admin/','ResultsController@getTestsByUserId');
     Route::post('/save','ResultsController@saveToDatabase');
 });
+
+Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'result/admin', 'namespace' => 'Modules\Result\Http\Controllers'], function()
+{
+    Route::get('/','ResultsController@getUserListAndViews');
+    Route::get('{userId}/{testId}','ResultsController@getAnswerByTestId');
+    Route::post('/','ResultsController@getTestsByUserId');
+});
+
