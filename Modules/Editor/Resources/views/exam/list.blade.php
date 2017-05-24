@@ -3,7 +3,7 @@
 
 @section('content')
     @parent
-    @include('admin::includes.displayErrors')
+    @include('editor::includes.displayErrors')
     <p> Choose one of avaible tests to edit</p>
         @foreach($exams as $exam)
 
@@ -26,7 +26,7 @@
     </button>
     <div class="collapse" id="collapseExample">
         <div class="well">
-            @include('admin::includes.create')
+            @include('editor::includes.create')
         </div>
     </div>
 @endsection

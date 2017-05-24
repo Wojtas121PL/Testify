@@ -2,7 +2,7 @@
 
 @section('content')
     @parent
-    @include('admin::includes.displayErrors')
+    @include('editor::includes.displayErrors')
 
     <div class="panel panel-default">
         <div class="panel-heading">Main info</div>
@@ -23,9 +23,9 @@
     @foreach($exam->questions as $question)
 
         @if($question->id == $edit_id)
-            @include('admin::exam.edit.panelEdit')
+            @include('editor::exam.edit.panelEdit')
         @else
-            @include('admin::exam.edit.panelDisplay')
+            @include('editor::exam.edit.panelDisplay')
         @endif
 
     @endforeach
@@ -35,7 +35,7 @@
     </button>
     <div class="collapse" id="collapseExample">
         <div class="well">
-            @include('admin::exam.edit.addNewQuestion')
+            @include('editor::exam.edit.addNewQuestion')
         </div>
     </div>
 @endsection

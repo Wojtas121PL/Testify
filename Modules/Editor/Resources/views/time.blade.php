@@ -15,12 +15,12 @@
                         <td>{{$item->user}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->expireTime}}</td>
-                        <td><a href="{{url('expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="{{url('editor/expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Delete</button></a></td>
                     </tr>
                 @endforeach
             </table>
-            <a href="{{url('expiretime/add')}}"><button class="btn btn-success">Add</button></a>
-            <a href="{{url('expiretime/edit')}}"><button class="btn btn-info">Edit</button></a>
+            <a href="{{url('editor/expiretime/add')}}"><button class="btn btn-success">Add</button></a>
+            <a href="{{url('editor/expiretime/edit')}}"><button class="btn btn-info">Edit</button></a>
         </div>
     @endisset
 @endsection

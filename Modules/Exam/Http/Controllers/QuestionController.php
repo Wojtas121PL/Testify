@@ -5,6 +5,7 @@ namespace Modules\Exam\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Exam\Entities\Question;
 use Modules\Exam\Entities\Exam;
 use Modules\Exam\Http\Requests;
@@ -100,7 +101,15 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return redirect(url('admin/exam/'. $id));
+        switch (Auth::user()->role)
+        {
+            case 1:
+                return redirect('admin/exam/edit/'.$id);
+                    break;
+            case 2:
+                return redirect('editor/exam/edit/'.$id);
+                    break;
+        }
     }
 
     /**
