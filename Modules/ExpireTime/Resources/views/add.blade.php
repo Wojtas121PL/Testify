@@ -3,10 +3,10 @@
     @parent
     <div>
         @if(session('done') == 'yes')
-            <div class="alert alert-success">Expired time has been added</div>
+            <div class="alert alert-success">Expiration date has been added</div>
         @endif
         @if(session('exist') == 'yes')
-                <div class="alert alert-danger">User has expire time for this test</div>
+                <div class="alert alert-danger">Expiration date already present for that user</div>
         @endif
         @if (count($errors) > 0)
             <div class="alert alert-danger">

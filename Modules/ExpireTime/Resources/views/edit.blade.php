@@ -3,7 +3,7 @@
 @section('content')
     @parent
     @if(session('done') == 'yes')
-        <div class="alert alert-success">Changes save</div>
+        <div class="alert alert-success">Changes saved</div>
     @endif
     @if(session('done') == 'nothing')
         <div class="alert alert-warning">Nothing to change</div>
@@ -21,7 +21,7 @@
         <form action="{{url('expiretime/edit')}}" method="post">
             {{csrf_field()}}
             <table class="table">
-                <tr><td>User name</td><td>Exam name</td><td>Time expire</td></tr>
+                <tr><td>User name</td><td>Exam name</td><td>Expiration date</td></tr>
                 @foreach($userTime as $itemTime)
                     <tr>
                         <td>
