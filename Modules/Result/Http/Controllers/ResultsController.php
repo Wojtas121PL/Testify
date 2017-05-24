@@ -30,9 +30,7 @@ class ResultsController extends Controller
     }
 
     public function saveToDatabase(SaveResult $request){
-        $cou=0;
         foreach ($request->except(['_token', 'exam_id']) as $item => $id){
-            $cou++;
                 $result = new Results();
                 $result->exam_id = $request->exam_id;
                 $result->user_id = Auth::id();
