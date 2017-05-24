@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Exam\Entities\Exam;
-use Modules\Exam\Entities\Question;
 
 class AdminController extends Controller
 {
@@ -33,4 +32,5 @@ class AdminController extends Controller
         $exam = Exam::where('id', $id)->first();
         return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => $request->edit_id]);
     }
+
 }

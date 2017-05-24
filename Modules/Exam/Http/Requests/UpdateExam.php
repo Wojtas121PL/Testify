@@ -27,7 +27,7 @@ class UpdateExam extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->role == 1){
+        if(Auth::user()->role == 1 || Auth::user()->role == 2){
             return true;
         }
         return false;

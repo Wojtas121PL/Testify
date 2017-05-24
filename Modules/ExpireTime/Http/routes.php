@@ -1,6 +1,5 @@
 <?php
-
-Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'expiretime', 'namespace' => 'Modules\ExpireTime\Http\Controllers'], function()
+Route::group(['middleware' => ['web','role:1'], 'prefix' => 'expiretime', 'namespace' => 'Modules\ExpireTime\Http\Controllers'], function()
 {
     Route::get('/','ExpireTimeController@getListUserAndTime');
 
@@ -8,6 +7,18 @@ Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'expiretime', 'name
     Route::post('/add','ExpireTimeController@addNewExpireTime');
 
     Route::get('/edit/','ExpireTimeController@getViewEdit');
+    Route::post('/edit','ExpireTimeController@editSendToBase');
+
+    Route::get('/delete/{id}/','ExpireTimeController@deleteTime');
+});
+Route::group(['middleware' => ['web','role:2'], 'prefix' => 'expiretime', 'namespace' => 'Modules\Editor\Http\Controllers'], function()
+{
+    Route::get('/','EditorController@editorGetListUserAndTime');
+
+    Route::get('/add/','EditorController@editorAddNewAndView');
+    Route::post('/add','ExpireTimeController@addNewExpireTime');
+
+    Route::get('/edit/','EditorController@editorGetViewEdit');
     Route::post('/edit','ExpireTimeController@editSendToBase');
 
     Route::get('/delete/{id}/','ExpireTimeController@deleteTime');
