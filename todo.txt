@@ -1,0 +1,3 @@
+Change a type data in database beacause you have 2 kind of answer
+Results must know about open question and close question
+Rebuild database ( new table with not 4 limits of answer )
