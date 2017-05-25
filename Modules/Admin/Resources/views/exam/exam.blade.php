@@ -35,8 +35,6 @@
         +
     </button>
     <div class="collapse" id="collapseExample">
-        <div class="well">
-            @include('admin::exam.edit.addNewQuestion')
-        </div>
+        @include('admin::exam.edit.addNewQuestion')
     </div>
 @endsection

@@ -6,7 +6,7 @@ use function Couchbase\basicDecoderV1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\User\Http\Requests\CreateUser;
+//use Modules\User\Http\Requests\CreateUser;
 use Modules\Exam\Entities;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,6 +102,30 @@ class UserController extends Controller
     public function examList()
     {
         $exams = Entities\Exam::all();
+
+        $endExam = Entities\Result::select('exam_id')->where('user_id', '=', Auth::id())->groupby('exam_id')->get();
+        $expireTime = Entities\Expire::where('user_id','=',Auth::id())->get();
+
+        //This checks if exam is expired or finished.
+        //If true, it appends atribute 'status' for each exam
+        foreach($exams as $exam){
+
+            $exam->setAttribute('status', '');
+
+            $endExam->each(function ($item, $key) use ($exam){
+                if($exam->id == $item->exam_id){
+                    $exam->setAttribute('status', 'finished');
+                }
+            });
+
+            $expireTime->each(function ($item, $key) use ($exam){
+                if($exam->id == $item->exam_id){
+                    if ((strtotime($item->time)) < time()) {
+                        $exam->setAttribute('status', 'expired');
+                    }
+                }
+            });
+        }
         return view('user::list', ['exams' => $exams]);
     }
 
