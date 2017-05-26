@@ -47,8 +47,13 @@ class QuestionController extends Controller
         $question->exam_id = $request->exam_id;
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
-        $question->answer_correct = $request->answer_correct;
         $question->question_type = $request->question_type;
+        if($request->question_type == 1){
+            $question->answer_correct = $request->answer_correct;
+        }
+        else{
+            $question->answer_correct = null;
+        }
         $question->save();
         foreach ($request->answer as $item){
             $answer = new Answer;

@@ -25,25 +25,25 @@
                     <span class="input-group-addon">
                         <input type="radio" name="answer_correct" value="1">
                     </span>
-                    <input type="Text" class="form-control" id="answer1" name="answer1">
+                    <input type="Text" class="form-control" id="answer1" name="answer[1][answer]">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="radio" name="answer_correct" value="2">
                     </span>
-                    <input type="Text" class="form-control" id="answer2" name="answer2">
+                    <input type="Text" class="form-control" id="answer2" name="answer[2][answer]">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="radio" name="answer_correct" value="3">
                     </span>
-                    <input type="Text" class="form-control" id="answer3" name="answer3">
+                    <input type="Text" class="form-control" id="answer3" name="answer[3][answer]">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="radio" name="answer_correct" value="4">
                     </span>
-                    <input type="Text" class="form-control" id="answer4" name="answer4">
+                    <input type="Text" class="form-control" id="answer4" name="answer[4][answer]">
                 </div>
             </div>
 

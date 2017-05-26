@@ -1,1 +1,2 @@
-Anything link with a question and Answer
+Separate Request with closed and open type question
+New view where is use answers (Results, examModules)
