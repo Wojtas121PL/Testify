@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Exam\Entities\Question;
 use Modules\Exam\Entities\Exam;
+use Modules\Exam\Entities\Answer;
 use Modules\Exam\Http\Requests;
 
 
@@ -39,24 +40,23 @@ class QuestionController extends Controller
      */
     public function store(Requests\StoreQuestion $request)
     {
-        $question_number = Question::where('exam_id', $request->exam_id)->count() + 1;
-
+        $question_number = Question::where('exam_id','=',$request->exam_id)->count() + 1;
 
         $question = new Question;
 
         $question->exam_id = $request->exam_id;
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
-        $question->answer_list = json_encode([
-            1 => $request->answer1,
-            2 => $request->answer2,
-            3 => $request->answer3,
-            4 => $request->answer4
-        ]);
         $question->answer_correct = $request->answer_correct;
-
+        $question->question_type = $request->question_type;
         $question->save();
-
+        foreach ($request->answer as $item){
+            $answer = new Answer;
+            $question_id = Question::select('id')->where('exam_id','=',$request->exam_id)->where('question_number','=',$question_number)->get();
+            $answer->question_id = $question_id['0']->id;
+            $answer->answer = $item['answer'];
+            $answer->save();
+        }
         return back();
     }
 
@@ -86,17 +86,10 @@ class QuestionController extends Controller
     public function update(Requests\UpdateQuestion $request, $id)
     {
 
-        $question = Question::where('id', $request->question_id)->first();
-
+        $question = Question::where('id', '=',$request->question_id)->first();
         $question->exam_id = $id;
         $question->question_number = $request->question_number;
         $question->question_title = $request->question_title;
-        $question->answer_list = json_encode([
-            1 => $request->answer1,
-            2 => $request->answer2,
-            3 => $request->answer3,
-            4 => $request->answer4
-        ]);
         $question->answer_correct = $request->answer_correct;
 
         $question->save();

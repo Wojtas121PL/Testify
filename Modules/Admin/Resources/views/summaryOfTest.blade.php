@@ -1,6 +1,7 @@
 @extends('admin::layouts.master')
 @section('content')
     @parent
+    {{dd("You need implement a new view, dd is exist because Laraval will throw a error :P")}}
 <div>
     <a href="{{url('result/admin')}}"><button class="btn btn-default">Back</button></a>
     @foreach($Answers as $answer)

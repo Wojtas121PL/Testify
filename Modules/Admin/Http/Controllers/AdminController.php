@@ -27,7 +27,6 @@ class AdminController extends Controller
         $exam = Exam::where('id', $id)->first();
         return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null]);
     }
-
     public function editExam(Request $request, $id){
         $exam = Exam::where('id', $id)->first();
         return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => $request->edit_id]);

@@ -20,8 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('question_type');
             $table->unsignedInteger('question_number');
             $table->text('question_title');
-            $table->longText('answer_list');
-            $table->unsignedInteger('answer_correct');
+            $table->unsignedInteger('answer_correct')->nullable();
             $table->timestamps();
         });
     }
