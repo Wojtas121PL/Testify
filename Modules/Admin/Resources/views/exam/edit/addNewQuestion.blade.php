@@ -3,6 +3,20 @@
     window.onload = function () {
         $( "#tabs" ).tabs();
     }
+
+    function appendAnswer(){
+        var val = $("#val").val();
+        var div = $(
+            "<div class='input-group'>" +
+            "<span class='input-group-addon'>" +
+                "<input type='radio' name='answer_correct' value='"+ val +"'>" +
+            "</span>" +
+                "<input type='Text' class='form-control' name='answer["+ val +"][answer]'>" +
+            "</div>");
+        $("#answers").append(div);
+
+        $("#val").val(++val);
+    }
 </script>
 <div id="tabs">
     <ul>
@@ -11,6 +25,7 @@
     </ul>
 
     <div id="tabs-1">
+        <input type="hidden" id="val" value="1">
         <form action="{{route('question.store')}}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="exam_id" value="{{$exam->id}}">
@@ -19,33 +34,12 @@
                 <label for="Question">Title</label>
                 <input type="text" class="form-control" id="Question" name="question_title">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="answers">
                 <label for="Answer">Answers <small>(dots on the left specify correct answer)</small></label>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer_correct" value="1">
-                    </span>
-                    <input type="Text" class="form-control" id="answer1" name="answer[1][answer]">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer_correct" value="2">
-                    </span>
-                    <input type="Text" class="form-control" id="answer2" name="answer[2][answer]">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer_correct" value="3">
-                    </span>
-                    <input type="Text" class="form-control" id="answer3" name="answer[3][answer]">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="radio" name="answer_correct" value="4">
-                    </span>
-                    <input type="Text" class="form-control" id="answer4" name="answer[4][answer]">
-                </div>
+
             </div>
+
+            <input type="button" class="btn btn-info btn-group-justified" onclick="appendAnswer()" value="Add answer">
 
             <div class="form-group">
                 <button class="btn btn-success" type="submit">Add!</button>
@@ -71,3 +65,4 @@
         </form>
     </div>
 </div>
+
