@@ -9,4 +9,8 @@ class Answer extends Model
     public static function getContentAnswer($id){
         return Answer::select('answer')->where('question_id','=',$id)->get();
     }
+
+    public function question(){
+        return $this->belongsTo(Question::class);
+    }
 }

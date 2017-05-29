@@ -1,18 +1,16 @@
-@php
-    $answers = json_decode($question->answer_list, true);
-@endphp
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>{{$question->question_title}}</h4>
     </div>
     <div class="panel-body">
 
-            @for($i = 1; $i <= count($answers); $i++)
+            @foreach($question->answers as $i => $answer )
                 <div class="input-group">
-                    <span class="input-group-addon">{{$i}}:</span>
-                    <div class="form-control">{{$answers[$i]}}</div>
+                    <span class="input-group-addon">{{++$i}}:</span>
+                    <div class="form-control">{{$answer->answer}}</div>
                 </div>
-            @endfor
+            @endforeach
 
     </div>
 

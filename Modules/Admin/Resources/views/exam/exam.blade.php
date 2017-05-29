@@ -1,6 +1,5 @@
 @extends('admin::layouts.master')
 
-{{dd($answer)}}
 @section('content')
     @parent
     @include('admin::includes.displayErrors')
