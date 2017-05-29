@@ -1,6 +1,3 @@
-@php
-    $answers = json_decode($question->answer_list, true);
-@endphp
 <form method="post" action="{{route('question.update', $exam->id)}}">
     {{method_field('PUT')}}
     {{csrf_field()}}

@@ -2,6 +2,7 @@
 
 @section('controls')
     @parent
+
     <div class="panel panel-default" data-spy="affix" data-offset-top="250">
         <div class="panel-heading">
             Controls
@@ -27,22 +28,25 @@
             {{csrf_field()}}
             <input type="hidden" name="exam_id" value="{{$examContent->id}}">
         @foreach($examContent->questions as $question)
-            @php
-                $answers = json_decode($question->answer_list, true);
-            @endphp
+            <input type="hidden" name="answer[{{$question->id}}][typeId]" value="{{$question->question_type}}">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>{{$question->question_title}}</h4>
                 </div>
                 <div class="panel-body">
+                    @if($question->question_type == 1)
+                    @foreach($question->answers as $i => $answer )
 
-                    @for($i = 1; $i <= count($answers); $i++)
                         <label class="input-group">
-                            <span class="input-group-addon"><input type="radio" name="{{$question->id}}" value="{{$i}}" ></span>
-                            <div class="form-control">{{$answers[$i]}}</div>
+                            <span class="input-group-addon"><input type="radio" name="answer[{{$question->id}}][number]" value="{{++$i}}" ></span>
+                            <div class="form-control">{{$answer->answer}}</div>
                         </label>
-                    @endfor
-
+                    @endforeach
+                        @else
+                        <label class="input-group">
+                            <textarea name="answer[{{$question->id}}][number]" placeholder="Type here your answer"></textarea>
+                        </label>
+@endif
                 </div>
             </div>
 

@@ -3,6 +3,8 @@
 namespace Modules\Result\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Exam\Entities\Answer;
+use Modules\Exam\Entities\Result;
 use Testify\User;
 use \Modules\Admin\Http\Requests\SelectUser;
 use \Modules\Result\Http\Requests\SaveResult;
@@ -26,16 +28,22 @@ class ResultsController extends Controller
     }
     public function getAnswerByTestId($userId,$testId){
         $answer = Results::getAnswers($userId,$testId);
-        return view('admin::summaryOfTest',['Answers' => $answer]);
+        $typeAnswer = Results::getAnswersToResult($testId);
+        return view('admin::summaryOfTest',['Answers' => $answer,'typeAnswer' => $typeAnswer]);
     }
 
     public function saveToDatabase(SaveResult $request){
-        foreach ($request->except(['_token', 'exam_id']) as $item => $id){
+        foreach ($request->answer as $id => $item) {
                 $result = new Results();
                 $result->exam_id = $request->exam_id;
                 $result->user_id = Auth::id();
-                $result->question_id = $item;
-                $result->answer = $id;
+                $result->question_id = $id;
+                if ($item['typeId'] == 1){
+                    $result->answer_int = $item['number'];
+                }
+                if ($item['typeId'] == 2){
+                    $result->answer_text = $item['number'];
+                }
             $result->save();
         }
         return redirect('/user/list')->with('done','yes');

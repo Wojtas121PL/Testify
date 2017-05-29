@@ -1,24 +1,42 @@
 @extends('admin::layouts.master')
 @section('content')
     @parent
-    {{dd("You need implement a new view, dd is exist because Laraval will throw a error :P")}}
 <div>
     <a href="{{url('result/admin')}}"><button class="btn btn-default">Back</button></a>
     @foreach($Answers as $answer)
         <div>
             <span>Question Number {{$answer->question_number}}</span>
             <h1>{{$answer->question_title}}</h1>
-            @for($i=1;$i<5;$i++)
-                @if($i == $answer->Answer && $i == $answer->answer_correct)
-                    <span class="bg-info">&#x2611;{{json_decode($answer->answer_list,true)[$i]}}</span><br />
-                @elseif($i == $answer->Answer)
-                    <span class="bg-danger">{{json_decode($answer->answer_list,true)[$i]}}</span><br />
-                @elseif($i == $answer->answer_correct)
-                    <span class="bg-success">&#x2611;{{json_decode($answer->answer_list,true)[$i]}}</span><br />
-                @else
-                    <span>{{json_decode($answer->answer_list,true)[$i]}}</span><br />
+                @if($answer->question_type == 1)
+                    @php($d=1)
+                    @foreach($typeAnswer as $id => $item)
+                        @if($d == $answer->answer_correct && $d == $item->answer_int)
+                        <div class="input-group">
+                            <span class="input-group-addon">&#x2611;</span>
+                            <span class="form-control">{{$item->answer}}</span>
+                        </div>
+                    @elseif($d == $item->answer_int)
+                        <div class="input-group">
+                            <span class="input-group-addon">&#x2612;</span>
+                            <span class="form-control">{{$item->answer}}</span>
+                        </div>
+                    @elseif($d == $answer->answer_correct)
+                        <div class="input-group">
+                            <span class="input-group-addon">&#x2611;</span>
+                            <span class="form-control">{{$item->answer}}</span>
+                        </div>
+                        @else
+                        <div class="input-group">
+                            <span class="input-group-addon">&#x2610;</span>
+                            <span class="form-control">{{$item->answer}}</span>
+                        </div>
+                            @endif
+                        @php($d++)
+                    @endforeach
                 @endif
-            @endfor
+            @if($answer->question_type == 2)
+                <div class="well">{{$answer->answer_text}}</div>
+                @endif
 </div>
         <hr />
         @endforeach

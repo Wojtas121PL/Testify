@@ -55,12 +55,16 @@ class QuestionController extends Controller
             $question->answer_correct = null;
         }
         $question->save();
+        $answerCounter = 0;
         foreach ($request->answer as $item){
             $answer = new Answer;
             $question_id = Question::select('id')->where('exam_id','=',$request->exam_id)->where('question_number','=',$question_number)->get();
             $answer->question_id = $question_id['0']->id;
             $answer->answer = $item['answer'];
+            $answer->answer_id = $answerCounter;
             $answer->save();
+            $answerCounter++;
+
         }
         return back();
     }
