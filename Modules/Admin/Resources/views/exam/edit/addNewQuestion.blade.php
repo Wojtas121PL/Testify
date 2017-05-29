@@ -55,7 +55,7 @@
 
 
     <div id="tabs-2">
-        <form action="{{route('question.store')}}" method="post">
+        <form action="{{route('question.store.open')}}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="exam_id" value="{{$exam->id}}">
             <input type="hidden" name="question_type" value="2">

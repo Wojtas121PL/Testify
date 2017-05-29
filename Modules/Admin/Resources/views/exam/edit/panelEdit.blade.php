@@ -13,14 +13,13 @@
         </div>
 
         <div class="panel-body">
-
-                @for($i = 1; $i <= count($answers); $i++)
-                    <div class="input-group">
-                        <span class="input-group-addon">{{$i}}:</span>
-                        <input class="form-control" type="text" name="{{'answer'.$i}}" value="{{$answers[$i]}}">
-                    </div>
-                @endfor
-            <input class="form-control" type="number" name="answer_correct" min="1" max="4" value="{{$question->answer_correct}}">
+            @foreach($question->answers as $i => $answer )
+                <div class="input-group">
+                    <span class="input-group-addon">{{++$i}}:</span>
+                    <input class="form-control" type="text" name="{{'answer'.$i}}" value="{{$answer->answer}}">
+                </div>
+            @endforeach
+            <input class="form-control" type="number" name="answer_correct" min="1" value="{{$question->answer_correct}}">
 
         </div>
 

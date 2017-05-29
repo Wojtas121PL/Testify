@@ -29,7 +29,7 @@ class AdminController extends Controller
         return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null]);
     }
     public function editExam(Request $request, $id){
-        $answer = Question::getgetAnswerContent();
+        $answer = Question::getAnswerContent();
         $exam = Exam::where('id', $id)->first();
         return view('admin::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id]);
     }
