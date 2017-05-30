@@ -1,8 +1,8 @@
 Turn the project into testing platform for future employees
--Add exam groups and display only the exams that belong to users
+-Add exam groups and display only the exams that belong to users  -- Krecik1213
 -Rebuild the user management system:
-    -All options like change email,password ect. should be displayed as separate panels for each user
-    -DO NOT delete users. It will break the database. Instead, add disabled status.
+    -All options like change email,password ect. should be displayed as separate panels for each user -- Krecik1213
+    -DO NOT delete users. It will break the database. Instead, add disabled status. -- Krecik1213
 -Changes for exam edit module:
     -In the main info section add duration option, per question. Example: 40 minutes
     -Make new type of exam. Instead of showing all questions at once, show them one after another.
@@ -13,4 +13,4 @@ small improvements:
     -In the exam edit panel, display open questions in a better way
 
 Bugs:
-    -Unable to edit questions that have more or less than 4 answers, due to outdated Request validator
+    -Unable to edit questions that have more or less than 4 answers, due to outdated Request validator -- Krecik1213
