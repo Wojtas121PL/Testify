@@ -122,6 +122,12 @@ class QuestionController extends Controller
         $question->question_title = $request->question_title;
         $question->answer_correct = $request->answer_correct;
 
+        foreach($request->answers as $i => $answer){
+            $change = Answer::where('question_id', $request->question_id)->where('answer_id', $i - 1)->first();
+            $change->answer = $answer;
+            $change->save();
+        }
+
         $question->save();
 
         switch (Auth::user()->role)

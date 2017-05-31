@@ -13,7 +13,7 @@
             @foreach($question->answers as $i => $answer )
                 <div class="input-group">
                     <span class="input-group-addon">{{++$i}}:</span>
-                    <input class="form-control" type="text" name="{{'answer'.$i}}" value="{{$answer->answer}}">
+                    <input class="form-control" type="text" name="answers[{{$i}}]" value="{{$answer->answer}}">
                 </div>
             @endforeach
             <input class="form-control" type="number" name="answer_correct" min="1" value="{{$question->answer_correct}}">
