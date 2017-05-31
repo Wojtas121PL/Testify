@@ -21,6 +21,7 @@
     <p> Choose one of avaible test</p>
     <ul class="nav nav-pills nav-stacked">
         @foreach($exams as $exam)
+            @if($exam->status == 'belong')
             @if($exam->status == 'expired')
                 <li role="presentation" class="alert-danger"><a href="{{'exam/'.$exam->id}}">{{$exam->name}}</a></li>
 
@@ -29,6 +30,7 @@
 
             @else
                 <li role="presentation"><a href="{{'exam/'.$exam->id}}">{{$exam->name}}</a></li>
+            @endif
             @endif
         @endforeach
     </ul>

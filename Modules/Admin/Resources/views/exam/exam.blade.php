@@ -18,8 +18,18 @@
                 </div>
             </form>
         </div>
+        @isset($Users)
+        <div class="well">Select user who is allow to test
+            <div class="table-bordered">
+                @foreach($Users as $i => $user)
+                    <span class="form-control">
+                        <input type="checkbox" value="{{$user->id}}" name="user[{{$i}}][check]">{{$user->name}}
+                    </span>
+                @endforeach
+            </div>
+        </div>
     </div>
-
+        @endisset
     @foreach($exam->questions as $question)
 
         @if($question->id == $edit_id)

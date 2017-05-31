@@ -63,17 +63,9 @@ class UserManagerController extends Controller
         $users = User::select('id', 'name', 'email', 'role', 'remember_token', 'created_at', 'updated_at')->get();
         return view('usermanager::index',['users' => $users]);
     }
-    public function getUserListToDelete(){
-        $users = User::select('id','name','email','created_at')->get();
-        return view('usermanager::settingUser.deleteUser',['userList' => $users]);
-    }
-    public function getUserListToChangeEmail(){
-        $users = User::select('id','name','email','created_at')->get();
-        return view('usermanager::settingUser.editEmailUser',['userList' => $users]);
-    }
-    public function getUserListToChangePwd(){
-        $users = User::select('id','name','email','created_at')->get();
-        return view('usermanager::settingUser.editPwdUser',['userList' => $users]);
+    public function goToUser($id){
+        $user = User::find($id)->first();
+        return view('usermanager::changeUser',['user' => $user]);
     }
     /**
      * Update the specified resource in storage.

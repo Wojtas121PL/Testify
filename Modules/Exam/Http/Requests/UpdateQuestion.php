@@ -17,11 +17,7 @@ class UpdateQuestion extends FormRequest
         return [
             'question_id'    =>  'required',
             'question_title'    =>  'required',
-            'answer1'           =>  'required',
-            'answer2'           =>  'required',
-            'answer3'           =>  'required',
-            'answer4'           =>  'required',
-            'answer_correct'    =>  'required|numeric|min:1|max:4'
+            'answer_correct'    =>  'required|numeric|min:1'
         ];
     }
 

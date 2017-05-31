@@ -2,12 +2,6 @@
 
 @section('content')
     <div>
-        <ul class="nav nav-tabs nav-justified">
-            <li role="presentation"><a href="{{url('/usermanager/addUser')}}">Add User</a></li>
-            <li role="presentation"><a href="{{url('/usermanager/deleteUser')}}">Delete User</a></li>
-            <li role="presentation"><a href="{{url('/usermanager/changePwd')}}">Change Password</a></li>
-            <li role="presentation"><a href="{{url('/usermanager/changeEmail')}}">Change Email</a></li>
-        </ul>
         <table class="table table-bordered">
             <tr><td>Id.</td><td>Name</td><td>Email</td><td>Role</td><td>Created at</td><td>Updated at</td></tr>
             @php
@@ -29,6 +23,7 @@
                     @endif
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
+                    <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Change</button></a></td>
                 </tr>
             @endforeach
         </table>
