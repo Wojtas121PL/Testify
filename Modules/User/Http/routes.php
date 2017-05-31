@@ -5,4 +5,9 @@ Route::group(['middleware' => ['web', 'role:3'], 'prefix' => 'user', 'namespace'
     Route::get('/', 'UserController@index');
     Route::get('/list', 'UserController@examList');
     Route::get('/exam/{id}', 'UserController@exam');
+
+
+    Route::get('/test', function() {
+        return view('user::test');
+    });
 });
