@@ -3,7 +3,11 @@
 @section('content')
     @parent
     @include('admin::includes.displayErrors')
-
+    @if(null != session('add'))
+        @if(session('add') == 'yes')
+            <div class="alert alert-success">Users is added to allow list exam</div>
+        @endif
+    @endif
     <div class="panel panel-default">
         <div class="panel-heading">Main info</div>
         <div class="panel-body">
@@ -21,11 +25,20 @@
         @isset($Users)
         <div class="well">Select user who is allow to test
             <div class="table-bordered">
-                @foreach($Users as $i => $user)
-                    <span class="form-control">
-                        <input type="checkbox" value="{{$user->id}}" name="user[{{$i}}][check]">{{$user->name}}
-                    </span>
-                @endforeach
+                <form action="{{route('saveUsers.exam')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="testName" value="{{$exam->id}}">
+                    <div>
+                        @foreach($Users as $i => $user)
+                            @if($user->exam_id == $exam->id)
+                                <input type="checkbox" name="user[{{$i}}][check]" disabled>{{$user->name}}
+                                @else
+                                <input type="checkbox" name="user[{{$i}}][check]" >{{$user->name}}
+                            @endif
+                        @endforeach
+                        <button type="submit" class="btn-success">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

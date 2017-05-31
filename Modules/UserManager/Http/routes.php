@@ -4,9 +4,13 @@ Route::group(['middleware' => ['web','role:1'], 'prefix' => 'usermanager', 'name
         Route::get('/', 'UserManagerController@getListUser');
 
         Route::get('/addUser', function () {
-            return view('usermanager::settingUser.addUser');
+            return view('usermanager::addUser');
         });
-
         Route::post('/addUser', 'UserManagerController@store');
+
+
         Route::get('/edit/{id}', 'UserManagerController@goToUser');
+        Route::post('/edit/{id}', 'UserManagerController@change');
+
+        Route::get('/disable/{id}','UserManagerController@destroy');
     });

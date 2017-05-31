@@ -12,6 +12,9 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    @if($user->role == 0)
+                        <td>Account deactivated</td>
+                    @endif
                     @if($user->role == 1)
                         <td>Admin</td>
                     @endif
@@ -27,5 +30,6 @@
                 </tr>
             @endforeach
         </table>
+        <a href="{{url('usermanager/addUser')}}"><button class="btn btn-success">Add</button></a>
     </div>
 @stop

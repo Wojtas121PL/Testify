@@ -5,7 +5,7 @@ namespace Modules\UserManager\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class ChangeEmail extends FormRequest
+class EditUser extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

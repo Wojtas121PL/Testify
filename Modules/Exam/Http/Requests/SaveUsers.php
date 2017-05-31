@@ -1,11 +1,10 @@
 <?php
 
-namespace Modules\UserManager\Http\Requests;
+namespace Modules\Exam\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class CreateUsver extends FormRequest
+class SaveUsers extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,10 +14,7 @@ class CreateUsver extends FormRequest
     public function rules()
     {
         return [
-            'nameUser'   => 'required',
-            'email'      => 'required',
-            'pwd'   => 'required',
-            'role' => 'required',
+            'user.*.check' => 'required'
         ];
     }
 
@@ -29,10 +25,6 @@ class CreateUsver extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->role == 1){
-            return true;
-        }
-        return false;
+        return true;
     }
-
 }

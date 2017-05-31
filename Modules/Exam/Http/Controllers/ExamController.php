@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Exam\Entities\Exam;
+use Modules\Exam\Entities\ExamUser;
+use Modules\Exam\Http\Requests\SaveUsers;
 use Modules\Exam\Http\Requests\StoreExam;
 use Modules\Exam\Http\Requests\UpdateExam;
 
@@ -81,7 +83,15 @@ class ExamController extends Controller
 
         return back();
     }
-
+    public function saveUsers(SaveUsers $request){
+        foreach ($request->user as $i => $item){
+            $belong = new ExamUser;
+            $belong->user_id = $item['check'];
+            $belong->exam_id = $request->testName;
+            $belong->save();
+        }
+        return back()->with('add','yes');
+    }
     /**
      * Remove the specified resource from storage.
      * @return Response

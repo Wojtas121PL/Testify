@@ -5,6 +5,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Modules\Exam\Http\Controlle
     Route::resource('exam', 'ExamController');
     Route::resource('question', 'QuestionController');
     Route::post('questionOpen', 'QuestionController@storeOpen')->name('question.store.open');
+    Route::post('saveUsers','ExamController@saveUsers')->name('saveUsers.exam');
 
 
 

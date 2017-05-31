@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    Your account is deactivated. You can only logout
                 </div>
             </div>
         </div>

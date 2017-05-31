@@ -20,6 +20,7 @@ class RedirectIfWrongRole
         if (Auth::guest() || Auth::user()->role != $role) {
             return redirect('/home');
         }
+
         return $next($request);
     }
 }

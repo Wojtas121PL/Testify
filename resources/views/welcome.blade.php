@@ -75,6 +75,9 @@
                         <a href="{{ url('/register') }}">Register</a>
                     @endif
                 </div>
+                @if(session('deactivated') == 'yes')
+                    <div class="alert alert-danger">Your account has deactivated</div>
+                    @endif
             @endif
 
             <div class="content">

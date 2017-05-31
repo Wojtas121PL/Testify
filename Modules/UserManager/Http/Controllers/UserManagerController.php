@@ -5,9 +5,7 @@ namespace Modules\UserManager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\UserManager\Http\Requests\CreateUser;
-use Testify\User;
-use \Modules\UserManager\Http\Requests;
+use Modules\User\Entities\User;
 
 class UserManagerController extends Controller
 {
@@ -34,7 +32,7 @@ class UserManagerController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(CreateUser $request)
+    public function store(Request $request)
     {
         $arrayRole=array("Admin" => 1,"Editor"=>2,"User"=>3);
         $user= new User();
@@ -64,44 +62,28 @@ class UserManagerController extends Controller
         return view('usermanager::index',['users' => $users]);
     }
     public function goToUser($id){
-        $user = User::find($id)->first();
-        return view('usermanager::changeUser',['user' => $user]);
+        $user = User::select('*')->where('id',$id)->get();
+        return view('usermanager::changeUser',['user' => $user,'id' => $id]);
     }
     /**
      * Update the specified resource in storage.
      * @param  Request $request
      * @return Response
      */
-    public function changeEmail(Requests\ChangeEmail $request)
+    public function change(Request $request, $id)
     {
         $counter = 0;
-        foreach ($request->mail as $id => $item) {
-            if ($item['emails'] != null) {
-                User::where('id', '=', $id)->update(['email' => $item['emails']]);
-                $counter++;
-            }
+        $User = User::where('id',$id)->first();
+        if($request->mail != null){
+            $User->email = $request->mail;
+            $counter=+1;
         }
-            if ($counter == 0) {
-                return back()->with('done', 'nothing');
-            }
-            else {
-                return back()->with('done', 'yes');
-            }
-}
-    public function changePassword(Requests\ChangePassword $request){
-        $counter = 0;
-        foreach($request->pwd as $id => $item) {
-            if ($item['pwd'] != null) {
-                User::where('id', '=', $id)->update(['password' => bcrypt($item['pwd'])]);
-                $counter++;
-            }
+        if($request->pwd != null){
+            $User->password = bcrypt($request->pwd);
+            $counter=+2;
         }
-        if ($counter == 0) {
-            return back()->with('done', 'nothing');
-        }
-        else {
-            return back()->with('done', 'yes');
-        }
+        $User->save();
+        return back()->with('Done',$counter);
     }
 
     /**
@@ -110,12 +92,18 @@ class UserManagerController extends Controller
      */
     public function destroy($id)
     {
-        if($id != 1) {
-            User::find($id)->delete();
-            return back()->with('done','yes');
+        $User = User::where('id', $id)->first();
+        if ($User->role != 0) {
+            if ($User->role == 1) {
+                return back()->with('root', 'try');
+            } else {
+                $User->role = 0;
+                $User->save();
+            }
+            return back()->with('disabled', 'yes');
         }
         else{
-            return back()->with('done','root');
+            return back()->with('was', 'yes');
         }
     }
 }
