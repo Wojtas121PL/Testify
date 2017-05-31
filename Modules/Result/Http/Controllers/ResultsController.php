@@ -48,4 +48,21 @@ class ResultsController extends Controller
         }
         return redirect('/user/list')->with('done','yes');
     }
+
+    public function saveToDatabaseProgressive(SaveResult $request){
+        foreach ($request->answer as $id => $item) {
+            $result = new Results();
+            $result->exam_id = $request->exam_id;
+            $result->user_id = Auth::id();
+            $result->question_id = $id;
+            if ($item['typeId'] == 1){
+                $result->answer_int = $item['number'];
+            }
+            if ($item['typeId'] == 2){
+                $result->answer_text = $item['number'];
+            }
+            $result->save();
+        }
+        return redirect('/user/exam/'.$result->exam_id."/". ($result->question_id + 1));
+    }
 }

@@ -3,6 +3,7 @@
 Route::group(['middleware' => 'web', 'prefix' => 'result', 'namespace' => 'Modules\Result\Http\Controllers'], function()
 {
     Route::post('/save','ResultsController@saveToDatabase');
+    Route::post('/saveProgressive','ResultsController@saveToDatabaseProgressive');
 });
 
 Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'result/admin', 'namespace' => 'Modules\Result\Http\Controllers'], function()

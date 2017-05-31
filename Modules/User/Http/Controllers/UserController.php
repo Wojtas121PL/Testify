@@ -134,5 +134,21 @@ class UserController extends Controller
         return view('user::list', ['exams' => $exams]);
     }
 
-
+    public function examProgressive($id, $question)
+    {
+        $examContent = Entities\Exam::where('id', $id)->first()->questions[$question];
+        $endExam = Entities\Result::select('exam_id')->where('user_id', '=', Auth::id())->groupby('exam_id')->get();
+        $expireTime = Entities\Expire::select('expireTime as time')->where('exam_id','=',$id)->where('user_id','=',Auth::id())->get();
+        foreach ($endExam as $item) {
+            if ($item['exam_id'] == $id) {
+                return back()->with('examDone', 'yes');
+            }
+        }
+        if (count($expireTime) != 0) {
+            if ((strtotime($expireTime[0]->time)) < time()) {
+                return back()->with('examExpire','yes');
+            }
+        }
+        return view('user::examProgressive', ['examContent' => $examContent]);
+    }
 }

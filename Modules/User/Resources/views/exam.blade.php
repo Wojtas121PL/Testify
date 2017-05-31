@@ -46,7 +46,7 @@
                         <label class="input-group">
                             <textarea name="answer[{{$question->id}}][number]" placeholder="Type here your answer"></textarea>
                         </label>
-@endif
+                    @endif
                 </div>
             </div>
 
