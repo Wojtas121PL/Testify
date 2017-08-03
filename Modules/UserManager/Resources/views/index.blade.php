@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <table class="table table-bordered">
-            <tr><td>Id.</td><td>Name</td><td>Email</td><td>Role</td><td>Created at</td><td>Updated at</td></tr>
+            <tr><td>Lp.</td><td>Nazwa</td><td>Email</td><td>Rola</td><td>Utworzony</td><td>Zaaktulizowany</td></tr>
             @php
                 $arrayRole=array("Admin" => 1,"Editor"=>2,"User"=>3);
             @endphp
@@ -13,23 +13,23 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     @if($user->role == 0)
-                        <td>Account deactivated</td>
+                        <td>Konto nieaktywne</td>
                     @endif
                     @if($user->role == 1)
-                        <td>Admin</td>
+                        <td>Administrator</td>
                     @endif
                     @if($user->role == 2)
-                        <td>Editor</td>
+                        <td>Edytor</td>
                     @endif
                     @if($user->role == 3)
-                        <td>User</td>
+                        <td>Użytkownik</td>
                     @endif
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
-                    <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Change</button></a></td>
+                    <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Zmień</button></a></td>
                 </tr>
             @endforeach
         </table>
-        <a href="{{url('usermanager/addUser')}}"><button class="btn btn-success">Add</button></a>
+        <a href="{{url('usermanager/addUser')}}"><button class="btn btn-success">Dodaj</button></a>
     </div>
 @stop

@@ -1,5 +1,8 @@
-Przetłumaczyć na polski
-Rejestracja wywalić
-
+Unormalizować komunikaty związane z REQUIRED w html
+Lista użytkowników ma zawierać użytkowników a nie rootów i edytorów
+User manager layout woła o pomstę do nieba
+Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
+Layouty - sprawdzic i normalizować do 1
+Editor ma sypniety edytor pytań, brak aktualności z adminowskim
 NA VPS
 ispconfig

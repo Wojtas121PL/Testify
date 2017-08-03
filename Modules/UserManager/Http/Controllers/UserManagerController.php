@@ -36,12 +36,14 @@ class UserManagerController extends Controller
     {
         $arrayRole=array("Admin" => 1,"Editor"=>2,"User"=>3);
         $user= new User();
+        echo $request->nameUser;
+        /*
         $user->name = $request->nameUser;
         $user->email = $request->email;
         $user->password = bcrypt($request->pwd);
         $user->role = $arrayRole[$request->role];
         $user->save();
-        return back()->with('done','yes');
+        return back()->with('done','yes');*/
     }
 
     /**

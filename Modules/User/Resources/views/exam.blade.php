@@ -14,8 +14,8 @@
 
             <form action="#">
                 <div class="btn-group-vertical" style="width:100%">
-                        <button type="submit" class="btn btn-warning" id="submit">Submit exam</button>
-                        <a class="btn btn-danger" href="/user/exam">Exit exam</a>
+                        <button type="submit" class="btn btn-warning" id="submit">Zakończ egzamin</button>
+                        <a class="btn btn-danger" href="/user/exam">Wyjdź z egzaminu</a>
                 </div>
             </form>
         </div>
@@ -44,7 +44,7 @@
                     @endforeach
                         @else
                         <label class="input-group">
-                            <textarea name="answer[{{$question->id}}][number]" placeholder="Type here your answer"></textarea>
+                            <textarea name="answer[{{$question->id}}][number]" placeholder="Napisz swoją odpowiedź tutaj..."></textarea>
                         </label>
                     @endif
                 </div>
@@ -53,6 +53,6 @@
 
         @endforeach
 
-        <button class="btn btn-success" type="submit">Finish</button>
+        <button class="btn btn-success" type="submit">Zakończ</button>
         </form>
 @endsection

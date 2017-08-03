@@ -14,28 +14,28 @@
         @endif
         @if(null != session('Done'))
             @if(session('Done') == 0)
-                <div class="alert alert-warning">Nothing to change</div>
+                <div class="alert alert-warning">Brak zmian</div>
             @elseif(session('Done') == 1)
-                <div class="alert alert-success">Email have changed</div>
+                <div class="alert alert-success">Email został zmieniony</div>
             @elseif(session('Done') == 2)
-                <div class="alert alert-success">Password have changed</div>
+                <div class="alert alert-success">Hasło zostało zmienione</div>
             @elseif(session('Done') == 3)
-                <div class="alert alert-success">Email and password have changed</div>
+                <div class="alert alert-success">Email i hasło zostało zmienione</div>
             @endif
             @endif
             @if(null != session('root'))
                 @if(session('root') == 'try')
-                    <div class="alert alert-danger">You tried to deactivate account root. Action refused</div>
+                    <div class="alert alert-danger">Próbujesz dezaktywować konto głównego administratora. Akcja zabroniona</div>
                 @endif
             @endif
             @if(null != session('disabled'))
                 @if(session('disabled') == 'yes')
-                    <div class="alert alert-success">This account has been disabled</div>
+                    <div class="alert alert-success">Konto zostało zdezaktywowane</div>
                 @endif
             @endif
             @if(null != session('was'))
                 @if(session('was') == 'yes')
-                    <div class="alert alert-warning">This account has disabled</div>
+                    <div class="alert alert-warning">Konto było zdeaktywowane</div>
                 @endif
             @endif
     <div>
@@ -43,7 +43,7 @@
             <form action="{{url('usermanager/edit/'.$id)}}" method="post">
                 {{csrf_field()}}
                 <table class="table">
-                    <tr><td>Name</td><td>Email</td><td>Created At</td><td>Change Email</td><td>Change Password</td></tr>
+                    <tr><td>Nazwa</td><td>Email</td><td>Utworzony</td><td>Zmień email</td><td>Zmień Hasło</td></tr>
                     @foreach($user as $item)
                         <tr>
                             <td>{{$item->name}}</td>
@@ -59,10 +59,10 @@
                         @endforeach
                 </table>
                 <br />
-                <input type="submit" class="btn btn-info" value="Change">
+                <input type="submit" class="btn btn-info" value="Zatwierdź zmiany">
             </form>
-            <div><a href="/usermanager/disable/{{$id}}"><button class="btn btn-danger">Disable User</button></a></div>
-            <div><a href="/usermanager/"><button class="btn btn-default">Back</button></a></div>
+            <div><a href="/usermanager/disable/{{$id}}"><button class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
+            <div><a href="/usermanager/"><button class="btn btn-default">Wróć</button></a></div>
         </div>
 
     </div>

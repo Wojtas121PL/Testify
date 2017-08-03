@@ -4,7 +4,7 @@
 @section('content')
     @parent
     @include('admin::includes.displayErrors')
-    <p> Choose one of avaible tests to edit</p>
+    <p>Wybierz jeden z dostępnych testów</p>
         @foreach($exams as $exam)
 
                 <form action="{{route('exam.destroy', $exam->id)}}" method="post">
@@ -14,7 +14,7 @@
                     <div class="input-group" >
                         <a href="{{'exam/'.$exam->id}}" class="form-control" style="height:auto;">{{$exam->name}}</a>
                         <span class="input-group-btn" >
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit">Usuń</button>
                         </span>
                     </div>
                 </form>

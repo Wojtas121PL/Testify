@@ -69,14 +69,13 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Strona Główna</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/login') }}">Zaloguj</a>
                     @endif
                 </div>
                 @if(session('deactivated') == 'yes')
-                    <div class="alert alert-danger">Your account has deactivated</div>
+                    <div class="alert alert-danger">Twoje konto jest zdeaktywowane</div>
                     @endif
             @endif
 
@@ -86,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    The biggest platform to perform exams online
+                    Największa platforma do testów egzaminacyjnych online
                 </div>
             </div>
         </div>

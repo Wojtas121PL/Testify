@@ -5,20 +5,20 @@
     @parent
     @if(session('examDone') == 'yes')
         <div class="alert alert-danger">
-            You have finished this test
+            Zakończyłeś ten egzamin
         </div>
     @endif
     @if(session('examExpire') == 'yes')
         <div class="alert alert-danger">
-            This exam is expired
+            Czas na wykonanie tego ezaminu dobiegł końca
         </div>
     @endif
     @if(session('done') == 'yes')
         <div class="alert alert-success">
-           You finish exam
+           Skończyłeś egzamin
         </div>
     @endif
-    <p> Choose one of avaible test</p>
+    <p>Wybierz jeden z dostępnych testów</p>
     <ul class="nav nav-pills nav-stacked">
         @foreach($exams as $exam)
             @if($exam->status == 'belong')

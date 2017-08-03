@@ -21,7 +21,7 @@
         <form action="{{url('expiretime/edit')}}" method="post">
             {{csrf_field()}}
             <table class="table">
-                <tr><td>User name</td><td>Exam name</td><td>Expiration date</td></tr>
+                <tr><td>Nazwa użytkownika</td><td>Nazwa egzaminu</td><td>Czas dostępu:</td></tr>
                 @foreach($userTime as $itemTime)
                     <tr>
                         <td>
@@ -52,10 +52,10 @@
                     </tr>
                 @endforeach
             </table>
-            <input type="submit" class="btn btn-success" value="Change">
+            <input type="submit" class="btn btn-success" value="Zmień">
         </form>
         <br/>
-        <a href="{{url('/expiretime/')}}"><button class="btn btn-danger">Back</button></a>
+        <a href="{{url('/expiretime/')}}"><button class="btn btn-danger">Wróć</button></a>
     </div>
 
 @endsection

@@ -15,14 +15,14 @@
         <div class="panel-body">
             @if(null !==session('done'))
                 <div class="alert alert-success">
-                    User added
+                    Użytkownik dodany
                 </div>
             @endif
 
             <form action="{{url('/usermanager/addUser')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
-                    <label for="name">User Name</label>
+                    <label for="name">Nazwa użytkownika:</label>
                     <input type="text" class="form-control" id="name" name="nameUser">
                 </div>
                 <div class="form-group">
@@ -30,20 +30,20 @@
                     <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password:</label>
+                    <label for="pwd">Hasło:</label>
                     <input type="password" class="form-control" id="pwd" name="pwd">
                 </div>
                 <div class="form-group">
-                    <label for="Role">Role:</label>
+                    <label for="Role">Rola:</label>
                     <select name="role">
-                        <option>Admin</option>
-                        <option>Editor</option>
-                        <option>User</option>
+                        <option>Administraror</option>
+                        <option>Edytor</option>
+                        <option>Użytkownik</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Dodaj!</button>
             </form>
         </div>
-        <a href="/usermanager/"><button class="btn btn-default">Back</button></a>
+        <a href="/usermanager/"><button class="btn btn-default">Wróć</button></a>
     </div>
 @endsection

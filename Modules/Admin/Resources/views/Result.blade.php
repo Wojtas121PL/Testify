@@ -4,7 +4,7 @@
         <form action="{{url('result/admin')}}" method="post">
             {{ csrf_field() }}
         <div class="form-group">
-        <label for="SelectUser">Select User</label><br>
+        <label for="SelectUser">Wybierz użytkownika</label><br>
         <select id="SelectUser" class="form-control" name="SelectedUser">
             @if(isset($Choose))
                 <span> {{$Choose}}</span>
@@ -24,15 +24,15 @@
         </div>
             <br />
             <div class="form-group">
-                <input type="submit" class="btn btn-success" value="Search Result">
+                <input type="submit" class="btn btn-success" value="Szukaj rezultatów">
             </div>
         </form>
     @if(isset($Tests))
-    <h1>Results table</h1>
+    <h1>Tabela rezultatów</h1>
     <table class="table">
-        <tr><td>Test Id</td><td>Test name</td><td>Link to</td></tr>
+        <tr><td>Lp.</td><td>Nazwa Testu</td><td>Idź do</td></tr>
 @foreach($Tests as $Test)
-    <tr><td>{{$Test->exam_id}}</td><td>{{$Test->name}}</td><td><a href="{{url('result/admin/'.$Choose.'/'.$Test->exam_id)}}">Go to test</a></td></tr>
+    <tr><td>{{$Test->exam_id}}</td><td>{{$Test->name}}</td><td><a href="{{url('result/admin/'.$Choose.'/'.$Test->exam_id)}}">Idź do testu</a></td></tr>
     @endforeach
     </table>
     @endif

@@ -21,8 +21,8 @@
         </div>
 
         <div class="panel-footer">
-            <button class="btn btn-info" type="submit">Save</button>
-            <a class="btn btn-warning" href="{{url('admin/exam/'.$exam->id)}}">Cancel</a>
+            <button class="btn btn-info" type="submit">Zapisz</button>
+            <a class="btn btn-warning" href="{{url('admin/exam/'.$exam->id)}}">Anuluj</a>
         </div>
 </div>
 </form>

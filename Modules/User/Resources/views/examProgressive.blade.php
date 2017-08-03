@@ -24,17 +24,17 @@
                 @endforeach
             @else
                 <label class="input-group">
-                    <textarea name="answer[{{$examContent->id}}][number]" placeholder="Type here your answer"></textarea>
+                    <textarea name="answer[{{$examContent->id}}][number]" placeholder="Napisz swoją odpowiedź tutaj..."></textarea>
                 </label>
             @endif
         </div>
 
         <div class="panel-footer clearfix">
             <div class="col-md-6">
-                <button class="btn btn-info btn-group-justified">< Previous</button>
+                <button class="btn btn-info btn-group-justified">< Wstecz</button>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-info btn-group-justified" type="submit">Next ></button>
+                <button class="btn btn-info btn-group-justified" type="submit">Naprzód ></button>
 
             </div>
         </div>

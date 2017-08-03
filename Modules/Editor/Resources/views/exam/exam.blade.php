@@ -5,7 +5,7 @@
     @include('editor::includes.displayErrors')
 
     <div class="panel panel-default">
-        <div class="panel-heading">Main info</div>
+        <div class="panel-heading">Widok na egzamin</div>
         <div class="panel-body">
             <form action="{{route('exam.update', $exam->id)}}" method="post">
                 {{method_field('PUT')}}
@@ -13,7 +13,7 @@
                 <div class="input-group">
                     <input type="text" name="new_name" class="form-control" placeholder="{{$exam->name}}">
                     <span class="input-group-btn">
-                            <button class="btn btn-info" type="submit" name="action" value="save">Save</button>
+                            <button class="btn btn-info" type="submit" name="action" value="save">Zapisz</button>
                     </span>
                 </div>
             </form>

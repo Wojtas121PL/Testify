@@ -5,11 +5,11 @@
     @include('admin::includes.displayErrors')
     @if(null != session('add'))
         @if(session('add') == 'yes')
-            <div class="alert alert-success">Users is added to allow list exam</div>
+            <div class="alert alert-success">Użytkownicy od teraz mają zezwolenie na rozwiązanie egzaminu</div>
         @endif
     @endif
     <div class="panel panel-default">
-        <div class="panel-heading">Main info</div>
+        <div class="panel-heading">Widok egzaminu</div>
         <div class="panel-body">
             <form action="{{route('exam.update', $exam->id)}}" method="post">
                 {{method_field('PUT')}}
@@ -23,7 +23,7 @@
             </form>
         </div>
         @isset($Users)
-        <div class="well">Select user who is allow to test
+        <div class="well">Wybierz użytkowników którzy mają prawo wykonać test
             <div class="table-bordered">
                 <form action="{{route('saveUsers.exam')}}" method="post">
                     {{csrf_field()}}
@@ -36,7 +36,7 @@
                                 <input type="checkbox" name="user[{{$i}}][check]" >{{$user->name}}
                             @endif
                         @endforeach
-                        <button type="submit" class="btn-success">Save</button>
+                        <button type="submit" class="btn-success">Zapisz</button>
                     </div>
                 </form>
             </div>

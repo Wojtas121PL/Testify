@@ -5,22 +5,22 @@
 
     @isset($userTime)
         @if(session('done') == 'yes')
-            <div class="alert alert-success">Expiration date has been deleted</div>
+            <div class="alert alert-success">Czas dostępu został usunięty</div>
         @endif
         <div>
             <table class="table">
-                <tr><td>User</td><td>Test</td><td>Expiration date</td></tr>
+                <tr><td>Użytkownik</td><td>Test</td><td>Czas dostępu</td></tr>
                 @foreach($userTime as $item)
                     <tr>
                         <td>{{$item->user}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->expireTime}}</td>
-                        <td><a href="{{url('expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="{{url('expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>
                     </tr>
                 @endforeach
             </table>
-            <a href="{{url('expiretime/add')}}"><button class="btn btn-success">Add</button></a>
-            <a href="{{url('expiretime/edit')}}"><button class="btn btn-info">Edit</button></a>
+            <a href="{{url('expiretime/add')}}"><button class="btn btn-success">Dodaj!</button></a>
+            <a href="{{url('expiretime/edit')}}"><button class="btn btn-info">Edytuj!</button></a>
         </div>
     @endisset
 @endsection

@@ -17,14 +17,14 @@
     <div class="panel-footer">
         <form action="{{route('admin.exam.edit', $exam->id)}}" method="get">
             <input type="hidden" name="edit_id" value="{{$question->id}}">
-            <button class="btn btn-info" type="submit">Edit</button>
+            <button class="btn btn-info" type="submit">Edytuj</button>
         </form>
         <form action="{{route('question.destroy', $exam->id)}}" method="post">
             {{csrf_field()}}
             {{method_field('DELETE')}}
             <input type="hidden" name="question_id" value="{{$question->id}}">
 
-            <button style="position: relative;bottom: 35px;" class="btn btn-danger pull-right" type="submit">Delete</button>
+            <button style="position: relative;bottom: 35px;" class="btn btn-danger pull-right" type="submit">Usuń</button>
         </form>
 
     </div>

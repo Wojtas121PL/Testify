@@ -5,7 +5,7 @@
     <a href="{{url('result/admin')}}"><button class="btn btn-default">Back</button></a>
     @foreach($Answers as $answer)
         <div>
-            <span>Question Number {{$answer->question_number}}</span>
+            <span>Pytanie numer: {{$answer->question_number}}</span>
             <h1>{{$answer->question_title}}</h1>
                 @if($answer->question_type == 1)
                     @php($d=1)
