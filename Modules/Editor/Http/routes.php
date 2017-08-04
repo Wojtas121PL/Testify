@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'editor', 'namespace' => 'Modules\Editor\Http\Controllers'], function() {
+Route::group(['middleware' => ['web','role:2'], 'prefix' => 'editor', 'namespace' => 'Modules\Editor\Http\Controllers'], function() {
     Route::get('/', 'EditorController@editorIndex');
 
     Route::group(['prefix' => 'exam'],function (){

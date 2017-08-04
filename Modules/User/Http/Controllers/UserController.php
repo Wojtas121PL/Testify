@@ -109,25 +109,22 @@ class UserController extends Controller
         //This checks if exam is expired or finished.
         //If true, it appends atribute 'status' for each exam
         foreach($exams as $exam){
-
             $exam->setAttribute('status', '');
-
+            $belongExam->each(function ($item, $key) use ($exam){
+                if($exam->id == $item->id){
+                    $exam->setAttribute('statusBelong', 'yes');
+                }
+            });
             $endExam->each(function ($item, $key) use ($exam){
                 if($exam->id == $item->exam_id){
                     $exam->setAttribute('status', 'finished');
                 }
             });
-
             $expireTime->each(function ($item, $key) use ($exam){
                 if($exam->id == $item->exam_id){
-                    if ((strtotime($item->time)) < time()) {
+                    if ((strtotime($item->expireTime)) < time()) {
                         $exam->setAttribute('status', 'expired');
                     }
-                }
-            });
-            $belongExam->each(function ($item, $key) use ($exam){
-                if($exam->id == $item->exam_id){
-                    $exam->setAttribute('status', 'belong');
                 }
             });
         }

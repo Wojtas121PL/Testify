@@ -1,9 +1,9 @@
-@extends('editor::layouts.master')
+@extends('admin::layouts.master')
 
 
 @section('content')
     @parent
-    @include('editor::includes.displayErrors')
+    @include('admin::includes.displayErrors')
     <p>Wybierz jeden z dostępnych testów</p>
         @foreach($exams as $exam)
 
@@ -26,7 +26,7 @@
     </button>
     <div class="collapse" id="collapseExample">
         <div class="well">
-            @include('editor::includes.create')
+            @include('admin::includes.create')
         </div>
     </div>
 @endsection

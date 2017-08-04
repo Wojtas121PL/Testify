@@ -86,7 +86,7 @@ class ExamController extends Controller
     public function saveUsers(SaveUsers $request){
         foreach ($request->user as $i => $item){
             $belong = new ExamUser;
-            $belong->user_id = $item['check'];
+            $belong->user_id = $i;
             $belong->exam_id = $request->testName;
             $belong->save();
         }

@@ -10,6 +10,7 @@
                 @if($answer->question_type == 1)
                     @php($d=1)
                     @foreach($typeAnswer as $id => $item)
+                        @if($item->question_id == $answer->question_number)
                         @if($d == $answer->answer_correct && $d == $item->answer_int)
                         <div class="input-group">
                             <span class="input-group-addon">&#x2611;</span>
@@ -32,6 +33,7 @@
                         </div>
                             @endif
                         @php($d++)
+                            @endif
                     @endforeach
                 @endif
             @if($answer->question_type == 2)

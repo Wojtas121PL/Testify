@@ -9,15 +9,19 @@
             @if(isset($Choose))
                 <span> {{$Choose}}</span>
                 @foreach($Users as $user)
+                    @if($user->role == 3)
                     @if($Choose == $user->id)
                         <option value="{{$user->id}}" selected>{{$user->name}}</option>
                     @else
                         <option value="{{$user->id}}" >{{$user->name}}</option>
                         @endif
+                    @endif
                 @endforeach
             @else
                     @foreach($Users as $user)
+                        @if($user->role == 3)
                             <option value="{{$user->id}}" >{{$user->name}}</option>
+                    @endif
                     @endforeach
                 @endif
         </select>

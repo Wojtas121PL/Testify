@@ -1,8 +1,13 @@
 Unormalizować komunikaty związane z REQUIRED w html
-Lista użytkowników ma zawierać użytkowników a nie rootów i edytorów
 User manager layout woła o pomstę do nieba
 Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
 Layouty - sprawdzic i normalizować do 1
-Editor ma sypniety edytor pytań, brak aktualności z adminowskim
+Edytor - problem z powiązaniem użytkownika do egzaminu. Jak go odwiązać ??
+Problem przy dodawaniu odpowiedzi do pytań - dodać usuwanie za dużo pól textowych
+Lista użytkowników przy zezwoleniach do egzaminów jako select a nie checkboxy
+Jquerowe wyszukiwania
+Zaznaczony user komplikuje życie usunąć go z mojego życia
+
+
 NA VPS
 ispconfig

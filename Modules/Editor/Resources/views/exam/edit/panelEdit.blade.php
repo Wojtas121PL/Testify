@@ -1,6 +1,3 @@
-@php
-    $answers = json_decode($question->answer_list, true);
-@endphp
 <form method="post" action="{{route('question.update', $exam->id)}}">
     {{method_field('PUT')}}
     {{csrf_field()}}
@@ -13,20 +10,20 @@
         </div>
 
         <div class="panel-body">
+            @foreach($question->answers as $i => $answer )
 
-                @for($i = 1; $i <= count($answers); $i++)
-                    <div class="input-group">
-                        <span class="input-group-addon">{{$i}}:</span>
-                        <input class="form-control" type="text" name="{{'answer'.$i}}" value="{{$answers[$i]}}">
-                    </div>
-                @endfor
-            <input class="form-control" type="number" name="answer_correct" min="1" max="4" value="{{$question->answer_correct}}">
+                <div class="input-group">
+                    <span class="input-group-addon">{{++$i}}:</span>
+                    <input class="form-control" type="text" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                </div>
+            @endforeach
+            <input class="form-control" type="number" name="answer_correct" min="1" value="{{$question->answer_correct}}">
 
         </div>
 
         <div class="panel-footer">
-            <button class="btn btn-info" type="submit">Save</button>
-            <a class="btn btn-warning" href="{{url('editor/exam/'.$exam->id)}}">Cancel</a>
+            <button class="btn btn-info" type="submit">Zapisz</button>
+            <a class="btn btn-warning" href="{{url('editor/exam/'.$exam->id)}}">Anuluj</a>
         </div>
 </div>
 </form>

@@ -30,10 +30,14 @@
                     <input type="hidden" name="testName" value="{{$exam->id}}">
                     <div>
                         @foreach($Users as $i => $user)
-                            @if($user->exam_id == $exam->id)
-                                <input type="checkbox" name="user[{{$i}}][check]" disabled>{{$user->name}}
-                                @else
-                                <input type="checkbox" name="user[{{$i}}][check]" >{{$user->name}}
+                            @if($user->role == 3)
+                                @foreach($UsersBelongs as $userBelong)
+                                    @if($user->id == $userBelong->user_id)
+                                        <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
+                                            @else
+                                    @endif
+                                @endforeach
+                                    <input type="checkbox" name="user[{{$user->id}}][check]" >{{$user->name}}
                             @endif
                         @endforeach
                         <button type="submit" class="btn-success">Zapisz</button>

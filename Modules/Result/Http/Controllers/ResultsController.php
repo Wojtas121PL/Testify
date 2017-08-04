@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class ResultsController extends Controller
 {
     public function getUserList(){
-        $user=User::select('id','name')->orderBy('id','ASC')->get();
+        $user=User::select('id','name','role')->orderBy('id','ASC')->get();
         return $user;
     }
     public function getUserListAndViews(){

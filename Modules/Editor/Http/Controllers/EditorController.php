@@ -6,6 +6,10 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use \Modules\Exam\Entities;
 use Carbon\Carbon;
+use Modules\Exam\Entities\Exam;
+use Modules\Exam\Entities\ExamUser;
+use Modules\Exam\Entities\Question;
+use Modules\User\Entities\User;
 
 class EditorController extends Controller
 {
@@ -33,16 +37,21 @@ class EditorController extends Controller
         return view('editor::index');
     }
     public function editorShow(){
-        $exams = Entities\Exam::all();
+        $exams = Exam::all();
         return view('editor::exam.list', ['exams' => $exams]);
     }
     public function editorEdit($id){
-        $exam = Entities\Exam::where('id', $id)->first();
-        return view('editor::exam.exam', ['exam' => $exam, 'edit_id' => null]);
+        $exam = Exam::where('id', $id)->first();
+        $UserBelongs = ExamUser::where('exam_id','=',$id)->get();
+        $Users = User::leftJoin('exam_users','users.id','=','exam_users.user_id')->select('users.id','name','exam_id','role')->get();
+        return view('editor::exam.exam', ['exam' => $exam, 'edit_id' => null,'Users' => $Users, 'UsersBelongs' => $UserBelongs]);
     }
 
     public function editorEditExam(Request $request, $id){
-        $exam = Entities\Exam::where('id', $id)->first();
-        return view('editor::exam.exam', ['exam' => $exam, 'edit_id' => $request->edit_id]);
+        $answer = Question::getAnswerContent();
+        $exam = Exam::where('id', $id)->first();
+        $UserBelongs = ExamUser::select('*')->where('exam_id','=',$id)->get();
+        $Users = User::select('users.id','name','role')->get();
+        return view('editor::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id,'Users' => $Users, 'UsersBelongs' => $UserBelongs]);
     }
 }

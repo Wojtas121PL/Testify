@@ -3,9 +3,13 @@
 @section('content')
     @parent
     @include('editor::includes.displayErrors')
-
+    @if(null != session('add'))
+        @if(session('add') == 'yes')
+            <div class="alert alert-success">Użytkownicy od teraz mają zezwolenie na rozwiązanie egzaminu</div>
+        @endif
+    @endif
     <div class="panel panel-default">
-        <div class="panel-heading">Widok na egzamin</div>
+        <div class="panel-heading">Widok egzaminu</div>
         <div class="panel-body">
             <form action="{{route('exam.update', $exam->id)}}" method="post">
                 {{method_field('PUT')}}
@@ -18,8 +22,31 @@
                 </div>
             </form>
         </div>
-    </div>
+        @isset($Users)
+        <div class="well">Wybierz użytkowników którzy mają prawo wykonać test
+            <div class="table-bordered">
+                <form action="{{route('saveUsers.exam')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="testName" value="{{$exam->id}}">
+                    <div>
 
+                        @foreach($Users as $i => $user)
+                            @if($user->role == 3)
+                                @foreach($UsersBelongs as $userBelong)
+                                    @if($user->id == $userBelong->user_id)
+                                        <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
+                                    @endif
+                                @endforeach
+                                <input type="checkbox" name="user[{{$user->id}}][check]" >{{$user->name}}
+                            @endif
+                        @endforeach
+                        <button type="submit" class="btn-success">Zapisz</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        @endisset
     @foreach($exam->questions as $question)
 
         @if($question->id == $edit_id)
@@ -34,8 +61,6 @@
         +
     </button>
     <div class="collapse" id="collapseExample">
-        <div class="well">
-            @include('editor::exam.edit.addNewQuestion')
-        </div>
+        @include('editor::exam.edit.addNewQuestion')
     </div>
 @endsection
