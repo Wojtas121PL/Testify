@@ -29,14 +29,30 @@ class AdminController extends Controller
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::where('exam_id','=',$id)->get();
         $Users = User::leftJoin('exam_users','users.id','=','exam_users.user_id')->select('users.id','name','exam_id','role')->get();
-        return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null,'Users' => $Users, 'UsersBelongs' => $UserBelongs]);
+        foreach ($Users as $user){
+            $user->setAttribute('status','noBelong');
+            $UserBelongs->each(function ($item) use ($user){
+                if($user->id == $item->user_id){
+                    $user->setAttribute('status', 'belong');
+                }
+            });
+        }
+        return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null,'Users' => $Users]);
     }
     public function editExam(Request $request, $id){
         $answer = Question::getAnswerContent();
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::select('*')->where('exam_id','=',$id)->get();
         $Users = User::select('users.id','name','role')->get();
-        return view('admin::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id,'Users' => $Users, 'UsersBelongs' => $UserBelongs]);
+        foreach ($Users as $user){
+            $user->setAttribute('status','noBelong');
+            $UserBelongs->each(function ($item) use ($user){
+                if($user->id == $item->user_id){
+                    $user->setAttribute('status', 'belong');
+                }
+            });
+        }
+        return view('admin::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id,'Users' => $Users]);
     }
 
 }

@@ -11,12 +11,23 @@
 
         <div class="panel-body">
             @foreach($question->answers as $i => $answer )
+                @if(++$i == $question->answer_correct)
                 <div class="input-group">
-                    <span class="input-group-addon">{{++$i}}:</span>
-                    <input class="form-control" type="text" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                    <span class="input-group-addon">
+                        <input type="radio" name="answer_correct" value="{{$i}}" checked>
+                    </span>
+                    <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
                 </div>
+                @else
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="radio" name="answer_correct" value="{{++$i}}" >
+                        </span>
+                        <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                    </div>
+                    @endif
             @endforeach
-            <input class="form-control" type="number" name="answer_correct" min="1" value="{{$question->answer_correct}}">
+
 
         </div>
 
