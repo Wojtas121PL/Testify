@@ -17,7 +17,7 @@
                 <div class="input-group">
                     <input type="text" name="new_name" class="form-control" placeholder="{{$exam->name}}">
                     <span class="input-group-btn">
-                            <button class="btn btn-info" type="submit" name="action" value="save">Save</button>
+                            <button class="btn btn-info" type="submit" name="action" value="save">Zapisz</button>
                     </span>
                 </div>
             </form>

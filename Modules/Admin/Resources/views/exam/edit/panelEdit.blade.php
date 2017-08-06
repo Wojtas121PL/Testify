@@ -21,7 +21,7 @@
                 @else
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <input type="radio" name="answer_correct" value="{{++$i}}" >
+                            <input type="radio" name="answer_correct" value="{{$i}}" >
                         </span>
                         <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
                     </div>
