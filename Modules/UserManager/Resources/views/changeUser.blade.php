@@ -39,7 +39,7 @@
                 @endif
             @endif
     <div>
-        <div class="form-group">
+        <span class="form-group">
             <form action="{{url('usermanager/edit/'.$id)}}" method="post">
                 {{csrf_field()}}
                 <table class="table">
@@ -59,11 +59,10 @@
                         @endforeach
                 </table>
                 <br />
-                <input type="submit" class="btn btn-info" value="Zatwierdź zmiany">
-            </form>
-            <div><a href="/usermanager/disable/{{$id}}"><button class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
-            <div><a href="/usermanager/"><button class="btn btn-default">Wróć</button></a></div>
-        </div>
-
+                <div class="row">
+                    <div class="col-md-3"><input type="submit" class="btn btn-info" value="Zatwierdź zmiany"></div></form>
+                    <div class="col-md-4"><a href="/usermanager/disable/{{$id}}"><button type="button" class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
+                    <div class="col-md-3"><a href="/usermanager/"><button type="button" class="btn btn-default">Wróć</button></a></div>
+  </div>
     </div>
 @endsection

@@ -36,14 +36,16 @@
                 <div class="form-group">
                     <label for="Role">Rola:</label>
                     <select name="role">
-                        <option>Administraror</option>
+                        <option>Administrator</option>
                         <option>Edytor</option>
                         <option>Użytkownik</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">Dodaj!</button>
+                <div class="row">
+                    <div class="col-md-1"><input type="submit" class="btn btn-success" value="Dodaj!"/></div>
+                    <div class="col-md-1"><a href="/usermanager/"><button type="button" class="btn btn-danger">Wróć</button></a></div>
+                </div>
             </form>
         </div>
-        <a href="/usermanager/"><button class="btn btn-default">Wróć</button></a>
     </div>
 @endsection
