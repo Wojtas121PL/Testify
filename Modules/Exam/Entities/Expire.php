@@ -12,7 +12,7 @@ class Expire extends Model
     public static function getListUserAndTime(){
         return Exam\Entities\Expire::join('exams','exams.id','=','expires.exam_id')
             ->join('users','users.id','=','expires.user_id')
-            ->select('expires.id','users.name as user','exams.name','expireTime')
+            ->select('expires.id','users.name as user','exams.name','expireTime','email')
             ->get();
     }
     public static function deleteIt($id){

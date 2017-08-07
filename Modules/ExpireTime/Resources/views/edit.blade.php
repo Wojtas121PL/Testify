@@ -1,5 +1,24 @@
 @extends('expiretime::layouts.master')
-
+<script type="text/javascript">
+    function searchUser(user) {
+        if (user.length > 0) {
+            $(".user option:selected").parent().parent().parent().hide();
+            $(".user option:selected:contains("+user+")").parent().parent().parent().show();
+        }
+        else {
+            $( ".user option:selected" ).parent().parent().parent().show();
+        }
+    }
+    function searchEmail(user) {
+        if (user.length > 0) {
+            $("td.email").parent().hide();
+            $("td.email:contains(" + user + ")").parent().show();
+        }
+        else {
+            $("td.email").parent().show();
+        }
+    }
+</script>
 @section('content')
     @parent
     @if(session('done') == 'yes')
@@ -18,14 +37,17 @@
         </div>
     @endif
     <div>
+        <div class="form-group">
+            <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchUser(this.value);searchEmail(this.value)"/>
+        </div>
         <form action="{{url('expiretime/edit')}}" method="post">
             {{csrf_field()}}
             <table class="table">
-                <tr><td>Nazwa użytkownika</td><td>Nazwa egzaminu</td><td>Czas dostępu:</td></tr>
+                <tr><td>Nazwa użytkownika</td><td>Email</td><td>Nazwa egzaminu</td><td>Czas dostępu:</td></tr>
                 @foreach($userTime as $itemTime)
                     <tr>
                         <td>
-                            <select name="edits[{{$itemTime->id}}][user]">
+                            <select class="user" name="edits[{{$itemTime->id}}][user]">
                                 @foreach($Users as $itemUser)
                                     @if($itemTime->user == $itemUser->name)
                                         <option value="{{$itemUser->id}}" selected>{{$itemUser->name}}</option>
@@ -34,7 +56,7 @@
                                     @endif
                                 @endforeach
                             </select>
-
+                        <td class="email">{{$itemTime->email}}</td>
                         <td>
                             <select name="edits[{{$itemTime->id}}][exam]">
                                 @foreach($Exam as $itemExam)
