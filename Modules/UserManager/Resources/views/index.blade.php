@@ -19,6 +19,9 @@
         @endif
     @endif
     <div>
+        <div class="form-group">
+            <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" disabled/>
+        </div>
         <table class="table table-bordered">
             <tr><td>Lp.</td><td>Nazwa</td><td>Email</td><td>Rola</td><td>Utworzony</td><td>Zaaktulizowany</td></tr>
             @foreach($users as $user)
@@ -40,7 +43,7 @@
                     @endif
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
-                    <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Zmień</button></a></td>
+                    <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Edytuj</button></a></td>
                 </tr>
             @endforeach
         </table>

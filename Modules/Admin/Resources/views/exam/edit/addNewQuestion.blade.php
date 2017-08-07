@@ -17,6 +17,14 @@
 
         $("#val").val(++val);
     }
+    function removeAnswer() {
+        var val = $("#val").val();
+        $("#answers > .input-group").last().remove();
+        $("#val").val(--val);
+        if($("#val").val() < 1){
+            $("#val").val(1);
+        }
+    }
 </script>
 <div id="tabs">
     <ul>
@@ -40,7 +48,7 @@
             </div>
 
             <input type="button" class="btn btn-info btn-group-justified" onclick="appendAnswer()" value="Dodaj odpowiedź">
-
+            <input type="button" class="btn btn-info btn-group-justified" onclick="removeAnswer()" value="Usuń odpowiedź">
             <div class="form-group">
                 <button class="btn btn-success" type="submit">Dodaj!</button>
             </div>

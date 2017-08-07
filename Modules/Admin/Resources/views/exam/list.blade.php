@@ -22,7 +22,7 @@
         @endforeach
 
     <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        +
+        Dodaj test
     </button>
     <div class="collapse" id="collapseExample">
         <div class="well">
