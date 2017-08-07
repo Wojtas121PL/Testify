@@ -13,4 +13,5 @@ Route::group(['middleware' => ['web','role:1'], 'prefix' => 'usermanager', 'name
         Route::post('/edit/{id}', 'UserManagerController@change');
 
         Route::get('/disable/{id}','UserManagerController@destroy');
+        Route::get('/delete/{id}','UserManagerController@delete');
     });

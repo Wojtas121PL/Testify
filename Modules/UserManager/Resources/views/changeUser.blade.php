@@ -61,7 +61,8 @@
                 <br />
                 <div class="row">
                     <div class="col-md-3"><input type="submit" class="btn btn-info" value="Zatwierdź zmiany"></div></form>
-                    <div class="col-md-4"><a href="/usermanager/disable/{{$id}}"><button type="button" class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
+                    <div class="col-md-3"><a href="/usermanager/disable/{{$id}}"><button type="button" class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
+                    <div class="col-md-3"><a href="/usermanager/delete/{{$id}}"><button type="button" class="btn btn-danger">Skasuj użytkownika</button> </a> </div>
                     <div class="col-md-3"><a href="/usermanager/"><button type="button" class="btn btn-default">Wróć</button></a></div>
   </div>
     </div>

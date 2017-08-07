@@ -1,12 +1,26 @@
 @extends('usermanager::layouts.master')
 
 @section('content')
+    @if(null != session('delete'))
+        @if(session('delete') == 'deactive')
+            <div class="alert alert-success">Usunięto dezaktywowane konto</div>
+        @endif
+        @if(session('delete') == 'root')
+            <div class="alert alert-danger">Próba usunięcia konta głównego administratora. Akcja zabroniona</div>
+        @endif
+        @if(session('delete') == 'admin')
+            <div class="alert alert-success">Usunięto konto admina</div>
+        @endif
+        @if(session('delete') == 'editor')
+            <div class="alert alert-success">Usunięto konto edytora</div>
+        @endif
+        @if(session('delete') == 'user')
+            <div class="alert alert-success">Usunięto konto użytkownika</div>
+        @endif
+    @endif
     <div>
         <table class="table table-bordered">
             <tr><td>Lp.</td><td>Nazwa</td><td>Email</td><td>Rola</td><td>Utworzony</td><td>Zaaktulizowany</td></tr>
-            @php
-                $arrayRole=array("Admin" => 1,"Editor"=>2,"User"=>3);
-            @endphp
             @foreach($users as $user)
                 <tr>
                     <td>{{$user->id}}</td>
