@@ -3,9 +3,12 @@
 @section('content')
     @parent
     @include('admin::includes.displayErrors')
+    {{session('add')}}
     @if(null != session('add'))
-        @if(session('add') == 'yes')
+        @if(session('add') != 0)
             <div class="alert alert-success">Użytkownicy od teraz mają zezwolenie na rozwiązanie egzaminu</div>
+            @elseif(session('add') == 0)
+            <div class="alert alert-warning">Brak zmian</div>
         @endif
     @endif
     <div class="panel panel-default">
@@ -25,16 +28,16 @@
         @isset($Users)
         <div class="well">Wybierz użytkowników którzy mają prawo wykonać test
             <div class="table-bordered">
-                <form action="{{route('saveUsers.exam')}}" method="post">
+                <form method="post" action="{{route('saveUsers.exam')}}">
                     {{csrf_field()}}
                     <input type="hidden" name="testName" value="{{$exam->id}}">
                     <div>
                         @foreach($Users as $i => $user)
                             @if($user->role == 3)
                                     @if($user->status == "belong")
-                                        <input type="checkbox" name="user[{{$i}}][check]" checked>{{$user->name}}
+                                        <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
                                     @else
-                                        <input type="checkbox" name="user[{{$i}}][check]" >{{$user->name}}
+                                        <input type="checkbox" name="user[{{$user->id}}][check]" >{{$user->name}}
                                     @endif
                             @endif
                         @endforeach

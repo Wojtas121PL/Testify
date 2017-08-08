@@ -43,7 +43,15 @@ class EditorController extends Controller
     public function editorEdit($id){
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::where('exam_id','=',$id)->get();
-        $Users = User::leftJoin('exam_users','users.id','=','exam_users.user_id')->select('users.id','name','exam_id','role')->get();
+        $Users = User::select('id','name','role')->get();
+        foreach ($Users as $user){
+            $user->setAttribute('status','noBelong');
+            $UserBelongs->each(function ($item) use ($user){
+                if($user->id == $item->user_id){
+                    $user->setAttribute('status', 'belong');
+                }
+            });
+        }
         return view('editor::exam.exam', ['exam' => $exam, 'edit_id' => null,'Users' => $Users, 'UsersBelongs' => $UserBelongs]);
     }
 
@@ -51,7 +59,15 @@ class EditorController extends Controller
         $answer = Question::getAnswerContent();
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::select('*')->where('exam_id','=',$id)->get();
-        $Users = User::select('users.id','name','role')->get();
+        $Users = User::select('id','name','role')->get();
+        foreach ($Users as $user){
+            $user->setAttribute('status','noBelong');
+            $UserBelongs->each(function ($item) use ($user){
+                if($user->id == $item->user_id){
+                    $user->setAttribute('status', 'belong');
+                }
+            });
+        }
         return view('editor::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id,'Users' => $Users, 'UsersBelongs' => $UserBelongs]);
     }
 }

@@ -1,14 +1,11 @@
 <?php
 
-Route::group(['middleware' => 'web', 'namespace' => 'Modules\Exam\Http\Controllers'], function()
+Route::group(['middleware' => ['web', 'role:1'], 'namespace' => 'Modules\Exam\Http\Controllers'], function()
 {
     Route::resource('exam', 'ExamController');
     Route::resource('question', 'QuestionController');
     Route::post('questionOpen', 'QuestionController@storeOpen')->name('question.store.open');
     Route::post('saveUsers','ExamController@saveUsers')->name('saveUsers.exam');
-
-
-
 });
 //
 //Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'examWrite', 'namespace' => 'Modules\Exam\Http\Controllers'], function()

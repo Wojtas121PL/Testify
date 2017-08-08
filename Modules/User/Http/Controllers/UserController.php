@@ -105,13 +105,13 @@ class UserController extends Controller
 
         $endExam = Entities\Result::select('exam_id')->where('user_id', '=', Auth::id())->groupby('exam_id')->get();
         $expireTime = Entities\Expire::where('user_id','=',Auth::id())->get();
-        $belongExam = Entities\ExamUser::select('id')->where('user_id','=',Auth::id())->get();
+        $belongExam = Entities\ExamUser::select('exam_id')->where('user_id','=',Auth::id())->get();
         //This checks if exam is expired or finished.
         //If true, it appends atribute 'status' for each exam
         foreach($exams as $exam){
             $exam->setAttribute('status', '');
             $belongExam->each(function ($item, $key) use ($exam){
-                if($exam->id == $item->id){
+                if($exam->id == $item->exam_id){
                     $exam->setAttribute('statusBelong', 'yes');
                 }
             });

@@ -1,10 +1,8 @@
-Unormalizować komunikaty związane z REQUIRED w html
 Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
-Layouty - sprawdzic i normalizować do 1
 Edytor - problem z powiązaniem użytkownika do egzaminu. Jak go odwiązać ??
 Lista użytkowników przy zezwoleniach do egzaminów jako select a nie checkboxy
-Jquerowe wyszukiwania
-
+Egzamin kontroller naprawić dodawanie użytkowników do egzaminu
+Edytor nie może zapisać użytkowników
 
 NA VPS
 ispconfig

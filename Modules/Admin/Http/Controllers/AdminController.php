@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function edit($id){
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::where('exam_id','=',$id)->get();
-        $Users = User::leftJoin('exam_users','users.id','=','exam_users.user_id')->select('users.id','name','exam_id','role')->get();
+        $Users = User::select('id','name','role')->get();
         foreach ($Users as $user){
             $user->setAttribute('status','noBelong');
             $UserBelongs->each(function ($item) use ($user){
@@ -43,7 +43,7 @@ class AdminController extends Controller
         $answer = Question::getAnswerContent();
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::select('*')->where('exam_id','=',$id)->get();
-        $Users = User::select('users.id','name','role')->get();
+        $Users = User::select('id','name','role')->get();
         foreach ($Users as $user){
             $user->setAttribute('status','noBelong');
             $UserBelongs->each(function ($item) use ($user){

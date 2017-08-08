@@ -32,12 +32,11 @@
 
                         @foreach($Users as $i => $user)
                             @if($user->role == 3)
-                                @foreach($UsersBelongs as $userBelong)
-                                    @if($user->id == $userBelong->user_id)
-                                        <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
-                                    @endif
-                                @endforeach
-                                <input type="checkbox" name="user[{{$user->id}}][check]" >{{$user->name}}
+                                @if($user->status == "belong")
+                                    <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
+                                @else
+                                    <input type="checkbox" name="user[{{$user->id}}][check]" >{{$user->name}}
+                                @endif
                             @endif
                         @endforeach
                         <button type="submit" class="btn-success">Zapisz</button>

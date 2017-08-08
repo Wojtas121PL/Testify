@@ -13,12 +13,18 @@
             </div>
         @endif
         <div class="panel-body">
-            @if(null !==session('done'))
-                <div class="alert alert-success">
-                    Użytkownik dodany
-                </div>
+            @if(null != session('done'))
+                @if(session('done') == 'yes')
+                    <div class="alert alert-success">Użytkownik dodany</div>
+                    @elseif(session('done') == 'existEmail')
+                        <div class="alert alert-danger">Istnieje już użytkownik o takim adresie email</div>
+                    @endif
             @endif
-
+            @if(null != session('root'))
+                @if(session('root') == 'try')
+                    <div class="alert alert-danger">Próbujesz dezaktywować konto głównego administratora. Akcja zabroniona</div>
+                @endif
+            @endif
             <form action="{{url('/usermanager/addUser')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">

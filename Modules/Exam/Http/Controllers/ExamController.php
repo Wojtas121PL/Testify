@@ -84,13 +84,24 @@ class ExamController extends Controller
         return back();
     }
     public function saveUsers(SaveUsers $request){
+        $UserBelongs = ExamUser::select('*')->where('exam_id','=',$request->testName)->get();
+        $counterBack = 0;
         foreach ($request->user as $i => $item){
-            $belong = new ExamUser;
-            $belong->user_id = $i;
-            $belong->exam_id = $request->testName;
-            $belong->save();
+            $counter=0;
+            foreach ($UserBelongs as $user){
+                if ($user->user_id == $i){
+                    $counter=1;
+                }
+            }
+            if ($counter==0){
+                $belong = new ExamUser;
+                $belong->user_id = $i;
+                $belong->exam_id = $request->testName;
+                $belong->save();
+                $counterBack++;
+            }
         }
-        return back()->with('add','yes');
+        return back()->with('add',$counterBack);
     }
     /**
      * Remove the specified resource from storage.

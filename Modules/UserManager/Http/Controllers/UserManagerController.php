@@ -35,13 +35,27 @@ class UserManagerController extends Controller
     public function store(Request $request)
     {
         $arrayRole = array("Administrator" => 1, "Edytor" => 2, "Użytkownik" => 3);
-        $user = new User();
-        $user->name = $request->nameUser;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->pwd);
-        $user->role = $arrayRole[$request->role];
-        $user->save();
-        return back()->with('done', 'yes');
+        $Users = User::select('email')->get();
+        global $counter;
+        foreach ($Users as $user){
+            if ($user->email == $request->email){
+                $counter=1;
+            }
+        }
+        if ($counter==1){
+            unset($counter);
+            return back()->with('done', 'existEmail');
+        }
+        else {
+            unset($counter);
+            $user = new User();
+            $user->name = $request->nameUser;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->pwd);
+            $user->role = $arrayRole[$request->role];
+            $user->save();
+            return back()->with('done', 'yes');
+        }
     }
 
     /**
