@@ -3,7 +3,6 @@
 @section('content')
     @parent
     @include('admin::includes.displayErrors')
-    {{session('add')}}
     @if(null != session('add'))
         @if(session('add') != 0)
             <div class="alert alert-success">Użytkownicy od teraz mają zezwolenie na rozwiązanie egzaminu</div>
@@ -36,8 +35,10 @@
                             @if($user->role == 3)
                                     @if($user->status == "belong")
                                         <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
+                                        <input type="hidden" name="user[{{$user->id}}][set]" value="1">
                                     @else
                                         <input type="checkbox" name="user[{{$user->id}}][check]" >{{$user->name}}
+                                    <input type="hidden" name="user[{{$user->id}}][set]" value="0">
                                     @endif
                             @endif
                         @endforeach

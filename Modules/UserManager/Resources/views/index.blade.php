@@ -39,7 +39,7 @@
     @endif
     <div>
         <div class="form-group">
-            <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchUser(this.value);searchEmail(this.value)"/>
+            <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchEmail(this.value)"/>
         </div>
         <table class="table table-bordered">
             <tr><td>Lp.</td><td>Nazwa</td><td>Email</td><td>Rola</td><td>Utworzony</td><td>Zaaktulizowany</td></tr>

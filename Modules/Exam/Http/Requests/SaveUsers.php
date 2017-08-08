@@ -14,7 +14,7 @@ class SaveUsers extends FormRequest
     public function rules()
     {
         return [
-            'user.*.check' => 'required'
+
         ];
     }
 
