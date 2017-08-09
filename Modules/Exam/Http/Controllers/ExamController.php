@@ -91,7 +91,7 @@ class ExamController extends Controller
                     ExamUser::where('user_id',$i)->where('exam_id',$request->testName)->first()->delete();
                 }
 
-                if ($item['set'] == 0 && $item['check']='on')
+                if ($item['set'] == 0 && $item['check']=='on')
                 $counter = 0;
                 foreach ($UserBelongs as $user) {
                     if ($user->user_id == $i) {

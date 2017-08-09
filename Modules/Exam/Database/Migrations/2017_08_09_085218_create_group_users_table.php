@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableExamUsers extends Migration
+class CreateGroupUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTableExamUsers extends Migration
      */
     public function up()
     {
-        Schema::create('exam_users', function (Blueprint $table) {
+        Schema::create('group_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('exam_id')->unsigned();
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('group_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->integer('group_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateTableExamUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exam_users');
+        Schema::dropIfExists('group_users');
     }
 }

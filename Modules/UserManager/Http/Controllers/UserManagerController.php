@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\User\Entities\User;
+use Modules\Exam\Entities\Groups;
+use Modules\Exam\Entities\GroupUsers;
 
 class UserManagerController extends Controller
 {
@@ -74,13 +76,15 @@ class UserManagerController extends Controller
     public function getListUser()
     {
         $users = User::select('id', 'name', 'email', 'role', 'remember_token', 'created_at', 'updated_at')->get();
-        return view('usermanager::index', ['users' => $users]);
+        $groupsOfUsers = GroupUsers::select('*')->get();
+        return view('usermanager::index', ['users' => $users, 'groupsOfUsers' => $groupsOfUsers]);
     }
 
     public function goToUser($id)
     {
         $user = User::select('*')->where('id', $id)->get();
-        return view('usermanager::changeUser', ['user' => $user, 'id' => $id]);
+        $groupOfUser = GroupUsers::select('*')->where('user_id',$id)->get();
+        return view('usermanager::changeUser', ['user' => $user, 'id' => $id, 'groups' => $groupOfUser]);
     }
 
     /**
@@ -129,26 +133,7 @@ class UserManagerController extends Controller
     public function delete($id)
     {
         $User = User::where('id',$id)->first();
-        if ($User->role == 0){
             $User->delete();
-            return redirect('/usermanager/')->with('delete', 'deactive');
-        }
-        if($User->role == 1){
-            if ($User->id == 1){
-                return redirect('/usermanager/')->with('delete', 'root');
-            }
-            else{
-                $User->delete();
-                return redirect('/usermanager/')->with('delete', 'admin');
-            }
-        }
-        if ($User->role == 2){
-            $User->delete();
-            return redirect('/usermanager/')->with('delete', 'editor');
-        }
-        if ($User->role == 3){
-            $User->delete();
-            return redirect('/usermanager/')->with('delete', 'user');
-        }
+            return redirect('/usermanager/')->with('delete', $User->name);
     }
 }

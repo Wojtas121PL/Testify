@@ -1,0 +1,16 @@
+{
+    "name": "GroupManager",
+    "alias": "groupmanager",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\GroupManager\\Providers\\GroupManagerServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
