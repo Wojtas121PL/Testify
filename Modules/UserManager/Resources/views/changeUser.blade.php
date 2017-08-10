@@ -58,6 +58,18 @@
                         </tr>
                         @endforeach
                 </table>
+                    <div class="panel panel-content">
+                        <label>Użytkownik należy do następujących grup</label><br />
+                        @foreach($groups as $group)
+                                    @if($group->status == "belong")
+                                        <input type="checkbox" name="group[{{$group->id}}][check]" checked>{{$group->group_name}}
+                                        <input type="hidden" name="group[{{$group->id}}][set]" value="1">
+                                    @else
+                                        <input type="checkbox" name="group[{{$group->id}}][check]" >{{$group->group_name}}
+                                        <input type="hidden" name="group[{{$group->id}}][set]" value="0">
+                                    @endif
+                        @endforeach
+                    </div>
                 <br />
                 <div class="row">
                     <div class="col-md-3"><input type="submit" class="btn btn-success" value="Zatwierdź zmiany"></div></form>

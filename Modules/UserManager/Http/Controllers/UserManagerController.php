@@ -85,8 +85,18 @@ class UserManagerController extends Controller
     public function goToUser($id)
     {
         $user = User::select('*')->where('id', $id)->get();
-        $groupOfUser = GroupUsers::select('*')->where('user_id',$id)->get();
-        return view('usermanager::changeUser', ['user' => $user, 'id' => $id, 'groups' => $groupOfUser]);
+        $Groups=Groups::select('id','group_name')->get();
+        $UsersGroup = GroupUsers::select('group_id')->where('user_id',$id)->get();
+        foreach ($Groups as $group){
+            $group->setAttribute('status','noBelong');
+            $UsersGroup->each(function ($item) use ($group){
+                if($group->id == $item->group_id){
+                    $group->setAttribute('status', 'belong');
+                }
+            });
+
+        }
+        return view('usermanager::changeUser', ['user' => $user, 'id' => $id, 'groups' => $Groups]);
     }
 
     /**
@@ -96,18 +106,46 @@ class UserManagerController extends Controller
      */
     public function change(Request $request, $id)
     {
-        $counter = 0;
+        global $counterBack;
+        $counterBack =0;
         $User = User::where('id', $id)->first();
         if ($request->mail != null) {
             $User->email = $request->mail;
-            $counter = +1;
+            $counterBack = +1;
         }
         if ($request->pwd != null) {
             $User->password = bcrypt($request->pwd);
-            $counter = +2;
+            $counterBack = +2;
         }
         $User->save();
-        return back()->with('Done', $counter);
+        //Save Groups To Database For Once User
+
+        $UserBelongs = GroupUsers::select('*')->where('user_id','=',$id)->get();
+        $counterBack = 0;
+        foreach ($request->group as $i => $item) {
+            if ($item['set'] == 1 && !isset($item['check'])) {
+                GroupUsers::where('user_id', $id)->where('group_id', $i)->first()->delete();
+            }
+
+            if (isset($item['check'])) {
+                if ($item['set'] == 0 && $item['check'] == 'on') {
+                    $counter = 0;
+                    foreach ($UserBelongs as $user) {
+                        $counter = 0;
+                        if ($user->group_id == $i) {
+                            $counter = 1;
+                        }
+                    }
+                    if ($counter == 0) {
+                        $belong = new GroupUsers();
+                        $belong->user_id = $id;
+                        $belong->group_id = $i;
+                        $belong->save();
+                    }
+                }
+            }
+        }
+        return back()->with('Done', $counterBack);
     }
 
     /**

@@ -1,13 +1,5 @@
 Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
-Edytor - problem z powiązaniem użytkownika do egzaminu. Jak go odwiązać ??
-Lista użytkowników przy zezwoleniach do egzaminów jako select a nie checkboxy
-Egzamin kontroller naprawić dodawanie użytkowników do egzaminu
-Edytor nie może zapisać użytkowników
-
-
-Przy akcji z 1 użytkownikiem przy egzaminie, nagle przeskakuje na 2 uprawnienie dzieje się to tylko przzy 1 użytkowniku
-
-
+Routy wołają o pomstę do nibea
 #Od milosza
 1. Przenieść przycisk na środek
 2. Wyszukiwanie po rolach
