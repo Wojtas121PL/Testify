@@ -110,6 +110,31 @@ class ExamController extends Controller
                     }
                 }
             }
+
+        foreach ($request->group as $i => $item) {
+            if ($item['set'] == 1 && !isset($item['check'])) {
+                ExamUser::where('exam_id', $request->testName)->where('group_id', $i)->first()->delete();
+            }
+
+            if (isset($item['check'])) {
+                if ($item['set'] == 0 && $item['check'] == 'on') {
+                    $counter = 0;
+                    foreach ($UserBelongs as $user) {
+                        $counter = 0;
+                        if ($user->group_id == $i) {
+                            $counter = 1;
+                        }
+                    }
+                    if ($counter == 0) {
+                        $belong = new ExamUser();
+                        $belong->exam_id = $request->testName;
+                        $belong->group_id = $i;
+                        $belong->save();
+                        $counterBack++;
+                    }
+                }
+            }
+        }
         return back()->with('add',$counterBack);
     }
     /**

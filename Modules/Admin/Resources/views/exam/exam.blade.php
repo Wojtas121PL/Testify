@@ -10,7 +10,7 @@
             <div class="alert alert-warning">Brak zmian</div>
         @endif
     @endif
-    <div class="panel panel-default">
+    <form class="panel panel-default">
         <div class="panel-heading">Widok egzaminu</div>
         <div class="panel-body">
             <form action="{{route('exam.update', $exam->id)}}" method="post">
@@ -26,14 +26,15 @@
         </div>
         @isset($Users)
         <div class="well">Wybierz użytkowników którzy mają prawo wykonać test
+            <form method="post" action="{{route('saveUsers.exam')}}">
             <div class="table-bordered">
-                <form method="post" action="{{route('saveUsers.exam')}}">
                     {{csrf_field()}}
                     <input type="hidden" name="testName" value="{{$exam->id}}">
                     <div>
                         @foreach($Users as $i => $user)
                             @if($user->role == 3)
                                     @if($user->status == "belong")
+
                                         <input type="checkbox" name="user[{{$user->id}}][check]" checked>{{$user->name}}
                                         <input type="hidden" name="user[{{$user->id}}][set]" value="1">
                                     @else
@@ -42,11 +43,22 @@
                                     @endif
                             @endif
                         @endforeach
-                        <button type="submit" class="btn-success">Zapisz</button>
                     </div>
-                </form>
             </div>
-        </div>
+                <div class="table-bordered">
+                    <label>Wybierz grupy które mają prawo wykonać test</label><br />
+                    @foreach($Groups as $group)
+                        @if($group->groupStatus == "belong")
+                            <input type="checkbox" name="group[{{$group->id}}][check]" checked>{{$group->group_name}}
+                            <input type="hidden" name="group[{{$group->id}}][set]" value="1">
+                        @else
+                            <input type="checkbox" name="group[{{$group->id}}][check]" >{{$group->group_name}}
+                            <input type="hidden" name="group[{{$group->id}}][set]" value="0">
+                        @endif
+                    @endforeach
+                </div>
+                <button type="submit" class="btn-success">Zapisz</button>
+    </form>
     </div>
         @endisset
     @foreach($exam->questions as $question)
