@@ -76,7 +76,9 @@ class UserManagerController extends Controller
     public function getListUser()
     {
         $users = User::select('id', 'name', 'email', 'role', 'remember_token', 'created_at', 'updated_at')->get();
-        $groupsOfUsers = GroupUsers::select('*')->get();
+        $groupsOfUsers = GroupUsers::select('*')
+            ->join('groups','group_users.group_id','=','groups.id')
+            ->get();
         return view('usermanager::index', ['users' => $users, 'groupsOfUsers' => $groupsOfUsers]);
     }
 

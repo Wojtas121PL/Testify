@@ -84,26 +84,30 @@ class ExamController extends Controller
         return back();
     }
     public function saveUsers(SaveUsers $request){
-        $UserBelongs = ExamUser::select('*')->where('exam_id','=',$request->testName)->get();
+        $UserBelongs = ExamUser::select('*')->where('exam_id',$request->testName)->get();
         $counterBack = 0;
             foreach ($request->user as $i => $item) {
-                if ($item['set'] == 1 && !isset($item['check'])){
-                    ExamUser::where('user_id',$i)->where('exam_id',$request->testName)->first()->delete();
+                if ($item['set'] == 1 && !isset($item['check'])) {
+                    ExamUser::where('user_id', $i)->where('exam_id', $request->testName)->first()->delete();
                 }
 
-                if ($item['set'] == 0 && $item['check']=='on')
-                $counter = 0;
-                foreach ($UserBelongs as $user) {
-                    if ($user->user_id == $i) {
-                        $counter = 1;
+                if (isset($item['check'])) {
+                    if ($item['set'] == 0 && $item['check'] == 'on') {
+                        $counter = 0;
+                        foreach ($UserBelongs as $user) {
+                            $counter = 0;
+                            if ($user->user_id == $i) {
+                                $counter = 1;
+                            }
+                        }
+                        if ($counter == 0) {
+                            $belong = new ExamUser();
+                            $belong->user_id = $i;
+                            $belong->exam_id = $request->testName;
+                            $belong->save();
+                            $counterBack++;
+                        }
                     }
-                }
-                if ($counter == 0) {
-                    $belong = new ExamUser;
-                    $belong->user_id = $i;
-                    $belong->exam_id = $request->testName;
-                    $belong->save();
-                    $counterBack++;
                 }
             }
         return back()->with('add',$counterBack);

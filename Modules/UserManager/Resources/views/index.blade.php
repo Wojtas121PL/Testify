@@ -54,7 +54,13 @@
                     @if($user->role == 3)
                         <td class="role">Użytkownik</td>
                     @endif
-                    <td class="group">Brak</td>
+                    <td class="group">
+                        @foreach($groupsOfUsers as $groupOfUser)
+                            @if($user->id == $groupOfUser->user_id)
+                                <span>{{$groupOfUser->group_name}}</span>
+                            @endif
+                        @endforeach
+                    </td>
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
                     <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Edytuj</button></a></td>

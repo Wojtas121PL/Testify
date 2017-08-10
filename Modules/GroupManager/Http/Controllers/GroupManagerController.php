@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\GroupManager\Http\Requests\AddGroupAndUserToGroup;
+use Modules\GroupManager\Http\Requests\SaveGroup;
+use Modules\GroupManager\Http\Requests\UpdateGroup;
 use Modules\User\Entities\User;
 use Modules\Exam\Entities\Groups;
 use Modules\Exam\Entities\GroupUsers;
@@ -56,21 +58,24 @@ class GroupManagerController extends Controller
     }
 
     /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('groupmanager::show');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('groupmanager::edit');
+        $group=Groups::select('group_name')->where('id',$id)->get();
+        $Users=User::select('id','name')->get();
+        $UsersGroup = GroupUsers::select('user_id','id')->where('group_id',$id)->get();
+        foreach ($Users as $user){
+            $user->setAttribute('status','noBelong');
+            $UsersGroup->each(function ($item) use ($user){
+                if($user->id == $item->user_id){
+                    $user->setAttribute('status', 'belong');
+                }
+            });
+
+        }
+        return view('groupmanager::edit',['group' => $group, 'id'=>$id,'Users'=>$Users]);
     }
 
     /**
@@ -78,22 +83,61 @@ class GroupManagerController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(UpdateGroup $request,$id)
     {
+        $groups = Groups::where('id', $id)->first();
+
+        $groups->group_name = $request->new_name;
+
+        $groups->save();
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        Groups::where("id", $id)->first()->delete();
+        return back()->with('done','delete');
     }
     /**
     **My authors method
      */
-    public function addGroup(){
+    public function addGroupView(){
         $Users = User::select('name','id')->get();
         return view('groupmanager::addGroup',['Users' => $Users]);
+    }
+
+    public function saveToGroup(SaveGroup $request){
+        $UserBelongs = GroupUsers::select('*')->where('group_id','=',$request->groupName)->get();
+        $counterBack = 0;
+        foreach ($request->user as $i => $item) {
+            if ($item['set'] == 1 && !isset($item['check'])) {
+                GroupUsers::where('user_id', $i)->where('group_id', $request->groupName)->first()->delete();
+            }
+
+            if (isset($item['check'])) {
+                if ($item['set'] == 0 && $item['check'] == 'on') {
+                    $counter = 0;
+                    foreach ($UserBelongs as $user) {
+                        $counter = 0;
+                        if ($user->user_id == $i) {
+                            $counter = 1;
+                        }
+                    }
+                    if ($counter == 0) {
+                        $belong = new GroupUsers();
+                        $belong->user_id = $i;
+                        $belong->group_id = $request->groupName;
+                        $belong->save();
+                        $counterBack++;
+                    }
+                }
+            }
+        }
+        return back()->with('done','yes');
     }
 }

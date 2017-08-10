@@ -16,10 +16,10 @@
                     @endforeach
                 </td>
                 <td>
-                    <button class="btn btn-info">Edytuj</button>
+                    <a href="{{route('edit',$group->id)}}"><button class="btn btn-info">Edytuj</button></a>
                 </td>
                 <td>
-                    <button class="btn btn-danger">Skasuj</button>
+                    <a href="{{route('deleteGroup',$group->id)}}"><button class="btn btn-danger">Skasuj</button></a>
                 </td>
             </tr>
             @php($i++)
