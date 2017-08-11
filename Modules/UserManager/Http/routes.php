@@ -3,9 +3,7 @@
 Route::group(['middleware' => ['web','role:1'], 'prefix' => 'usermanager', 'namespace' => 'Modules\UserManager\Http\Controllers'], function() {
         Route::get('/', 'UserManagerController@getListUser');
 
-        Route::get('/addUser', function () {
-            return view('usermanager::addUser');
-        });
+        Route::get('/addUser','UserManagerController@create');
         Route::post('/addUser', 'UserManagerController@store');
 
 

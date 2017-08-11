@@ -26,7 +26,8 @@ class UserManagerController extends Controller
      */
     public function create()
     {
-        return view('usermanager::settingUser');
+        $Groups=Groups::select('id','group_name')->get();
+        return view('usermanager::addUser',['groups' => $Groups]);
     }
 
     /**
@@ -56,6 +57,13 @@ class UserManagerController extends Controller
             $user->password = bcrypt($request->pwd);
             $user->role = $arrayRole[$request->role];
             $user->save();
+            if ($arrayRole[$request->role] == 3){
+            foreach ($request->group as $i => $item){
+                $group  = new GroupUsers();
+                $group->user_id = $user->id;
+                $group->group_id = $i;
+                $group->save();
+            }}
             return back()->with('done', 'yes');
         }
     }

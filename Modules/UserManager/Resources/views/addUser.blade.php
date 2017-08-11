@@ -1,5 +1,15 @@
 @extends('usermanager::layouts.master')
-
+<script type="text/javascript">
+    function showGroup(role) {
+        console.log("Dziala");
+        if(role == "Użytkownik"){
+            $('.groups').show();
+        }
+        else {
+            $('.groups').hide();
+        }
+    }
+</script>
 @section('content')
     @parent
     <div class="panel panel-default">
@@ -41,11 +51,17 @@
                 </div>
                 <div class="form-group">
                     <label for="Role">Rola:</label>
-                    <select name="role">
+                    <select name="role" onchange="showGroup(this.value)">
                         <option>Administrator</option>
                         <option>Edytor</option>
                         <option>Użytkownik</option>
                     </select>
+                </div>
+                <div class="form-group groups" style="display: none;">
+                    <label>Wybierz do jakich grup należeć będzie użytkownik</label><br />
+                    @foreach($groups as $group)
+                        <input type="checkbox" name="group[{{$group->id}}][check]" >{{$group->group_name}}
+                    @endforeach
                 </div>
                 <div class="row">
                     <div class="col-md-1"><input type="submit" class="btn btn-success" value="Dodaj!"/></div>

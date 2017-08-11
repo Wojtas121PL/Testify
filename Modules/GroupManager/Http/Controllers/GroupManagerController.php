@@ -19,7 +19,7 @@ class GroupManagerController extends Controller
      */
     public function index()
     {
-        $UsersGroup = GroupUsers::select('name','group_name','user_id')
+        $UsersGroup = GroupUsers::select('name','group_name','user_id','role')
             ->join('groups','group_users.group_id','=','groups.id')
             ->join('users','group_users.user_id','=','users.id')
             ->get();
@@ -64,7 +64,7 @@ class GroupManagerController extends Controller
     public function edit($id)
     {
         $group=Groups::select('group_name')->where('id',$id)->get();
-        $Users=User::select('id','name')->get();
+        $Users=User::select('id','name')->where('role',3)->get();
         $UsersGroup = GroupUsers::select('user_id','id')->where('group_id',$id)->get();
         foreach ($Users as $user){
             $user->setAttribute('status','noBelong');

@@ -1,5 +1,6 @@
 Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
 Routy wołają o pomstę do nibea
+Wyszukiwarka ma małego no(buga),bardzo zwraca uwag na wielkość liter
 #Od milosza
 1. Przenieść przycisk na środek
 2. Wyszukiwanie po rolach

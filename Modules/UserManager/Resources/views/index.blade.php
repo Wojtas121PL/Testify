@@ -11,7 +11,6 @@
             $("td."+type[val]).parent().show();
         }
     }
-</script>
 @section('content')
     @if(null != session('delete'))
             <div class="alert alert-success">Usunięto użytkownika {{session('delete')}}</div>
@@ -38,6 +37,7 @@
         <table class="table table-bordered">
             <tr><td>Lp.</td><td>Nazwa</td><td>Email</td><td>Rola</td><td>Grupa</td><td>Utworzony</td><td>Zaaktulizowany</td></tr>
             @foreach($users as $user)
+                @php($i=0)
                 <tr>
                     <td>{{$user->id}}</td>
                     <td class="user">{{$user->name}}</td>
@@ -58,8 +58,12 @@
                         @foreach($groupsOfUsers as $groupOfUser)
                             @if($user->id == $groupOfUser->user_id)
                                 <span>{{$groupOfUser->group_name}}</span>
+                                @php($i++)
                             @endif
                         @endforeach
+                    @if($i == 0)
+                        Brak
+                    @endif
                     </td>
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
