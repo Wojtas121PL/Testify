@@ -14,8 +14,6 @@ class EditTime extends FormRequest
     public function rules()
     {
         return [
-            'edits.*.user' => 'required',
-            'edits.*.exam' => 'required',
             'edits.*.data' => 'required|date_format:Y-m-d H:i:s'
         ];
     }

@@ -58,6 +58,7 @@
                         </tr>
                         @endforeach
                 </table>
+                @if($user[0]->role == 3)
                     <div class="panel panel-content">
                         <label>Użytkownik należy do następujących grup</label><br />
                         @foreach($groups as $group)
@@ -70,6 +71,7 @@
                                     @endif
                         @endforeach
                     </div>
+                @endif
                 <br />
                 <div class="row">
                     <div class="col-md-3"><input type="submit" class="btn btn-success" value="Zatwierdź zmiany"></div></form>

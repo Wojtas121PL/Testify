@@ -28,14 +28,24 @@
         @endif
         <div>
             <div class="form-group">
-                <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchEmail(this.value)"/>
+                <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchUser(this.value)"/>
             </div>
+
             <table class="table">
-                <tr><td>Użytkownik</td><td>Email</td><td>Test</td><td>Czas dostępu</td></tr>
+                <tr><td>Użytkownik / Grupa</td><td>Email</td><td>Test</td><td>Czas dostępu</td></tr>
                 @foreach($userTime as $item)
                     <tr>
                         <td class="user">{{$item->user}}</td>
                         <td class="email">{{$item->email}}</td>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->expireTime}}</td>
+                        <td><a href="{{url('expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>
+                    </tr>
+                @endforeach
+                @foreach($groupTime as $item)
+                    <tr>
+                        <td class="user">{{$item->group_name}}</td>
+                        <td class="email"></td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->expireTime}}</td>
                         <td><a href="{{url('expiretime/delete/'.$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>

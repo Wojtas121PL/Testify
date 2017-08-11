@@ -1,13 +1,12 @@
 Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
 Routy wołają o pomstę do nibea
 Wyszukiwarka ma małego no(buga),bardzo zwraca uwag na wielkość liter
+Request requiry podorabiać
+Zastanowić się nad zrobieniem w entitles zbioru metod dla powtarzających zdarzeń
 #Od milosza
 1. Przenieść przycisk na środek
-2. Wyszukiwanie po rolach
 3. Layout elementy styczne!!!
-4. Role jako grupy
 5. Widok egzaminu >> Nazwa egzaminu
-6. Lista użytkowników
 7. Losowośc pytania
 8. 3 typy pytań
 9. Focus i trigeredy na dodawanie pytań i egzaminów

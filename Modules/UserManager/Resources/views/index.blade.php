@@ -11,6 +11,7 @@
             $("td."+type[val]).parent().show();
         }
     }
+    </script>
 @section('content')
     @if(null != session('delete'))
             <div class="alert alert-success">Usunięto użytkownika {{session('delete')}}</div>

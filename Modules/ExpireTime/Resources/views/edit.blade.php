@@ -47,9 +47,9 @@
                 @foreach($userTime as $itemTime)
                     <tr>
                         <td>
-                            <select class="user" name="edits[{{$itemTime->id}}][user]">
+                            <select class="user" name="editsUser[{{$itemTime->id}}][user]">
                                 @foreach($Users as $itemUser)
-                                    @if($itemTime->user == $itemUser->name)
+                                    @if($itemTime->uid == $itemUser->id)
                                         <option value="{{$itemUser->id}}" selected>{{$itemUser->name}}</option>
                                     @else
                                         <option value="{{$itemUser->id}}">{{$itemUser->name}}</option>
@@ -58,7 +58,7 @@
                             </select>
                         <td class="email">{{$itemTime->email}}</td>
                         <td>
-                            <select name="edits[{{$itemTime->id}}][exam]">
+                            <select name="editsUser[{{$itemTime->id}}][exam]">
                                 @foreach($Exam as $itemExam)
                                     @if($itemTime->name == $itemExam->name)
                                         <option value="{{$itemExam->id}}" selected>{{$itemExam->name}}</option>
@@ -69,7 +69,37 @@
                             </select>
                         </td>
                         <td>
-                            <input type="text" name="edits[{{$itemTime->id}}][data]" placeholder="0000-00-00 00:00:00" value="{{$itemTime->expireTime}}">
+                            <input type="text" name="editsUser[{{$itemTime->id}}][data]" placeholder="0000-00-00 00:00:00" value="{{$itemTime->expireTime}}">
+                        </td>
+                    </tr>
+                @endforeach
+                {{--Groups Foreach--}}
+                @foreach($groupTime as $itemTime)
+                    <tr>
+                        <td>
+                            <select class="group" name="editsGroup[{{$itemTime->id}}][group]">
+                                @foreach($Groups as $itemGroup)
+                                    @if($itemTime->gid == $itemGroup->id)
+                                        <option value="{{$itemGroup->id}}" selected>{{$itemGroup->group_name}}</option>
+                                    @else
+                                        <option value="{{$itemGroup->id}}">{{$itemGroup->group_name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        <td class="email"></td>
+                        <td>
+                            <select name="editsGroup[{{$itemTime->id}}][exam]">
+                                @foreach($Exam as $itemExam)
+                                    @if($itemTime->name == $itemExam->name)
+                                        <option value="{{$itemExam->id}}" selected>{{$itemExam->name}}</option>
+                                    @else
+                                        <option value="{{$itemExam->id}}">{{$itemExam->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" name="editsGroup[{{$itemTime->id}}][data]" placeholder="0000-00-00 00:00:00" value="{{$itemTime->expireTime}}">
                         </td>
                     </tr>
                 @endforeach

@@ -121,9 +121,14 @@ class UserController extends Controller
                     }
                 }
             });
-            $endExam->each(function ($item, $key) use ($exam){
+            $endExam->each(function ($item, $key) use ($exam, $groupsUser){
                 if($exam->id == $item->exam_id){
                     $exam->setAttribute('status', 'finished');
+                }
+                foreach ($groupsUser as $groupUser){
+                    if($groupUser->group_id == $item->group_id){
+                        $exam->setAttribute('status', 'finished');
+                    }
                 }
             });
             $expireTime->each(function ($item, $key) use ($exam){
