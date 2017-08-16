@@ -39,6 +39,7 @@ class AdminController extends Controller
                 }
             });
         }
+
         foreach ($Groups as $group){
             $group->setAttribute('groupStatus','noBelong');
             $UserBelongs->each(function ($item) use ($group){
@@ -47,6 +48,7 @@ class AdminController extends Controller
                 }
             });
         }
+
         return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null,'Users' => $Users,'Groups' => $Groups]);
     }
     public function editExam(Request $request, $id){
@@ -55,6 +57,7 @@ class AdminController extends Controller
         $UserBelongs = ExamUser::select('*')->where('exam_id','=',$id)->get();
         $Users = User::select('id','name','role')->get();
         $Groups = Groups::select('*')->get();
+
         foreach ($Users as $user){
             $user->setAttribute('status','noBelong');
             $UserBelongs->each(function ($item) use ($user){
@@ -64,6 +67,7 @@ class AdminController extends Controller
 
             });
         }
+
         foreach ($Groups as $group){
             $group->setAttribute('groupStatus','noBelong');
             $UserBelongs->each(function ($item) use ($group){
@@ -72,6 +76,7 @@ class AdminController extends Controller
                 }
             });
         }
+
         return view('admin::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id,'Users' => $Users,'Groups' => $Groups]);
     }
 

@@ -43,7 +43,7 @@
         <form action="{{url('expiretime/edit')}}" method="post">
             {{csrf_field()}}
             <table class="table">
-                <tr><td>Nazwa użytkownika</td><td>Email</td><td>Nazwa egzaminu</td><td>Czas dostępu:</td></tr>
+                <tr><td>Nazwa użytkownika / Grupa</td><td>Email</td><td>Nazwa egzaminu</td><td>Czas dostępu:</td></tr>
                 @foreach($userTime as $itemTime)
                     <tr>
                         <td>

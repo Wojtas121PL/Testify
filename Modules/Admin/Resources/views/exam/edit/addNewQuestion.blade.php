@@ -22,7 +22,7 @@
         var div = $(
             "<div class='input-group'>" +
             "<span class='input-group-addon'>" +
-            "<input type='checkbox' name='answer_correct' value='"+ val +"'>" +
+            "<input type='checkbox' name='answer_correct["+ val +"][check]' value='"+ val +"'>" +
             "</span>" +
             "<input type='Text' class='form-control' name='answer["+ val +"][answer]'>" +
             "</div>");
@@ -80,16 +80,16 @@
 
     <div id="tabs-2">
         <input type="hidden" id="valMultipleCheck" value="1">
-        <form action="{{route('question.store')}}" method="post">
+        <form action="{{route('question.store.multiCheck')}}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="exam_id" value="{{$exam->id}}">
-            <input type="hidden" name="question_type" value="1">
+            <input type="hidden" name="question_type" value="3">
             <div class="form-group">
                 <label for="Question">Pytanie</label>
                 <input type="text" class="form-control" id="Question" name="question_title">
             </div>
             <div class="form-group" id="answersMultipleCheck">
-                <label for="Answer">Odpowiedź <small>(kropka sygnalizuje poprawną odpowiedź)</small></label>
+                <label for="Answer">Odpowiedź <small>(krzyżyk sygnalizuje poprawną odpowiedź)</small></label>
 
             </div>
 

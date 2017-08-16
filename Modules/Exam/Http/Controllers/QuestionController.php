@@ -43,7 +43,6 @@ class QuestionController extends Controller
         $question_number = Question::where('exam_id','=',$request->exam_id)->count() + 1;
 
         $question = new Question;
-
         $question->exam_id = $request->exam_id;
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
@@ -55,7 +54,7 @@ class QuestionController extends Controller
             $question->answer_correct = null;
         }
         $question->save();
-        $answerCounter = 0;
+        $answerCounter = 1;
         foreach ($request->answer as $item){
             $answer = new Answer;
             $question_id = Question::select('id')->where('exam_id','=',$request->exam_id)->where('question_number','=',$question_number)->get();
@@ -90,6 +89,40 @@ class QuestionController extends Controller
         return back();
     }
 
+    public function storeMultiCheck(Requests\StoreMultiCheck $request){
+        $question_number = Question::where('exam_id','=',$request->exam_id)->count() + 1;
+
+        $question = new Question;
+
+        $question->exam_id = $request->exam_id;
+        $question->question_number = $question_number;
+        $question->question_title = $request->question_title;
+        $question->question_type = $request->question_type;
+
+        $answerCorrect=array();
+        foreach ($request->answer_correct as $i => $item){
+                $answerCorrect[]=$item;
+        }
+        $answerCorrectToDatabase = json_encode($answerCorrect);
+        $question->answer_correct_text = $answerCorrectToDatabase;
+        $question->save();
+
+
+        $answerCounter = 1;
+        foreach ($request->answer as $item){
+            $answer = new Answer;
+            $question_id = Question::select('id')->where('exam_id','=',$request->exam_id)->where('question_number','=',$question_number)->get();
+            $answer->question_id = $question_id['0']->id;
+            $answer->answer = $item['answer'];
+            $answer->answer_id = $answerCounter;
+            $answer->save();
+            $answerCounter++;
+
+        }
+
+
+        return back();
+    }
     /**
      * Show the specified resource.
      * @return Response
@@ -120,13 +153,25 @@ class QuestionController extends Controller
         $question->exam_id = $id;
         $question->question_number = $request->question_number;
         $question->question_title = $request->question_title;
-        $question->answer_correct = $request->answer_correct;
-        foreach($request->answers as $i => $answer){
-            $change = Answer::where('question_id', $request->question_id)->where('answer_id', $i - 1)->first();
-            $change->answer = $answer;
-            $change->save();
-        }
 
+        if ($request->question_type ==1){
+            $question->answer_correct = $request->answer_correct;
+        }
+        else{
+            $answerCorrect=array();
+            foreach ($request->answer_correct as $i => $item){
+                $answerCorrect[]=$item;
+            }
+            $answerCorrectToDatabase = json_encode($answerCorrect);
+            $question->answer_correct_text = $answerCorrectToDatabase;
+        }
+        if ($request->answers != null) {
+            foreach ($request->answers as $i => $answer) {
+                $change = Answer::where('question_id', $request->question_id)->where('answer_id', $i)->first();
+                $change->answer = $answer;
+                $change->save();
+            }
+        }
         $question->save();
 
         switch (Auth::user()->role)
