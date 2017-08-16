@@ -24,7 +24,7 @@
 
 @section('content')
     @parent
-        <form method="post" action="{{url('result/save')}}">
+        <form method="post" action="{{route('results.save')}}">
             {{csrf_field()}}
             <input type="hidden" name="exam_id" value="{{$examContent->id}}">
         @foreach($examContent->questions as $question)
@@ -50,13 +50,13 @@
                     @endif
                     @if($question->question_type == 3)
                             @php($counter=1)
-                            @foreach($question->answers as $i => $answer )
-                                <label class="input-group">
-                                    <span class="input-group-addon"><input type="checkbox" name="answer[{{$question->id}}][{{$counter}}][number]" value="{{++$i}}" ></span>
-                                    <div class="form-control">{{$answer->answer}}</div>
-                                </label>
-                                @php($counter++)
-                            @endforeach
+                                @foreach($question->answers as $i => $answer )
+                                    <label class="input-group">
+                                        <span class="input-group-addon"><input type="checkbox" name="answer[{{$question->id}}][{{$counter}}][number]" value="{{++$i}}" ></span>
+                                        <div class="form-control">{{$answer->answer}}</div>
+                                    </label>
+                                    @php($counter++)
+                                @endforeach
                     @endif
                 </div>
             </div>

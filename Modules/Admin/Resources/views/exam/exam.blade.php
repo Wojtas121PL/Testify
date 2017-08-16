@@ -2,6 +2,13 @@
 
 @section('content')
     @parent
+    <script type="text/javascript">
+        function  scrollDown() {
+            $('html,body').animate(
+                {scrollTop: $('#collapseExample').offset().top}
+            )
+        }
+    </script>
     @include('admin::includes.displayErrors')
     @if(null != session('add'))
         @if(session('add') != 0)
@@ -71,7 +78,7 @@
 
     @endforeach
 
-    <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="scrollDown()">
         +
     </button>
     <div class="collapse" id="collapseExample">

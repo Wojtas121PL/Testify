@@ -107,7 +107,7 @@ class GroupManagerController extends Controller
     **My authors method
      */
     public function addGroupView(){
-        $Users = User::select('name','id')->get();
+        $Users = User::select('name','role','id')->get();
         return view('groupmanager::addGroup',['Users' => $Users]);
     }
 

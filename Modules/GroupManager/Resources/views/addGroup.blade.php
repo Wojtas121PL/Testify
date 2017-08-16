@@ -38,10 +38,13 @@
             Wybierz użytkowników do grupy
             <input type="text" id="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchUser(this.value)"/>
             @foreach($Users as $user)
+                @if($user->role == 3)
                     <span><span class="user">{{$user->name}}</span>:<input type="checkbox" name="user[{{$user->id}}]"/></span><br />
+                @endif
             @endforeach
         </div>
         <button type="submit" class="btn btn-success">Dodaj</button>
+            <a href="{{url('/groupmanager')}}"><button type="button" class="btn btn-info">Wróć</button></a>
         </form>
     </div>
 @stop
