@@ -24,7 +24,6 @@
         @if($exam->statusBelong == 'yes')
             @if($exam->status == 'expired')
             <li role="presentation" class="alert-danger"><a href="{{'exam/'.$exam->id}}">{{$exam->name}}</a></li>
-
         @elseif($exam->status == 'finished')
             <li role="presentation" class="alert-success"><a href="{{'exam/'.$exam->id}}">{{$exam->name}}</a></li>
 

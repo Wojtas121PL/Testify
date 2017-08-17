@@ -33,6 +33,7 @@ class ResultsController extends Controller
     }
 
     public function saveToDatabase(SaveResult $request){
+        $answerCorrect=array();
         foreach ($request->answer as $id => $item) {
                 $result = new Results();
                 $result->exam_id = $request->exam_id;
@@ -44,12 +45,21 @@ class ResultsController extends Controller
                 if ($item['typeId'] == 2){
                     $result->answer_text = $item['number'];
                 }
+                if ($item['typeId'] == 3) {
+                    foreach ($item['number'] as $key => $value) {
+                        $answerCorrect[$key] = $value;
+                        $answerToDatabase = json_encode($answerCorrect);
+                    }
+                    $result->answer_text = $answerToDatabase;
+                }
             $result->save();
         }
         return redirect('/user/list')->with('done','yes');
     }
 
     public function saveToDatabaseProgressive(SaveResult $request){
+        dd("Stop");
+        dd($request->answer_multi);
         foreach ($request->answer as $id => $item) {
             $result = new Results();
             $result->exam_id = $request->exam_id;

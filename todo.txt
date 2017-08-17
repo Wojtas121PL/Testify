@@ -3,6 +3,7 @@ Routy wołają o pomstę do nibea
 Wyszukiwarka ma małego no(buga),bardzo zwraca uwag na wielkość liter
 Request requiry podorabiać
 Zastanowić się nad zrobieniem w entitles zbioru metod dla powtarzających zdarzeń
+Dorobić coś na wzór regulaminu przed testem
 #Od milosza
 1. Przenieść przycisk na środek
 3. Layout elementy styczne!!!

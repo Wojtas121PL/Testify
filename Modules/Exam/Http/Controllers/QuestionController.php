@@ -159,9 +159,9 @@ class QuestionController extends Controller
         }
         else{
             $answerCorrect=array();
-            foreach ($request->answer_correct as $i => $item){
-                $answerCorrect[]=$item;
-            }
+                foreach ($request->answer_correct as $i => $item){
+                    $answerCorrect[]=$item;
+                }
             $answerCorrectToDatabase = json_encode($answerCorrect);
             $question->answer_correct_text = $answerCorrectToDatabase;
         }

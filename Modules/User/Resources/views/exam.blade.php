@@ -52,7 +52,7 @@
                             @php($counter=1)
                                 @foreach($question->answers as $i => $answer )
                                     <label class="input-group">
-                                        <span class="input-group-addon"><input type="checkbox" name="answer[{{$question->id}}][{{$counter}}][number]" value="{{++$i}}" ></span>
+                                        <span class="input-group-addon"><input type="checkbox" name="answer[{{$question->id}}][number][check{{$counter}}]" value="{{++$i}}" ></span>
                                         <div class="form-control">{{$answer->answer}}</div>
                                     </label>
                                     @php($counter++)

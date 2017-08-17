@@ -28,7 +28,7 @@ class SaveResult extends FormRequest
     public function rules()
     {
         return [
-            'answer.*.number' => 'required'
+
         ];
     }
 }

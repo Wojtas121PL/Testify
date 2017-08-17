@@ -10,7 +10,7 @@
                 @if($answer->question_type == 1)
                     @php($d=1)
                     @foreach($typeAnswer as $id => $item)
-                        @if($item->question_id == $answer->question_number)
+                        @if($item->question_id == $answer->question_id)
                         @if($d == $answer->answer_correct && $d == $item->answer_int)
                         <div class="input-group">
                             <span class="input-group-addon">&#x2611;</span>
@@ -39,6 +39,15 @@
             @if($answer->question_type == 2)
                 <div class="well">{{$answer->answer_text}}</div>
                 @endif
+            @if($answer->question_type == 3)
+                {{var_dump($answer->answer_text)}}
+                {{var_dump(json_decode($answer->answer_text,true))}}
+                                {{}}
+                {{--{{$answerCorrectArray = json_decode($answer->answer_text)}}--}}
+                {{--{{json_decode($answer->answer_text)}}--}}
+                {{--{{dd($answerCorrectArray)}}--}}
+            @endif
+
 </div>
         <hr />
         @endforeach
