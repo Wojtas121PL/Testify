@@ -40,13 +40,13 @@
                 <div class="well">{{$answer->answer_text}}</div>
                 @endif
             @if($answer->question_type == 3)
-                {{var_dump($answer->answer_text)}}
-                {{var_dump(json_decode($answer->answer_text,true))}}
-                                {{}}
-                {{--{{$answerCorrectArray = json_decode($answer->answer_text)}}--}}
-                {{--{{json_decode($answer->answer_text)}}--}}
-                {{--{{dd($answerCorrectArray)}}--}}
-            @endif
+                @php($i=1)
+                    @foreach($typeAnswer as $key => $item)
+                        <div style="display: none">{{print_r($answerUser = json_decode($answer->answer_text,true))}}</div>
+                        <div style="display: none">{{print_r($answerCorrect = json_decode($answer->answer_correct_text,true))}}</div>
+
+                    @endforeach
+                @endif
 
 </div>
         <hr />
