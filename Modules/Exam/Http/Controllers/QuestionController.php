@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Exam\Entities\Question;
 use Modules\Exam\Entities\Exam;
 use Modules\Exam\Entities\Answer;
+use Modules\Result\Entities\MultiAnswerCorrect;
 use Modules\Exam\Http\Requests;
 
 
@@ -47,12 +48,7 @@ class QuestionController extends Controller
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
         $question->question_type = $request->question_type;
-        if($request->question_type == 1){
-            $question->answer_correct = $request->answer_correct;
-        }
-        else{
-            $question->answer_correct = null;
-        }
+        $question->answer_correct = $request->answer_correct;
         $question->save();
         $answerCounter = 1;
         foreach ($request->answer as $item){
@@ -78,12 +74,7 @@ class QuestionController extends Controller
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
         $question->question_type = $request->question_type;
-        if($request->question_type == 1){
-            $question->answer_correct = $request->answer_correct;
-        }
-        else{
-            $question->answer_correct = null;
-        }
+        $question->answer_correct = null;
         $question->save();
 
         return back();
@@ -91,33 +82,41 @@ class QuestionController extends Controller
 
     public function storeMultiCheck(Requests\StoreMultiCheck $request){
         $question_number = Question::where('exam_id','=',$request->exam_id)->count() + 1;
+        $answerGroupCount = 1;
+        $answerGroupCountQuery = MultiAnswerCorrect::select('id_answer_group')->groupBy('id_answer_group')->orderBy('id_answer_group','DESC')->limit(1)->get();
+        if ($answerGroupCountQuery->isEmpty() == false) {
+            $answerGroupCount = $answerGroupCountQuery[0]->id_answer_group + 1;
+        }
 
         $question = new Question;
-
         $question->exam_id = $request->exam_id;
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
         $question->question_type = $request->question_type;
+        $question->answer_correct_multi = $answerGroupCount;
 
-        $answerCorrect=array();
-        foreach ($request->answer_correct as $i => $item){
-                $answerCorrect[]=$item;
-        }
-        $answerCorrectToDatabase = json_encode($answerCorrect);
-        $question->answer_correct_text = $answerCorrectToDatabase;
         $question->save();
 
-
         $answerCounter = 1;
+
         foreach ($request->answer as $item){
             $answer = new Answer;
-            $question_id = Question::select('id')->where('exam_id','=',$request->exam_id)->where('question_number','=',$question_number)->get();
-            $answer->question_id = $question_id['0']->id;
+            $answer->question_id = $question->id;
             $answer->answer = $item['answer'];
             $answer->answer_id = $answerCounter;
-            $answer->save();
-            $answerCounter++;
 
+            $answer->save();
+
+            $answerCounter++;
+        }
+        foreach ($request->answer_correct as $i => $item){
+            $answerCorrect = new MultiAnswerCorrect();
+            $answerCorrect->id_answer_group = $answerGroupCount;
+            $answerCorrect->exam_id=$request->exam_id;
+            $answerCorrect->question_id = $question->id;
+            $answerCorrect->answer = $item['check'];
+
+            $answerCorrect->save();
         }
 
 

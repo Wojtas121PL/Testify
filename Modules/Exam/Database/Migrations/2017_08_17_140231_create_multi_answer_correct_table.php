@@ -13,11 +13,14 @@ class CreateMultiAnswerCorrectTable extends Migration
      */
     public function up()
     {
-        Schema::create('multi_answer_correct', function (Blueprint $table) {
+        Schema::create('multi_answer_corrects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_answer_group');
             $table->unsignedInteger('answer');
-            $table->foreign('answer')->references('id')->on('answers')->onDelete('cascade');
+            $table->unsignedInteger('exam_id');
+            $table->unsignedInteger('question_id');
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();
         });
     }

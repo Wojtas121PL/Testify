@@ -47,8 +47,10 @@ class ResultsController extends Controller
                 }
                 if ($item['typeId'] == 3) {
                     foreach ($item['number'] as $key => $value) {
-                        $answerCorrect[$key] = $value;
-                        $answerToDatabase = json_encode($answerCorrect);
+                        var_dump($key);
+                        var_dump($value);
+                        $answerCorrect[$id] = $value;
+                        dd($answerCorrect);
                     }
                     $result->answer_text = $answerToDatabase;
                 }

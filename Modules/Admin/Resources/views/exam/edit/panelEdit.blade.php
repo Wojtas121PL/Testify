@@ -30,29 +30,23 @@
                     @endif
                 @endif
                     @if($question->question_type == 3)
-                        @php
-                            $logical = false;
-                            foreach (json_decode($question->answer_correct_text,true) as $item){
-                                if ($i  == $item['check']){
-                                    $logical = true;
-                                }
-                        }
-                        @endphp
-                            @if($logical == true)
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <input type="checkbox" name="answer_correct[{{$i}}][check]" value="{{$i}}" checked>
-                                    </span>
-                                    <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
-                                </div>
-                            @else
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <input type="checkbox" name="answer_correct[{{$i}}][check]" value="{{$i}}" >
-                                    </span>
-                                    <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
-                                </div>
-                            @endif
+                            @foreach($AnswerCorrect as $value)
+                                    @if($i == $value->answer)
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="checkbox" name="answer_correct" value="{{$i}}" checked>
+                                            </span>
+                                            <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                                        </div>
+                                    @else
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <input type="checkbox" name="answer_correct" value="{{$i}}">
+                                            </span>
+                                            <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                                        </div>
+                                    @endif
+                            @endforeach
                     @endif
             @endforeach
 
