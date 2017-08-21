@@ -29,7 +29,7 @@
         @endif
     @endif
     <div>
-        <form method="post" action="{{route('storeGroup')}}">
+        <form method="post" action="{{route('group.add.action')}}">
             {{csrf_field()}}
         <div class="form-group">
             <input class="form-control" type="text" name="nameGroup" placeholder="Wpisz nazwę grupy">
@@ -44,7 +44,7 @@
             @endforeach
         </div>
         <button type="submit" class="btn btn-success">Dodaj</button>
-            <a href="{{url('/groupmanager')}}"><button type="button" class="btn btn-info">Wróć</button></a>
+            <a href="{{route('group.index')}}"><button type="button" class="btn btn-info">Wróć</button></a>
         </form>
     </div>
 @stop

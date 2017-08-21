@@ -19,8 +19,8 @@
                     </tr>
                 @endforeach
             </table>
-            <a href="{{url('editor/expiretime/add')}}"><button class="btn btn-success">Dodaj!</button></a>
-            <a href="{{url('editor/expiretime/edit')}}"><button class="btn btn-info">Edytuj</button></a>
+            <a href="{{route('editor.expire.add.show')}}"><button class="btn btn-success">Dodaj!</button></a>
+            <a href="{{route('editor.expire.edit.show')}}"><button class="btn btn-info">Edytuj</button></a>
         </div>
     @endisset
 @endsection

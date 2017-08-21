@@ -23,7 +23,7 @@
 
         <div class="panel-footer">
             <button class="btn btn-info" type="submit">Zapisz</button>
-            <a class="btn btn-warning" href="{{url('editor/exam/'.$exam->id)}}">Anuluj</a>
+            <a class="btn btn-warning" href="{{route('editor.exam.id',$exam->id)}}">Anuluj</a>
         </div>
 </div>
 </form>

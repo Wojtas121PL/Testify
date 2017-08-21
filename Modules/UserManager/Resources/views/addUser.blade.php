@@ -35,7 +35,7 @@
                     <div class="alert alert-danger">Próbujesz dezaktywować konto głównego administratora. Akcja zabroniona</div>
                 @endif
             @endif
-            <form action="{{url('/usermanager/addUser')}}" method="post">
+            <form action="{{route('user.manager.edit.user.action')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="name">Nazwa użytkownika:</label>

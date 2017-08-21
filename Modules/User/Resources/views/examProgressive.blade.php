@@ -4,7 +4,7 @@
 @section('content')
     @parent
 
-    <form method="post" action="{{url('result/saveProgressive')}}">
+    <form method="post" action="{{route('results.progressive.save')}}">
         {{csrf_field()}}
         <input type="hidden" name="exam_id" value="{{$examContent->exam_id}}">
         <input type="hidden" name="answer[{{$examContent->id}}][typeId]" value="{{$examContent->question_type}}">

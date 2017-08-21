@@ -19,7 +19,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{url('editor/expiretime/add')}}" method="post">
+        <form action="{{route('editor.expire.add')}}" method="post">
             {{csrf_field()}}
             <div class="form-group">
                 <label for="Ename">Nazwa testu</label>
@@ -45,6 +45,6 @@
                 <input type="submit" value="Zapisz" class="btn btn-success">
             </div>
         </form>
-            <a href="{{url('editor/expiretime/')}}"><button class="btn btn-danger">Wróć</button></a>
+            <a href="{{route('editor.expire.index')}}"><button class="btn btn-danger">Wróć</button></a>
     </div>
 @endsection

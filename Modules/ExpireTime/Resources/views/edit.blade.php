@@ -40,7 +40,7 @@
         <div class="form-group">
             <input type="text" name="user" placeholder="Szukaj użytkownika" class="form-control" onkeyup="searchUser(this.value);searchEmail(this.value)"/>
         </div>
-        <form action="{{url('expiretime/edit')}}" method="post">
+        <form action="{{route('expire.edit.action')}}" method="post">
             {{csrf_field()}}
             <table class="table">
                 <tr><td>Nazwa użytkownika / Grupa</td><td>Email</td><td>Nazwa egzaminu</td><td>Czas dostępu:</td></tr>
@@ -107,7 +107,7 @@
             <input type="submit" class="btn btn-success" value="Zmień">
         </form>
         <br/>
-        <a href="{{url('/expiretime/')}}"><button class="btn btn-danger">Wróć</button></a>
+        <a href="{{route('expire.index')}}"><button class="btn btn-danger">Wróć</button></a>
     </div>
 
 @endsection

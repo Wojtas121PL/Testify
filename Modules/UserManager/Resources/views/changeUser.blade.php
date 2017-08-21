@@ -40,7 +40,7 @@
             @endif
     <div>
         <span class="form-group">
-            <form action="{{url('usermanager/edit/'.$id)}}" method="post">
+            <form action="{{route('user.manager.edit.user.action',$id)}}" method="post">
                 {{csrf_field()}}
                 <table class="table">
                     <tr><td>Nazwa</td><td>Email</td><td>Utworzony</td><td>Zmień email</td><td>Zmień Hasło</td></tr>
@@ -75,9 +75,9 @@
                 <br />
                 <div class="row">
                     <div class="col-md-3"><input type="submit" class="btn btn-success" value="Zatwierdź zmiany"></div></form>
-                    <div class="col-md-3"><a href="/usermanager/disable/{{$id}}"><button type="button" class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
-                    <div class="col-md-3"><a href="/usermanager/delete/{{$id}}"><button type="button" class="btn btn-danger">Skasuj użytkownika</button> </a> </div>
-                    <div class="col-md-3"><a href="/usermanager/"><button type="button" class="btn btn-info">Wróć</button></a></div>
+                    <div class="col-md-3"><a href="{{route('user.manager.disable',$id)}}"><button type="button" class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
+                    <div class="col-md-3"><a href="{{route('user.manager.delete'),$id}}"><button type="button" class="btn btn-danger">Skasuj użytkownika</button> </a> </div>
+                    <div class="col-md-3"><a href="{{route('user.manager.index')}}"><button type="button" class="btn btn-info">Wróć</button></a></div>
   </div>
     </div>
 @endsection

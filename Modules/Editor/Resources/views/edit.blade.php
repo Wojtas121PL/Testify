@@ -18,7 +18,7 @@
         </div>
     @endif
     <div>
-        <form action="{{url('editor/expiretime/edit')}}" method="post">
+        <form action="{{route('editor.expire.edit.action')}}" method="post">
             {{csrf_field()}}
             <table class="table">
                 <tr><td>Nazwa użytkownika</td><td>Nazwa testu</td><td>Czas wygaśnięcia</td></tr>
@@ -55,7 +55,7 @@
             <input type="submit" class="btn btn-success" value="Zmień">
         </form>
         <br/>
-        <a href="{{url('editor/expiretime/')}}"><button class="btn btn-danger">Wróć</button></a>
+        <a href="{{route('editor.expire.index')}}"><button class="btn btn-danger">Wróć</button></a>
     </div>
 
 @endsection

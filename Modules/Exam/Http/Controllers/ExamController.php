@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Exam\Entities\Exam;
 use Modules\Exam\Entities\ExamUser;
+use Modules\Exam\Http\Requests\SaveSetting;
 use Modules\Exam\Http\Requests\SaveUsers;
 use Modules\Exam\Http\Requests\StoreExam;
 use Modules\Exam\Http\Requests\UpdateExam;
@@ -139,6 +140,40 @@ class ExamController extends Controller
             }
         }
         return back()->with('add',$counterBack);
+    }
+    public function saveSettings(SaveSetting $request){
+        $settingsFromDatabase = Exam::select('time','xOFy')->where('id',$request->exam_id)->get();
+        $settingsToDatabase = Exam::where('id',$request->exam_id)->first();
+        //Setting for random display question
+        if ($request->set_random == 1 && !isset($request->random)){
+            $settingsToDatabase->random = null;
+        }
+        if (isset($request->random)){
+            $settingsToDatabase->random = 1;
+        }
+        //Setting for progressive display question
+        if ($request->set_progressive == 1 && !isset($request->progressive)){
+            $settingsToDatabase->progressive = 0;
+        }
+        if (isset($request->progressive)){
+            $settingsToDatabase->progressive = 1;
+        }
+        //Setting for show rules before exam
+        if ($request->set_rules == 1 && !isset($request->rules_page)){
+            $settingsToDatabase->rules_page = 0;
+        }
+        if (isset($request->rules_page)){
+            $settingsToDatabase->rules_page = 1;
+        }
+        //Settings for exam time and amount question in exam
+        if ($settingsFromDatabase[0]->time != $request->time){
+            $settingsToDatabase->time = $request->time;
+        }
+        if ($settingsFromDatabase[0]->xOFy != $request->xOFy){
+            $settingsToDatabase->xOFy = $request->xOFy;
+        }
+        $settingsToDatabase->save();
+        return back();
     }
     /**
      * Remove the specified resource from storage.

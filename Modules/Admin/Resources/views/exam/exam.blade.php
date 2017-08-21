@@ -31,7 +31,75 @@
                 </div>
             </form>
         </div>
+        <div class="table-bordered">
+            <form action="{{route('exam.save.settings', $exam->id)}}" method="post" class="panel panel-default">
+                {{csrf_field()}}
+                <input type="hidden" name="exam_id" value="{{$exam->id}}">
+                @if($Settings[0]->time != null)
+                    <div class="panel-body">
+                        Czas na rozwiązanie testu w min
+                        <input type="number" min="0" value="{{$Settings[0]->time}}" name="time" placeholder="Czas na rozwiązanie egzaminu">
+                    </div>
+                @else
+                    <div class="panel-body">
+                        Czas na rozwiązanie testu w min
+                        <input type="number" min="0" name="time" placeholder="Czas na rozwiązanie egzaminu">
+                    </div>
+                @endif
 
+                @if($Settings[0]->xOFy != null)
+                    <div class="panel-body">
+                        Ilosc pytań na egzaminie <input type="number" min="0" name="xOFy" value="{{$Settings[0]->xOFy}}" placeholder="Ilośc pytań">
+                    </div>
+                @else
+                    <div class="panel-body">
+                        Ilosc pytań na egzaminie <input type="number" min="0" name="xOFy" placeholder="Ilośc pytań">
+                    </div>
+                @endif
+
+                @if($Settings[0]->random == true)
+                    <div class="panel-body">
+                        Losowa kolejność pytań<input type="checkbox" name="random" value="1" checked>
+                        <input type="hidden" name="set_random" value="1">
+                    </div>
+                @else
+                    <div class="panel-body">
+                        Losowa kolejność pytań<input type="checkbox" name="random" value="0">
+                        <input type="hidden" name="set_random" value="0">
+                    </div>
+                @endif
+
+                @if($Settings[0]->progressive == true)
+                    <div class="panel-body">
+                        Egzamin progresywny <input type="checkbox" name="progressive" value="1" checked>
+                        <input type="hidden" name="set_progressive" value="1">
+                    </div>
+                @else
+                    <div class="panel-body">
+                        Egzamin progresywny <input type="checkbox" name="progressive" value="0">
+                        <input type="hidden" name="set_progressive" value="0">
+                    </div>
+                @endif
+
+                @if($Settings[0]->rules_page == true)
+                    <div class="panel-body">
+                        Strona z zasadami <input type="checkbox" name="rules_page" value="1" checked>
+                        <input type="hidden" name="set_rules" value="1">
+                        <textarea name="rules" placeholder="Wpisz tutaj zasady testu.."></textarea>
+                    </div>
+                @else
+                    <div class="panel-body">
+                        Strona z zasadami <input type="checkbox" name="rules_page" value="0">
+                        <input type="hidden" name="set_rules" value="0">
+                        <textarea name="rules" placeholder="Wpisz tutaj zasady testu.."></textarea>
+                    </div>
+                @endif
+<div class="panel-body">
+    <button class="btn btn-success" type="submit">Zapisz ustawienia</button>
+</div>
+
+            </form>
+        </div>
         @isset($Users)
         <div class="well">Wybierz użytkowników którzy mają prawo wykonać test
             <form method="post" action="{{route('saveUsers.exam')}}">
@@ -78,59 +146,6 @@
         @endif
 
     @endforeach
-        <div class="table-bordered">
-            <form action="setting" method="post" class="panel panel-default">
-                @if($Settings[0]->time != null)
-                    <div class="panel-body">Czas na rozwiązanie testu w min<input type="number" min="0" value="{{$Settings[0]->time}}" name="time" placeholder="Czas na rozwiązanie egzaminu"></div>
-                @else
-                    <div class="panel-body">Czas na rozwiązanie testu w min<input type="number" min="0" name="time" placeholder="Czas na rozwiązanie egzaminu"></div>
-                @endif
-
-                @if($Settings[0]->xOFy != null)
-                    <div class="panel-body">Ilosc pytań na egzaminie <input type="number" min="0" name="xOFy" value="{{$Settings[0]->xOFy}}" placeholder="Ilośc pytań"></div>
-                @else
-                    <div class="panel-body">Ilosc pytań na egzaminie <input type="number" min="0" name="xOFy" placeholder="Ilośc pytań"></div>
-                @endif
-
-                @if($Settings[0]->random == true)
-                    <div class="panel-body">
-                        Losowa kolejność pytań<input type="checkbox" name="random" checked>
-                        <input type="hidden" name="set_random" value="1" />
-                    </div>
-                @else
-                    <div class="panel-body">
-                        Losowa kolejność pytań<input type="checkbox" name="random">
-                        <input type="hidden" name="set_random" value="0" />
-                    </div>
-                @endif
-
-                @if($Settings[0]->progressive == true)
-                    <div class="panel-body">
-                        Egzamin progresywny <input type="checkbox" name="progressive" checked>
-                        <input type="hidden" name="set_progressive" value="1" />
-                    </div>
-                @else
-                    <div class="panel-body">
-                        Egzamin progresywny <input type="checkbox" name="progressive">
-                        <input type="hidden" name="set_progressive" value="0" />
-                    </div>
-                @endif
-
-                @if($Settings[0]->rules_page == true)
-                        <div class="panel-body">
-                            Strona z zasadami <input type="checkbox" name="rules" checked>
-                            <input type="hidden" name="set_rules" value="1" />
-                        </div>
-                @else
-                        <div class="panel-body">
-                            Strona z zasadami <input type="checkbox" name="rules">
-                            <input type="hidden" name="set_rules" value="0" />
-                        </div>
-                @endif
-
-
-            </form>
-        </div>
     <button class="btn btn-primary btn-group-justified" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="scrollDown()">
         +
     </button>

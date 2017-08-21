@@ -21,6 +21,7 @@ class CreateExamsTable extends Migration
             $table->unsignedInteger('xOFy')->nullable();
             $table->boolean('progressive')->nullable();
             $table->boolean('rules_page')->nullable();
+            $table->longText('rules_page_text')->nullable();
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@
     </div>
 
     <div class="panel-footer">
-        <form action="{{route('editor.exam.edit', $exam->id)}}" method="get">
+        <form action="{{route('editor.exam.edit.id', $exam->id)}}" method="get">
             <input type="hidden" name="edit_id" value="{{$question->id}}">
             <button class="btn btn-info" type="submit">Edytuj</button>
         </form>

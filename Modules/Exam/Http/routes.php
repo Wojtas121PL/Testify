@@ -7,6 +7,7 @@ Route::group(['middleware' => ['web', 'role:1'], 'namespace' => 'Modules\Exam\Ht
     Route::post('questionOpen', 'QuestionController@storeOpen')->name('question.store.open');
     Route::post('saveUsers','ExamController@saveUsers')->name('saveUsers.exam');
     Route::post('questionMultiCheck', 'QuestionController@storeMultiCheck')->name('question.store.multiCheck');
+    Route::post('exam/{id}/settings', 'ExamController@saveSettings')->name('exam.save.settings');
 });
 //
 //Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'examWrite', 'namespace' => 'Modules\Exam\Http\Controllers'], function()

@@ -68,10 +68,10 @@
                     </td>
                     <td>{{$user->created_at}}</td>
                     <td>{{$user->updated_at}}</td>
-                    <td><a href="{{url('/usermanager/edit/'.$user->id)}}"><button class="btn btn-info">Edytuj</button></a></td>
+                    <td><a href="{{route('user.manager.edit.user.show',$user->id)}}"><button class="btn btn-info">Edytuj</button></a></td>
                 </tr>
             @endforeach
         </table>
-        <a href="{{url('usermanager/addUser')}}"><button class="btn btn-success">Dodaj użytkownika</button></a>
+        <a href="{{route('ser.manager.add.user.show')}}"><button class="btn btn-success">Dodaj użytkownika</button></a>
     </div>
 @stop

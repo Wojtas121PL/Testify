@@ -2,7 +2,7 @@
 @section('content')
     @parent
 <div>
-    <a href="{{url('result/admin')}}"><button class="btn btn-default">Back</button></a>
+    <a href="{{route('results.admin.index')}}"><button class="btn btn-default">Back</button></a>
     @foreach($Answers as $answer)
         <div>
             <span>Pytanie numer: {{$answer->question_number}}</span>
@@ -42,8 +42,6 @@
             @if($answer->question_type == 3)
                 @php($i=1)
                     @foreach($typeAnswer as $key => $item)
-                        <div style="display: none">{{print_r($answerUser = json_decode($answer->answer_text,true))}}</div>
-                        <div style="display: none">{{print_r($answerCorrect = json_decode($answer->answer_correct_text,true))}}</div>
 
                     @endforeach
                 @endif

@@ -46,15 +46,15 @@
                     @endforeach
                 </td>
                 <td>
-                    <a href="{{route('edit',$group->id)}}"><button class="btn btn-info">Edytuj</button></a>
+                    <a href="{{route('group.edit.show',$group->id)}}"><button class="btn btn-info">Edytuj</button></a>
                 </td>
                 <td>
-                    <a href="{{route('deleteGroup',$group->id)}}"><button class="btn btn-danger">Skasuj</button></a>
+                    <a href="{{route('group.delete',$group->id)}}"><button class="btn btn-danger">Skasuj</button></a>
                 </td>
             </tr>
             @php($i++)
         @endforeach
     </table>
 
-    <a href="{{route('add.groupAndUsers')}}"><button type="button" class="btn btn-success">Dodaj grupę</button></a>
+    <a href="{{route('group.add.show')}}"><button type="button" class="btn btn-success">Dodaj grupę</button></a>
 @stop

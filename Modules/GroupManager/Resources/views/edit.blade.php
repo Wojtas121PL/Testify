@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="panel-body">
-        <form action="{{route('update',$id)}}" method="post">
+        <form action="{{route('group.update',$id)}}" method="post">
             {{csrf_field()}}
             <div class="input-group">
                 <input type="text" name="new_name" class="form-control" placeholder="{{$group[0]->group_name}}">
@@ -23,7 +23,7 @@
     @isset($Users)
         <div class="well">Wybierz użytkowników którzy mają prawo wykonać test
             <div class="table-bordered">
-                <form method="post" action="{{route('editGroup')}}">
+                <form method="post" action="{{route('group.edit.action')}}">
                     {{csrf_field()}}
                     <input type="hidden" name="groupName" value="{{$id}}">
                     <div>
