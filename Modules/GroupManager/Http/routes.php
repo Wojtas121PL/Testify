@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => 'groupmanager', 'namespace' => 'Modules\GroupManager\Http\Controllers'], function() {
+Route::group(['middleware' => ['web','role:1','auth'], 'prefix' => 'groupmanager', 'namespace' => 'Modules\GroupManager\Http\Controllers'], function() {
     Route::get('/', 'GroupManagerController@index')->name('group.index');
 
     Route::get('/add', 'GroupManagerController@addGroupView')->name('group.add.show');

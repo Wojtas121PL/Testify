@@ -14,7 +14,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{route('expire.add.action')}}" method="post">
+        <form action="{{route('admin.expire.add.action')}}" method="post">
             {{csrf_field()}}
             <div class="form-group">
                 <label for="Ename">Nazwa egzaminu</label>
@@ -44,6 +44,6 @@
                 <input type="submit" value="Zapisz" class="btn btn-success">
             </div>
         </form>
-            <a href="{{route('expire.index')}}"><button class="btn btn-default">Wróć</button></a>
+            <a href="{{route('admin.expire.index')}}"><button class="btn btn-default">Wróć</button></a>
     </div>
 @endsection

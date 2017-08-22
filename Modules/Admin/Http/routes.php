@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'role:1'], 'prefix' => 'admin', 'namespace' => 'Modules\Admin\Http\Controllers'], function()
+Route::group(['middleware' => ['web', 'role:1','auth'], 'prefix' => 'admin', 'namespace' => 'Modules\Admin\Http\Controllers'], function()
 {
     Route::get('/', 'AdminController@index')->name('admin.index');
 

@@ -16,11 +16,11 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->unsignedInteger('time')->nullable();
-            $table->boolean('Random')->nullable();
-            $table->unsignedInteger('xOFy')->nullable();
-            $table->boolean('progressive')->nullable();
-            $table->boolean('rules_page')->nullable();
+            $table->unsignedInteger('time')->default(0);
+            $table->boolean('Random')->default(0);
+            $table->unsignedInteger('xOFy')->default(0);
+            $table->boolean('progressive')->default(0);
+            $table->boolean('rules_page')->default(0);
             $table->longText('rules_page_text')->nullable();
             $table->timestamps();
         });

@@ -46,7 +46,7 @@
                     @endforeach
                 </td>
                 <td>
-                    <a href="{{route('group.edit.show',$group->id)}}"><button class="btn btn-info">Edytuj</button></a>
+                    <a href="{{route('group.edit.id',$group->id)}}"><button class="btn btn-info">Edytuj</button></a>
                 </td>
                 <td>
                     <a href="{{route('group.delete',$group->id)}}"><button class="btn btn-danger">Skasuj</button></a>

@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col-md-3"><input type="submit" class="btn btn-success" value="Zatwierdź zmiany"></div></form>
                     <div class="col-md-3"><a href="{{route('user.manager.disable',$id)}}"><button type="button" class="btn btn-danger">Zdezaktywuj użytkownika</button></a></div>
-                    <div class="col-md-3"><a href="{{route('user.manager.delete'),$id}}"><button type="button" class="btn btn-danger">Skasuj użytkownika</button> </a> </div>
+                    <div class="col-md-3"><a href="{{route('user.manager.delete',$id)}}"><button type="button" class="btn btn-danger">Skasuj użytkownika</button> </a> </div>
                     <div class="col-md-3"><a href="{{route('user.manager.index')}}"><button type="button" class="btn btn-info">Wróć</button></a></div>
   </div>
     </div>

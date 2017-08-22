@@ -83,6 +83,7 @@ class UserController extends Controller
 
     public function exam($id)
     {
+
         $examContent = Entities\Exam::where('id', $id)->first();
         $endExam = Entities\Result::select('exam_id')->where('user_id', '=', Auth::id())->groupby('exam_id')->get();
         $expireTime = Entities\Expire::select('user_id','group_id','expireTime as time')->where('exam_id','=',$id)->get();
@@ -181,5 +182,14 @@ class UserController extends Controller
             }
         }
         return view('user::examProgressive', ['examContent' => $examContent]);
+    }
+    public function beforeExam($id){
+        $examContent = Entities\Exam::where('id', $id)->first();
+        if ($examContent->rules_page == 1){
+            return view('user::rules',['id' => $id,"examContent" => $examContent]);
+        }
+        else{
+            return redirect(route('user.exam.action',$id));
+        }
     }
 }

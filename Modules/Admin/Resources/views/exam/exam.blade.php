@@ -138,7 +138,6 @@
     </div>
         @endisset
     @foreach($exam->questions as $question)
-
         @if($question->id == $edit_id)
             @include('admin::exam.edit.panelEdit')
         @else

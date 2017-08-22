@@ -35,18 +35,18 @@
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <input type="checkbox" name="answer_correct" value="{{$i}}" checked>
-                                            </span>
-                                            <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
-                                        </div>
-                                    @else
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" name="answer_correct" value="{{$i}}">
+                                                <input type="hidden" name="set[{{$i}}]" value="1">
                                             </span>
                                             <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
                                         </div>
                                     @endif
                             @endforeach
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox" name="answer_correct" value="{{$i}}">
+                                        </span>
+                                        <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                                    </div>
                     @endif
             @endforeach
 
@@ -55,7 +55,7 @@
 
         <div class="panel-footer">
             <button class="btn btn-info" type="submit">Zapisz</button>
-            <a class="btn btn-warning" href="{{url('admin/exam/'.$exam->id)}}">Anuluj</a>
+            <a class="btn btn-warning" href="{{route('admin.exam.id',$exam->id)}}">Anuluj</a>
             @if($question->question_type == 1)
                 <button class="btn btn-info" type="button">Zmień na Otwarty typ pytania</button>
                 <button class="btn btn-info" type="button">Zmień na Wielokrotnego wyboru typ pytania</button>

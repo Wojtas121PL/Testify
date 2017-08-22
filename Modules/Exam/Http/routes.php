@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'role:1'], 'namespace' => 'Modules\Exam\Http\Controllers'], function()
+Route::group(['middleware' => ['web', 'role:1','auth'], 'namespace' => 'Modules\Exam\Http\Controllers'], function()
 {
     Route::resource('exam', 'ExamController');
     Route::resource('question', 'QuestionController');

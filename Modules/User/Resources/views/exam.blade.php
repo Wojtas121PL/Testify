@@ -1,65 +1,55 @@
 @extends('user::layouts.master')
-
-@section('controls')
-    @parent
-
-    <div class="panel panel-default" data-spy="affix" data-offset-top="250">
-        <div class="panel-heading">
-            Controls
-        </div>
-
-        <div class="panel-body">
-
-            <h3 style="margin-top:0;" class="text-center " id="timer"></h3>
-
-            <form action="#">
-                <div class="btn-group-vertical" style="width:100%">
-                        <button type="submit" class="btn btn-warning" id="submit">Zakończ egzamin</button>
-                        <a class="btn btn-danger" href="/user/exam">Wyjdź z egzaminu</a>
-                </div>
-            </form>
-        </div>
-    </div>
-@endsection
-
 @section('content')
     @parent
-        <form method="post" action="{{route('results.save')}}">
+    <script type="text/javascript">
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10)
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        document.getElementById('examForm').submit();
+                    }
+                }, 1000);
+            }
+
+            window.onload = function () {
+                $('#timeForExam').hide();
+                if (document.getElementById('time').value != null) {
+                    $('#timeForExam').show();
+                    var minutes = 60 * document.getElementById('time').value,
+                        display = document.querySelector('#timeDisplay');
+                    startTimer(minutes, display);
+                }
+            };
+    </script>
+    <div id="timeForExam" class="panel panel-body" style="position: fixed; left:0; top:50%;">
+            <h4>Czas do zakończenia egzaminu</h4>
+            <p id="timeDisplay" class="text-center"></p>
+    </div>
+        <form id="examForm" method="post" action="{{route('results.save')}}">
             {{csrf_field()}}
             <input type="hidden" name="exam_id" value="{{$examContent->id}}">
+            <input type="hidden" name="time" id="time" value="{{$examContent->time}}">
+            @if($examContent->xOFy != 0)
+                @php($xOFy = 0)
+            @endif
         @foreach($examContent->questions as $question)
-            <input type="hidden" name="answer[{{$question->id}}][typeId]" value="{{$question->question_type}}">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{$question->question_title}}</h4>
-                </div>
-                <div class="panel-body">
-                    @if($question->question_type == 1)
-                    @foreach($question->answers as $i => $answer )
+            @if($examContent->xOFy != 0)
+                @if($xOFy++ < $examContent->xOFy)
+                    @include('user::question')
+                @else
 
-                        <label class="input-group">
-                            <span class="input-group-addon"><input type="radio" name="answer[{{$question->id}}][number]" value="{{++$i}}" ></span>
-                            <div class="form-control">{{$answer->answer}}</div>
-                        </label>
-                    @endforeach
-                    @endif
-                    @if($question->question_type == 2)
-                        <label class="input-group">
-                            <textarea name="answer[{{$question->id}}][number]" placeholder="Napisz swoją odpowiedź tutaj..."></textarea>
-                        </label>
-                    @endif
-                    @if($question->question_type == 3)
-                            @php($counter=1)
-                                @foreach($question->answers as $i => $answer )
-                                    <label class="input-group">
-                                        <span class="input-group-addon"><input type="checkbox" name="answer[{{$question->id}}][number][check{{$counter}}]" value="{{++$i}}" ></span>
-                                        <div class="form-control">{{$answer->answer}}</div>
-                                    </label>
-                                    @php($counter++)
-                                @endforeach
-                    @endif
-                </div>
-            </div>
+                @endif
+            @else
+                @include('user::question')
+            @endif
 
 
         @endforeach

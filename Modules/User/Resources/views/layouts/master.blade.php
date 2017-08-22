@@ -101,5 +101,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 </body>
 </html>

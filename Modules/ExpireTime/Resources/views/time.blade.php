@@ -39,7 +39,7 @@
                         <td class="email">{{$item->email}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->expireTime}}</td>
-                        <td><a href="{{route('group.delete',$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>
+                        <td><a href="{{route('admin.expire.delete',$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>
                     </tr>
                 @endforeach
                 @foreach($groupTime as $item)
@@ -48,12 +48,12 @@
                         <td class="email"></td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->expireTime}}</td>
-                        <td><a href="{{route('group.delete',$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>
+                        <td><a href="{{route('admin.expire.delete',$item->id)}}"><button class="btn btn-danger">Usuń</button></a></td>
                     </tr>
                 @endforeach
             </table>
-            <a href="{{route('expire.add.show')}}"><button class="btn btn-success">Dodaj!</button></a>
-            <a href="{{route('expire.edit.show')}}"><button class="btn btn-info">Edytuj!</button></a>
+            <a href="{{route('admin.expire.add.show')}}"><button class="btn btn-success">Dodaj!</button></a>
+            <a href="{{route('admin.expire.edit.show')}}"><button class="btn btn-info">Edytuj!</button></a>
         </div>
     @endisset
 @endsection

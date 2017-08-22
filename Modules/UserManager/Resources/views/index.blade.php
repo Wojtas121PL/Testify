@@ -72,6 +72,6 @@
                 </tr>
             @endforeach
         </table>
-        <a href="{{route('ser.manager.add.user.show')}}"><button class="btn btn-success">Dodaj użytkownika</button></a>
+        <a href="{{route('user.manager.add.user.show')}}"><button class="btn btn-success">Dodaj użytkownika</button></a>
     </div>
 @stop

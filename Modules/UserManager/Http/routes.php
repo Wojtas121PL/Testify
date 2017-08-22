@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web','role:1'], 'prefix' => 'usermanager', 'namespace' => 'Modules\UserManager\Http\Controllers'], function() {
+Route::group(['middleware' => ['web','role:1','auth'], 'prefix' => 'usermanager', 'namespace' => 'Modules\UserManager\Http\Controllers'], function() {
         Route::get('/', 'UserManagerController@getListUser')->name('user.manager.index');
 
         Route::get('/addUser','UserManagerController@create')->name('user.manager.add.user.show');
