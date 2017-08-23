@@ -1,9 +1,7 @@
 Poprawić tłumaczenia niektórych zwrotów - często zamieniane słowa "egzamin test"
-Routy wołają o pomstę do nibea
 Wyszukiwarka ma małego no(buga),bardzo zwraca uwag na wielkość liter
 Request requiry podorabiać
 Zastanowić się nad zrobieniem w entitles zbioru metod dla powtarzających zdarzeń
-Dorobić coś na wzór regulaminu przed testem
 W kontrolerach dorobić zabezpieczenie przed nieautoryzowanym dostępem ( exam menager i expire menager)
 #Od milosza
 1. Przenieść przycisk na środek

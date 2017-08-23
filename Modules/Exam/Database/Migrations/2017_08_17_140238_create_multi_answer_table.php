@@ -15,7 +15,8 @@ class CreateMultiAnswerTable extends Migration
     {
         Schema::create('multi_answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_answer_group');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('answer');
             $table->unsignedInteger('exam_id');
             $table->unsignedInteger('question_id');

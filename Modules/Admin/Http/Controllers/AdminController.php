@@ -9,6 +9,7 @@ use Modules\Exam\Entities\Exam;
 use Modules\Exam\Entities\ExamUser;
 use Modules\Exam\Entities\Groups;
 use Modules\Exam\Entities\Question;
+use Modules\Result\Entities\MultiAnswerCorrect;
 use Modules\User\Entities\User;
 
 class AdminController extends Controller
@@ -28,7 +29,7 @@ class AdminController extends Controller
 
     public function edit($id){
         $exam = Exam::where('id', $id)->first();
-        $settings = Exam::select('time','random','xOFy','progressive','rules_page')->where('id',$id)->get();
+        $settings = Exam::select('time','random','xOFy','progressive','rules_page','rules_page_text')->where('id',$id)->get();
         $UserBelongs = ExamUser::where('exam_id','=',$id)->get();
         $Users = User::select('id','name','role')->get();
         $Groups = Groups::select('*')->get();
@@ -53,14 +54,20 @@ class AdminController extends Controller
         return view('admin::exam.exam', ['exam' => $exam, 'edit_id' => null,'Users' => $Users,'Groups' => $Groups, 'Settings' => $settings]);
     }
     public function editExam(Request $request, $id){
-        $answer = Question::getAnswerContent();
-        $settings = Exam::select('time','random','xOFy','progressive','rules_page')->where('id',$id)->get();
-        $answerCorrect = Question::select('multi_answer_corrects.answer')->join('answers','answers.question_id','=','questions.id')->join('multi_answer_corrects','multi_answer_corrects.answer','=','answers.answer_id')->get();
+        $answers = Question::getAnswerContent()->where('question_type',3);
+        $settings = Exam::select('time','random','xOFy','progressive','rules_page','rules_page_text')->where('id',$id)->get();
+        $answerCorrect = MultiAnswerCorrect::select('*')->where('exam_id',$id)->where('question_id',$request->edit_id)->get();
         $exam = Exam::where('id', $id)->first();
         $UserBelongs = ExamUser::select('*')->where('exam_id','=',$id)->get();
         $Users = User::select('id','name','role')->get();
         $Groups = Groups::select('*')->get();
-
+        foreach ($answerCorrect as $value){
+            $answers->each(function ($item) use ($value){
+                   if ($item->answer_id == $value->answer){
+                        $item->setAttribute('correct','true');
+                   }
+            });
+        }
         foreach ($Users as $user){
             $user->setAttribute('status','noBelong');
             $UserBelongs->each(function ($item) use ($user){
@@ -80,7 +87,7 @@ class AdminController extends Controller
             });
         }
 
-        return view('admin::exam.exam', ['exam' => $exam,'answer' =>$answer, 'edit_id' => $request->edit_id,'Users' => $Users,'Groups' => $Groups, 'AnswerCorrect' => $answerCorrect, 'Settings' => $settings]);
+        return view('admin::exam.exam', ['exam' => $exam,'answers' =>$answers, 'edit_id' => $request->edit_id,'Users' => $Users,'Groups' => $Groups, 'Settings' => $settings]);
     }
 
 }

@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->unsignedInteger('question_number');
             $table->text('question_title');
             $table->unsignedInteger('answer_correct')->nullable();
-            $table->unsignedInteger('answer_correct_multi')->nullable();
+            $table->boolean('answer_correct_multi')->nullable();
             $table->timestamps();
         });
     }

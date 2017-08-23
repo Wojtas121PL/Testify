@@ -15,7 +15,6 @@ class CreateMultiAnswerCorrectTable extends Migration
     {
         Schema::create('multi_answer_corrects', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_answer_group');
             $table->unsignedInteger('answer');
             $table->unsignedInteger('exam_id');
             $table->unsignedInteger('question_id');

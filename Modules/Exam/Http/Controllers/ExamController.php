@@ -113,6 +113,8 @@ class ExamController extends Controller
                 }
             }
         }
+
+
         if ($request->group != null) {
             foreach ($request->group as $i => $item) {
                 if ($item['set'] == 1 && !isset($item['check'])) {
@@ -161,9 +163,11 @@ class ExamController extends Controller
         //Setting for show rules before exam
         if ($request->set_rules == 1 && !isset($request->rules_page)){
             $settingsToDatabase->rules_page = 0;
+            $settingsToDatabase->rules_page_text = null;
         }
         if (isset($request->rules_page)){
             $settingsToDatabase->rules_page = 1;
+            $settingsToDatabase->rules_page_text = $request->rules;
         }
         //Settings for exam time and amount question in exam
         if ($settingsFromDatabase[0]->time != $request->time){

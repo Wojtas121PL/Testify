@@ -1,30 +1,30 @@
-
 <script>
     window.onload = function () {
-        $( "#tabs" ).tabs();
+        $("#tabs").tabs();
     }
 
-    function appendAnswerWithRadioButton(){
+    function appendAnswerWithRadioButton() {
         var val = $("#valABC").val();
         var div = $(
             "<div class='input-group'>" +
             "<span class='input-group-addon'>" +
-                "<input type='radio' name='answer_correct' value='"+ val +"'>" +
+            "<input type='radio' name='answer_correct' value='" + val + "'>" +
             "</span>" +
-                "<input type='Text' class='form-control' name='answer["+ val +"][answer]'>" +
+            "<input type='Text' class='form-control' name='answer[" + val + "][answer]'>" +
             "</div>");
         $("#answersABC").append(div);
 
         $("#valABC").val(++val);
     }
-    function appendAnswerWithCheckBox(){
+
+    function appendAnswerWithCheckBox() {
         var val = $("#valMultipleCheck").val();
         var div = $(
             "<div class='input-group'>" +
             "<span class='input-group-addon'>" +
-            "<input type='checkbox' name='answer_correct["+ val +"][check]' value='"+ val +"'>" +
+            "<input type='checkbox' name='answer_correct[" + val + "][check]' value='" + val + "'>" +
             "</span>" +
-            "<input type='Text' class='form-control' name='answer["+ val +"][answer]'>" +
+            "<input type='Text' class='form-control' name='answer[" + val + "][answer]'>" +
             "</div>");
         $("#answersMultipleCheck").append(div);
 
@@ -35,15 +35,16 @@
         var val = $("#valABC").val();
         $("#answersABC > .input-group").last().remove();
         $("#valABC").val(--val);
-        if($("#valABC").val() < 1){
+        if ($("#valABC").val() < 1) {
             $("#valABC").val(1);
         }
     }
+
     function removeAnswerFromMultipleCheck() {
         var val = $("#valMultipleCheck").val();
         $("#answersMultipleCheck > .input-group").last().remove();
         $("#valMultipleCheck").val(--val);
-        if($("#valMultipleCheck").val() < 1){
+        if ($("#valMultipleCheck").val() < 1) {
             $("#valMultipleCheck").val(1);
         }
     }
@@ -66,12 +67,16 @@
                 <input type="text" class="form-control" id="Question" name="question_title">
             </div>
             <div class="form-group" id="answersABC">
-                <label for="Answer">Odpowiedź <small>(kropka sygnalizuje poprawną odpowiedź)</small></label>
+                <label for="Answer">Odpowiedź
+                    <small>(kropka sygnalizuje poprawną odpowiedź)</small>
+                </label>
 
             </div>
 
-            <input type="button" class="btn btn-info btn-group-justified" onclick="appendAnswerWithRadioButton()" value="Dodaj odpowiedź">
-            <input type="button" class="btn btn-info btn-group-justified" onclick="removeAnswerFromABC()" value="Usuń odpowiedź">
+            <input type="button" class="btn btn-info btn-group-justified" onclick="appendAnswerWithRadioButton()"
+                   value="Dodaj odpowiedź">
+            <input type="button" class="btn btn-info btn-group-justified" onclick="removeAnswerFromABC()"
+                   value="Usuń odpowiedź">
             <div class="form-group">
                 <button class="btn btn-success" type="submit">Dodaj!</button>
             </div>
@@ -89,12 +94,16 @@
                 <input type="text" class="form-control" id="Question" name="question_title">
             </div>
             <div class="form-group" id="answersMultipleCheck">
-                <label for="Answer">Odpowiedź <small>(krzyżyk sygnalizuje poprawną odpowiedź)</small></label>
+                <label for="Answer">Odpowiedź
+                    <small>(krzyżyk sygnalizuje poprawną odpowiedź)</small>
+                </label>
 
             </div>
 
-            <input type="button" class="btn btn-info btn-group-justified" onclick="appendAnswerWithCheckBox()" value="Dodaj odpowiedź">
-            <input type="button" class="btn btn-info btn-group-justified" onclick="removeAnswerFromMultipleCheck()" value="Usuń odpowiedź">
+            <input type="button" class="btn btn-info btn-group-justified" onclick="appendAnswerWithCheckBox()"
+                   value="Dodaj odpowiedź">
+            <input type="button" class="btn btn-info btn-group-justified" onclick="removeAnswerFromMultipleCheck()"
+                   value="Usuń odpowiedź">
             <div class="form-group">
                 <button class="btn btn-success" type="submit">Dodaj!</button>
             </div>

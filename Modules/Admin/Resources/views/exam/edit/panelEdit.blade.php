@@ -10,7 +10,8 @@
         </div>
 
         <div class="panel-body">
-            @foreach($question->answers as $i => $answer )
+            @php($show = false)
+            @foreach($question->answers as $i => $item )
                 @php($i++)
                 @if($question->question_type == 1)
                     @if($i == $question->answer_correct)
@@ -18,35 +19,42 @@
                         <span class="input-group-addon">
                             <input type="radio" name="answer_correct" value="{{$i}}" checked>
                         </span>
-                        <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                        <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$item->answer}}">
                     </div>
                     @else
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <input type="radio" name="answer_correct" value="{{$i}}" >
                             </span>
-                            <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
+                            <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$item->answer}}">
                         </div>
                     @endif
                 @endif
                     @if($question->question_type == 3)
-                            @foreach($AnswerCorrect as $value)
-                                    @if($i == $value->answer)
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" name="answer_correct" value="{{$i}}" checked>
-                                                <input type="hidden" name="set[{{$i}}]" value="1">
-                                            </span>
-                                            <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
-                                        </div>
-                                    @endif
-                            @endforeach
-                                    <div class="input-group">
+                        @php($counter = 1)
+                        @foreach($answers as $answer)
+                            @if($show == false)
+                                @if($answer->correct == "true")
+                                    <label class="input-group">
                                         <span class="input-group-addon">
-                                            <input type="checkbox" name="answer_correct" value="{{$i}}">
+                                            <input type="checkbox" name="answer_correct[{{$counter}}][check]" checked>
+                                            <input type="hidden" name="answer_correct[{{$counter}}][set]" value="1">
                                         </span>
-                                        <input type="Text" class="form-control" name="answers[{{$i}}]" value="{{$answer->answer}}">
-                                    </div>
+                                    <input type="Text" class="form-control" name="answers[{{$counter}}][answer]" value="{{$answer->answer}}">
+                                    </label>
+                                @else
+                                    <label class="input-group">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox" name="answer_correct[{{$counter}}][check]">
+                                            <input type="hidden" name="answer_correct[{{$counter}}][set]" value="0">
+                                        </span>
+                                        <input type="Text" class="form-control" name="answers[{{$counter}}][answer]" value="{{$answer->answer}}">
+                                    </label>
+                                @endif
+                            @endif
+                            @php($counter++)
+                        @endforeach
+                            @php($show = true)
                     @endif
             @endforeach
 
@@ -57,20 +65,20 @@
             <button class="btn btn-info" type="submit">Zapisz</button>
             <a class="btn btn-warning" href="{{route('admin.exam.id',$exam->id)}}">Anuluj</a>
             @if($question->question_type == 1)
-                <button class="btn btn-info" type="button">Zmień na Otwarty typ pytania</button>
-                <button class="btn btn-info" type="button">Zmień na Wielokrotnego wyboru typ pytania</button>
-                <button class="btn btn-info" type="button" onclick="//addRadio()">Dodaj odpowiedz</button>
-                <button class="btn btn-info" type="button" onclick="//delRadio()">Usun odpowiedz</button>
+                <button class="btn btn-info" type="button" disabled>Zmień na Otwarty typ pytania</button>
+                <button class="btn btn-info" type="button" disabled>Zmień na Wielokrotnego wyboru typ pytania</button>
+                <button class="btn btn-info" type="button" onclick="//addRadio()" disabled>Dodaj odpowiedz</button>
+                <button class="btn btn-info" type="button" onclick="//delRadio()" disabled>Usun odpowiedz</button>
                 @endif
             @if($question->question_type == 2)
-                <button class="btn btn-info" type="button">Zmień na ABC typ pytania</button>
-                <button class="btn btn-info" type="button">Zmień na Wielokrotnego wyboru typ pytania</button>
+                <button class="btn btn-info" type="button" disabled>Zmień na ABC typ pytania</button>
+                <button class="btn btn-info" type="button" disabled>Zmień na Wielokrotnego wyboru typ pytania</button>
             @endif
             @if($question->question_type == 3)
-                <button class="btn btn-info" type="button">Zmień na Otwarty typ pytania</button>
-                <button class="btn btn-info" type="button">Zmień na ABC typ pytania</button>
-                <button class="btn btn-info" type="button" onclick="//addCheck()">Dodaj odpowiedz</button>
-                <button class="btn btn-info" type="button" onclick="//delCheck()">Usun odpowiedz</button>
+                <button class="btn btn-info" type="button" disabled>Zmień na Otwarty typ pytania</button>
+                <button class="btn btn-info" type="button" disabled>Zmień na ABC typ pytania</button>
+                <button class="btn btn-info" type="button" onclick="//addCheck()" disabled>Dodaj odpowiedz</button>
+                <button class="btn btn-info" type="button" onclick="//delCheck()" disabled>Usun odpowiedz</button>
             @endif
         </div>
 </div>

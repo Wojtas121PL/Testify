@@ -82,18 +82,14 @@ class QuestionController extends Controller
 
     public function storeMultiCheck(Requests\StoreMultiCheck $request){
         $question_number = Question::where('exam_id','=',$request->exam_id)->count() + 1;
-        $answerGroupCount = 1;
-        $answerGroupCountQuery = MultiAnswerCorrect::select('id_answer_group')->groupBy('id_answer_group')->orderBy('id_answer_group','DESC')->limit(1)->get();
-        if ($answerGroupCountQuery->isEmpty() == false) {
-            $answerGroupCount = $answerGroupCountQuery[0]->id_answer_group + 1;
-        }
+
 
         $question = new Question;
         $question->exam_id = $request->exam_id;
         $question->question_number = $question_number;
         $question->question_title = $request->question_title;
         $question->question_type = $request->question_type;
-        $question->answer_correct_multi = $answerGroupCount;
+        $question->answer_correct_multi = 1;
 
         $question->save();
 
@@ -111,7 +107,6 @@ class QuestionController extends Controller
         }
         foreach ($request->answer_correct as $i => $item){
             $answerCorrect = new MultiAnswerCorrect();
-            $answerCorrect->id_answer_group = $answerGroupCount;
             $answerCorrect->exam_id=$request->exam_id;
             $answerCorrect->question_id = $question->id;
             $answerCorrect->answer = $item['check'];
@@ -153,26 +148,33 @@ class QuestionController extends Controller
         $question->question_number = $request->question_number;
         $question->question_title = $request->question_title;
 
-        if ($request->question_type ==1){
+        if ($request->question_type == 1){
             $question->answer_correct = $request->answer_correct;
         }
-        else{
-            $answerCorrect=array();
+        if ($request->question_type == 3){
                 foreach ($request->answer_correct as $i => $item){
-                    $answerCorrect[]=$item;
+                    if ($item['set'] == 1 && !isset($item['check'])) {
+                        MultiAnswerCorrect::where('exam_id', $id)->where('question_id', $request->question_number)->where('answer',$i)->first()->delete();
+                    }
+
+                    if (isset($item['check'])) {
+                        if ($item['set'] == 0 && $item['check'] == 'on') {
+                            $answerCorrect = new MultiAnswerCorrect();
+                            $answerCorrect->answer = $i;
+                            $answerCorrect->exam_id = $id;
+                            $answerCorrect->question_id = $request->question_number;
+                            $answerCorrect->save();
+                        }
+                    }
                 }
-            $answerCorrectToDatabase = json_encode($answerCorrect);
-            $question->answer_correct_text = $answerCorrectToDatabase;
         }
         if ($request->answers != null) {
             foreach ($request->answers as $i => $answer) {
                 $change = Answer::where('question_id', $request->question_id)->where('answer_id', $i)->first();
-                $change->answer = $answer;
+                $change->answer = $answer['answer'];
                 $change->save();
             }
         }
-        $question->save();
-
         switch (Auth::user()->role)
         {
             case 1:
@@ -183,7 +185,6 @@ class QuestionController extends Controller
                     break;
         }
     }
-
     /**
      * Remove the specified resource from storage.
      * @return Response

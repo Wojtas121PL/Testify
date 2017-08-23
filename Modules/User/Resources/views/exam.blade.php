@@ -21,7 +21,7 @@
 
             window.onload = function () {
                 $('#timeForExam').hide();
-                if (document.getElementById('time').value != null) {
+                if (document.getElementById('time').value != 0) {
                     $('#timeForExam').show();
                     var minutes = 60 * document.getElementById('time').value,
                         display = document.querySelector('#timeDisplay');
