@@ -6,10 +6,10 @@
     <div class="panel-body">
 
             @foreach($question->answers as $i => $answer )
-                <div class="input-group">
+                <label class="input-group">
                     <span class="input-group-addon">{{++$i}}:</span>
                     <div class="form-control">{{$answer->answer}}</div>
-                </div>
+                </label>
             @endforeach
 
     </div>

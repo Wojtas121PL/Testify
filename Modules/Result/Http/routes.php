@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web','role:1','auth'], 'prefix' => 'result', 'namespace' => 'Modules\Result\Http\Controllers'], function()
+Route::group(['middleware' => ['web','role:3','auth'], 'prefix' => 'result', 'namespace' => 'Modules\Result\Http\Controllers'], function()
 {
     Route::post('/save','ResultsController@saveToDatabase')->name('results.save');
     Route::post('/saveProgressive','ResultsController@saveToDatabaseProgressive')->name('results.progressive.save');
