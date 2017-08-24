@@ -31,8 +31,8 @@
                 </div>
             </form>
         </div>
-        <div class="table-bordered">
-            <form action="{{route('exam.save.settings', $exam->id)}}" method="post" class="panel panel-default">
+        <div class="panel panel-default" id="setting">
+            <form action="{{route('exam.save.settings', $exam->id)}}" method="post">
                 {{csrf_field()}}
                 <input type="hidden" name="exam_id" value="{{$exam->id}}">
                 @include('admin::includes.settings')

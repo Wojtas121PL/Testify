@@ -5,10 +5,10 @@
     <a href="{{route('results.admin.index')}}"><button class="btn btn-default">Back</button></a>
     <div>
         Legenda:<br>
-        Niebieski - Odpowiedź nie poprawna nie zaznaczona przez użytkownika<br>
+        Brak koloru - Odpowiedź niepoprawna niezaznaczona przez użytkownika<br>
         Żółty - Odpowiedź poprawna niezaznaczona przez użytkownika<br>
         Zielony - Odpowiedź poprawna zaznaczona przez użytkownika<br>
-        Czerwony - Odpowiedź nie poprawna zaznaczona przez użytkownika<br>
+        Czerwony - Odpowiedź niepoprawna zaznaczona przez użytkownika<br>
     </div>
     @foreach($Answers as $answer)
         <div>
@@ -19,25 +19,25 @@
                     @foreach($typeAnswer as $id => $item)
                         @if($item->question_id == $answer->question_id)
                         @if($d == $answer->answer_correct && $d == $item->answer_int)
-                        <div class="input-group">
+                        <label class="input-group">
                             <span class="input-group-addon">&#x2611;</span>
                             <span class="form-control">{{$item->answer}}</span>
-                        </div>
+                        </label>
                     @elseif($d == $item->answer_int)
-                        <div class="input-group">
+                        <label class="input-group">
                             <span class="input-group-addon">&#x2612;</span>
                             <span class="form-control">{{$item->answer}}</span>
-                        </div>
+                        </label>
                     @elseif($d == $answer->answer_correct)
-                        <div class="input-group">
+                        <label class="input-group">
                             <span class="input-group-addon">&#x2611;</span>
                             <span class="form-control">{{$item->answer}}</span>
-                        </div>
+                        </label>
                         @else
-                        <div class="input-group">
+                        <label class="input-group">
                             <span class="input-group-addon">&#x2610;</span>
                             <span class="form-control">{{$item->answer}}</span>
-                        </div>
+                        </label>
                             @endif
                         @php($d++)
                             @endif
@@ -49,25 +49,25 @@
             @if($answer->question_type == 3)
                 @foreach($typeAnswer as $value)
                     @if($value->correct == "true" && $value->correctUser == "checked")
-                        <div class="input-group">
-                            <span class="input-group-addon">&#x2611;</span>
-                            <span class="form-control" style="background-color:green;">{{$value->answer}}</span>
-                        </div>
+                        <label class="input-group">
+                            <span class="input-group-addon" style="background-color:#93ff93;">&#x2611;</span>
+                            <span class="form-control">{{$value->answer}}</span>
+                        </label>
                     @elseif($value->correctUser == "unchecked" && $value->correct != "true")
-                        <div class="input-group">
+                        <label class="input-group">
                             <span class="input-group-addon">&#x2610;</span>
-                            <span class="form-control" style="background-color:blue;">{{$value->answer}}</span>
-                        </div>
+                            <span class="form-control">{{$value->answer}}</span>
+                        </label>
                     @elseif($value->correctUser == "unchecked" && $value->correct == "true")
-                        <div class="input-group">
-                            <span class="input-group-addon">&#x2612;</span>
-                            <span class="form-control" style="background-color:yellow;">{{$value->answer}}</span>
-                        </div>
+                        <label class="input-group">
+                            <span class="input-group-addon" style="background-color:#ffff93;">&#x2612;</span>
+                            <span class="form-control">{{$value->answer}}</span>
+                        </label>
                     @else
-                        <div class="input-group">
-                            <span class="input-group-addon">&#x2610;</span>
-                            <span class="form-control" style="background-color: red;">{{$value->answer}}</span>
-                        </div>
+                        <label class="input-group">
+                            <span class="input-group-addon"  style="background-color: #ff9393;">&#x2610;</span>
+                            <span class="form-control">{{$value->answer}}</span>
+                        </label>
                         @endif
                 @endforeach
                 @endif

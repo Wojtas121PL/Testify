@@ -12,7 +12,7 @@
                     <input name="_method" type="hidden" value="DELETE">
 
                     <div class="input-group" >
-                        <a href="{{'exam/'.$exam->id}}" class="form-control" style="height:auto;">{{$exam->name}}</a>
+                        <a href="{{'exam/'.$exam->id}}" class="form-control">{{$exam->name}}</a>
                         <span class="input-group-btn" >
                             <button class="btn btn-danger" type="submit">Usuń</button>
                         </span>

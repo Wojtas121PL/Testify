@@ -1,68 +1,70 @@
 {{--Czas egzaminu--}}
 @if($Settings[0]->time != 0)
-    <div class="panel-body">
-        Czas na rozwiązanie testu w min
-        <input type="number" min="0" value="{{$Settings[0]->time}}" name="time" placeholder="Czas na rozwiązanie egzaminu">
+    <div class="form-group">
+        <label for="time">Czas na rozwiązanie testu w min: </label>
+        <input type="number" class="form-control" min="0" value="{{$Settings[0]->time}}" name="time" id="time" placeholder="Czas na rozwiązanie egzaminu">
     </div>
 @else
-    <div class="panel-body">
-        Czas na rozwiązanie testu w min
-        <input type="number" min="0" name="time" placeholder="Czas na rozwiązanie egzaminu">
+    <div class="form-group">
+        <label for="time"> Czas na rozwiązanie testu w min: </label>
+        <input type="number" class="form-control" min="0" name="time" id="time" placeholder="Czas na rozwiązanie egzaminu">
     </div>
 @endif
 
 
 {{--Ilosc pytan--}}
 @if($Settings[0]->xOFy != null)
-    <div class="panel-body">
-        Ilosc pytań na egzaminie <input type="number" min="0" name="xOFy" value="{{$Settings[0]->xOFy}}" placeholder="Ilośc pytań">
+    <div class="form-group">
+        <label for="xOFy">Ilosc pytań na egzaminie: </label>
+        <input type="number" class="form-control" min="0" name="xOFy" id="xOFy" value="{{$Settings[0]->xOFy}}" placeholder="Ilośc pytań">
     </div>
 @else
-    <div class="panel-body">
-        Ilosc pytań na egzaminie <input type="number" min="0" name="xOFy" placeholder="Ilośc pytań">
+    <div class="form-group">
+        <label for="xOFy">Ilosc pytań na egzaminie: </label>
+        <input type="number" class="form-control" min="0" name="xOFy" id="xOFy" placeholder="Ilośc pytań">
     </div>
 @endif
 
 
 {{--Losowanie pytań--}}
 @if($Settings[0]->random == true)
-    <div class="panel-body">
-        Losowa kolejność pytań<input type="checkbox" name="random" value="1" disabled checked>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="random" id="random" value="1" disabled checked>Losowa kolejność pytań
         <input type="hidden" name="set_random" value="1">
-    </div>
+    </label>
 @else
-    <div class="panel-body">
-        Losowa kolejność pytań<input type="checkbox" name="random" value="0" disabled>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="random" id="random" value="0" disabled>Losowa kolejność pytań
         <input type="hidden" name="set_random" value="0">
-    </div>
+    </label>
 @endif
 
 
 {{--Progresywny egzamin--}}
 @if($Settings[0]->progressive == true)
-    <div class="panel-body">
-        Egzamin progresywny <input type="checkbox" name="progressive" value="1" disabled checked>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="progressive" id="progressive" value="1" disabled checked>Egzamin progresywny
         <input type="hidden" name="set_progressive" value="1">
-    </div>
+    </label>
 @else
-    <div class="panel-body">
-        Egzamin progresywny <input type="checkbox" name="progressive" value="0" disabled>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="progressive" id="progressive" value="0" disabled>Egzamin progresywny
         <input type="hidden" name="set_progressive" value="0">
-    </div>
+    </label>
 @endif
 
 
 {{--Strona z Zasadami--}}
 @if($Settings[0]->rules_page == 1)
-    <div class="panel-body">
-        Strona z zasadami <input type="checkbox" name="rules_page" value="1" checked>
+    <label class="checkbox-inline">
+        <input type="checkbox" name="rules_page" value="1" checked>Strona z zasadami
         <input type="hidden" name="set_rules" value="1">
-        <textarea name="rules" placeholder="Wpisz tutaj zasady testu..">{{$Settings[0]->rules_page_text}}</textarea>
-    </div>
+    </label>
+    <textarea name="rules" placeholder="Wpisz tutaj zasady testu..">{{$Settings[0]->rules_page_text}}</textarea>
 @else
-    <div class="panel-body">
-        Strona z zasadami <input type="checkbox" name="rules_page" value="0">
+    <label class="checkbox-inline">
+        <input type="checkbox" name="rules_page" value="0">Strona z zasadami
         <input type="hidden" name="set_rules" value="0">
-        <textarea name="rules" placeholder="Wpisz tutaj zasady testu.."></textarea>
-    </div>
+    </label>
+    <textarea class="form-control" name="rules" placeholder="Wpisz tutaj zasady testu.."></textarea>
 @endif
